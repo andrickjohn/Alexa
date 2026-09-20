@@ -239,9 +239,12 @@ tbody th small{display:block;color:var(--muted);font-weight:500}
 .pbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);border-radius:14px;padding:8px 8px 8px 16px;box-shadow:0 8px 30px rgba(0,0,0,.22);width:max-content;max-width:calc(100vw - 24px);animation:slideUpBar .3s cubic-bezier(0.16,1,0.3,1) both}
 @keyframes slideUpBar{from{transform:translate(-50%,20px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
 .pbar span{font-size:.92rem}
-.pbar .btn{background:transparent;color:var(--paper);border-color:color-mix(in srgb,var(--paper) 30%,transparent)}
-.pbar .btn.primary{background:var(--paper);color:var(--ink);border-color:var(--paper)}
-.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:40;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:12px;font-size:.92rem;max-width:calc(100vw - 24px);box-shadow:0 8px 24px rgba(0,0,0,.2);animation:slideUpBar .25s ease both}
+.past-days-toggle{margin:18px 0 6px;text-align:center}
+.past-days-toggle button{background:var(--card);border:1px dashed var(--line);color:var(--muted);border-radius:20px;padding:6px 14px;font-size:.85rem;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,.03);cursor:pointer;transition:all .15s ease}
+.past-days-toggle button:hover{color:var(--ink);border-color:var(--lake);background:var(--paper)}
+.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:9999;background:var(--ink);color:var(--paper);padding:10px 14px 10px 16px;border-radius:12px;font-size:.92rem;max-width:calc(100vw - 24px);box-shadow:0 8px 24px rgba(0,0,0,.25);animation:slideUpBar .25s ease both;display:flex;align-items:center;gap:10px}
+.toast-close{background:transparent;border:0;color:var(--paper);opacity:.7;cursor:pointer;font-size:.9rem;padding:2px 6px;border-radius:4px;margin-left:auto}
+.toast-close:hover{opacity:1;background:rgba(255,255,255,.15)}
 .notice{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:var(--warn-bg);color:var(--warn-ink);font-size:.92rem;display:flex;gap:10px;justify-content:space-between;align-items:center}
 .sparkle-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:999}
 
@@ -855,7 +858,16 @@ function ago(ts){
   if (s < 90) return 'just now'; if (s < 3600) return Math.round(s/60)+' min ago'; if (s < 86400) return Math.round(s/3600)+' hr ago';
   return new Date(ts).toLocaleDateString('en-US',{ month:'short', day:'numeric' });
 }
-function toast(msg){ var t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role','status'); t.textContent = msg; document.body.appendChild(t); setTimeout(function(){ t.remove(); }, 3200); }
+function toast(msg, ms){
+  var t = document.createElement('div');
+  t.className = 'toast';
+  t.setAttribute('role','status');
+  t.innerHTML = '<span>' + esc(msg) + '</span><button class="toast-close" aria-label="Dismiss">✕</button>';
+  var btn = t.querySelector('.toast-close');
+  if (btn) btn.onclick = function(){ t.remove(); };
+  document.body.appendChild(t);
+  setTimeout(function(){ if (t.parentNode) t.remove(); }, ms || 6000);
+}
 
 // ---------- rendering ----------
 function render(){
@@ -926,7 +938,14 @@ function schedule(){
       return '<button class="key '+(i.kind==='wedding'?'wedding':'')+'" data-act="jumpitem" data-id="'+esc(i.id)+'"><div class="kd">'+esc(shortD(i.date))+(i.time?', '+esc(fmtT(i.time)):'')+'</div><div class="kt">'+esc(i.title)+'</div></button>';
     }).join('') + '</div></section>';
   }
+  var pastDays = ds.filter(function(d){ return d < today; });
+  if (pastDays.length > 0 && !ui.editing) {
+    var pCount = pastDays.length;
+    var pRange = fmtD(pastDays[0],{month:'short',day:'numeric'}) + (pCount > 1 ? ' – ' + fmtD(pastDays[pCount-1],{month:'short',day:'numeric'}) : '');
+    h += '<div class="past-days-toggle"><button class="btn sm" data-act="toggle-past-days">' + (ui.showPastDays ? '▼ Hide ' + pCount + ' past day' + (pCount > 1 ? 's' : '') : '▶ Show ' + pCount + ' past day' + (pCount > 1 ? 's' : '') + ' (' + pRange + ')') + '</button></div>';
+  }
   ds.forEach(function(d, di){
+    if (d < today && !ui.showPastDays && !ui.editing) return;
     var its = items.filter(function(i){ return i.date === d && visible(i); });
     var info = state.days[d] || {};
     var wed = d === state.trip.wedding;
@@ -1785,6 +1804,7 @@ app.addEventListener('click', function(e){
     if (ui.mapSel && !e.target.closest('.pin')) { var mw = document.querySelector('.mapwrap'); if (mw) scrollToEl(mw, false); }
   }
   else if (a === 'edit-toggle') { ui.editing = !ui.editing; render(); }
+  else if (a === 'toggle-past-days') { ui.showPastDays = !ui.showPastDays; render(); }
   else if (a === 'next-idea') {
     var dId = b.dataset.day || id;
     ui.dayIdeaIndex = ui.dayIdeaIndex || {};
