@@ -5,7 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Detroit Wedding Trip</title>
 <meta name="description" content="Shared itinerary for the Detroit wedding trip — flights, hotels, events and a map with drive times.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💍</text></svg>">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Detroit Wedding">
+<meta name="theme-color" content="#121921">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="manifest" href="/manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1680,7 +1687,7 @@ function buildDoc(s){
   var js = document.getElementById('appjs').textContent;
   var json = JSON.stringify(s).replace(/</g, '\\u003c');
   var S = 'scr' + 'ipt';
-  return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<title>' + esc(s.trip.title) + '</title>\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">\n<style id="css">' + css + '</style>\n</head>\n<body>\n<div id="app"></div>\n<' + S + ' type="application/json" id="state">' + json + '</' + S + '>\n<' + S + ' type="text/plain" id="basemap">' + baseSrc + '</' + S + '>\n<' + S + ' id="appjs">' + js + '</' + S + '>\n</body>\n</html>\n';
+  return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<title>' + esc(s.trip.title) + '</title>\n<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">\n<meta name="apple-mobile-web-app-title" content="Detroit Wedding">\n<meta name="theme-color" content="#121921">\n<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">\n<link rel="manifest" href="/manifest.json">\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">\n<style id="css">' + css + '</style>\n</head>\n<body>\n<div id="app"></div>\n<' + S + ' type="application/json" id="state">' + json + '</' + S + '>\n<' + S + ' type="text/plain" id="basemap">' + baseSrc + '</' + S + '>\n<' + S + ' id="appjs">' + js + '</' + S + '>\n</body>\n</html>\n';
 }
 var publishing = false;
 function publish(retry){
