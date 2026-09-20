@@ -44,11 +44,23 @@ a{color:var(--lake)}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* hero */
-.hero{padding:40px 0 4px}
-.hero h1{font:400 clamp(2.5rem,8vw,3.9rem)/1 var(--serif);letter-spacing:-.01em;margin:0}
-.hero .dates{margin:10px 0 0;color:var(--muted);font-size:1.05rem}
+.hero{padding:36px 0 4px}
+.hero-brand{display:flex;align-items:center;gap:18px;margin-bottom:6px}
+.hero-emblem{width:76px;height:76px;border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.18);cursor:pointer;flex-shrink:0;transition:transform .2s cubic-bezier(0.16,1,0.3,1),box-shadow .2s ease;border:1.5px solid rgba(255,255,255,.15);display:block}
+.hero-emblem:hover{transform:scale(1.06) rotate(2deg);box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.hero-emblem:active{transform:scale(0.95)}
+.hero-title-group{flex:1;min-width:0}
+.hero h1{font:400 clamp(2.3rem,7vw,3.6rem)/1.05 var(--serif);letter-spacing:-.01em;margin:0}
+.hero .dates{margin:6px 0 0;color:var(--muted);font-size:1.02rem}
 .hero .count{margin:6px 0 0;font-weight:600;color:var(--lake)}
 .hero-actions{display:flex;gap:8px;flex-shrink:0;padding-top:6px}
+.mini-emblem{width:26px;height:26px;border-radius:7px;cursor:pointer;flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.12);transition:transform .15s ease}
+.mini-emblem:hover{transform:scale(1.12)}
+.mini-emblem:active{transform:scale(0.92)}
+@media (max-width: 580px){
+  .hero-brand{gap:14px}
+  .hero-emblem{width:62px;height:62px;border-radius:15px}
+}
 
 /* people */
 .people{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:6px -20px 14px;padding:0 20px}
@@ -911,13 +923,23 @@ function hero(){
     acts = '<button class="btn sm" data-act="add-item" data-id="" title="Add your own event without a password">+ Add Event</button> <button class="btn sm" data-act="signin" style="opacity:.85" title="Admin sign-in">Admin</button>';
   }
   
-  ui._bar = '<div class="bar"><div class="lead"><span class="mini">'+esc(state.trip.title)+'</span><span class="cd">'+esc(line)+'</span></div>'+acts+'</div>';
+  ui._bar = '<div class="bar"><img class="mini-emblem" src="/favicon.png?v=3" alt="A+B" data-act="sparks" title="Tap for celebration sparks!" /><div class="lead"><span class="mini">'+esc(state.trip.title)+'</span><span class="cd">'+esc(line)+'</span></div>'+acts+'</div>';
   
   var heroChips = '<div class="hero-chips">' +
     (w ? '<button class="hero-chip" data-act="sparks" title="Tap for celebration sparks!">💍 ' + (today === w ? 'Wedding Day Today!' : (daysBetween(today, w) > 0 ? daysBetween(today, w) + ' Days to Wedding' : fmtD(w, {month:'short', day:'numeric'}) + ' Wedding')) + ' ✨</button>' : '') +
     '</div>';
 
-  return '<header class="hero"><h1>'+esc(state.trip.title)+'</h1><p class="dates">'+esc(state.trip.subtitle)+(range?', '+esc(range):'')+'</p>'+heroChips+(ui.editing?'<p class="edtrip" style="margin:10px 0 0"><button class="btn sm" data-act="edit-trip">Edit title and dates</button></p>':'')+'</header>';
+  return '<header class="hero">' +
+    '<div class="hero-brand">' +
+      '<img class="hero-emblem" src="/apple-touch-icon.png?v=3" alt="A+B Wedding Emblem" data-act="sparks" title="Tap for celebration sparks!" />' +
+      '<div class="hero-title-group">' +
+        '<h1>'+esc(state.trip.title)+'</h1>' +
+        '<p class="dates">'+esc(state.trip.subtitle)+(range?', '+esc(range):'')+'</p>' +
+      '</div>' +
+    '</div>' +
+    heroChips +
+    (ui.editing?'<p class="edtrip" style="margin:10px 0 0"><button class="btn sm" data-act="edit-trip">Edit title and dates</button></p>':'') +
+  '</header>';
 }
 function peopleNav(){
   var h = '<nav class="people" aria-label="Show schedule for"><button class="pchip all" data-act="person" data-id="all" aria-pressed="'+(ui.person==='all')+'">Everyone</button>';
