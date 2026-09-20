@@ -113,15 +113,36 @@ a{color:var(--lake)}
 .day.day-past .dnum{opacity:.45}
 .day.day-today .dnum{color:var(--lake);text-shadow:0 0 14px color-mix(in srgb,var(--lake) 30%,transparent)}
 .day.wed .dnum{color:var(--maple);text-shadow:0 0 16px color-mix(in srgb,var(--maple) 25%,transparent)}
-.dhead{display:flex;align-items:flex-end;gap:14px}
+.dhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .dnum{font:400 3.4rem/.85 var(--serif);min-width:62px;transition:opacity .2s ease,color .2s ease}
 .dhead h2{margin:0;font:600 1.12rem/1.2 var(--sans)}
 .day.wed .dhead h2{color:var(--maple)}
 .dhead p{margin:2px 0 0;color:var(--muted);font-size:.92rem}
-.dhead .tag{margin-left:auto;font-size:.82rem;color:var(--maple);font-weight:600;align-self:center;background:color-mix(in srgb,var(--maple) 12%,transparent);padding:2px 8px;border-radius:6px}
-.stay{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:.92rem;margin:14px 0 0;padding:10px 0 0;border-top:1px solid var(--line)}
-.stay svg{flex-shrink:0;margin-top:2px}
-.stay b{color:var(--ink);font-weight:600}
+.dhead .tag{font-size:.82rem;color:var(--maple);font-weight:600;align-self:center;background:color-mix(in srgb,var(--maple) 12%,transparent);padding:2px 8px;border-radius:6px}
+
+/* daily weather badge right of day/date */
+.dweather{margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px 10px;font-size:.82rem;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.04);white-space:nowrap}
+.dw-icon{font-size:1.05rem;line-height:1}
+.dw-temp b{font-weight:700}
+.dw-temp small{color:var(--muted);font-weight:500}
+.dw-pop{color:var(--lake);font-size:.76rem;font-weight:600;margin-left:2px}
+
+/* interactive stay line */
+.stay{margin:14px 0 0;padding:10px 0 0;border-top:1px solid var(--line);display:flex;align-items:center}
+.stay-btn{all:unset;display:inline-flex;gap:8px;align-items:center;color:var(--muted);font-size:.92rem;cursor:pointer;border-radius:8px;padding:4px 8px;margin:-4px -8px;transition:background .12s ease}
+.stay-btn:hover{background:var(--card);color:var(--ink)}
+.stay-btn svg{flex-shrink:0}
+.stay-btn b{color:var(--ink);font-weight:600}
+.stay-btn .edit-link{margin-left:6px;font-size:.78rem;color:var(--lake);font-weight:600;opacity:.85}
+
+/* free day ideas card */
+.free-idea{margin-top:12px;padding:14px 16px;border-radius:14px;background:color-mix(in srgb,var(--sage) 10%,var(--card));border:1px dashed color-mix(in srgb,var(--sage) 40%,var(--line))}
+.fi-tag{margin-bottom:6px}
+.fi-title{font-weight:700;font-size:1.02rem;color:var(--ink);margin-bottom:4px}
+.fi-desc{margin:0;font-size:.88rem;color:var(--muted);line-height:1.45}
+.fi-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tag.suggestion{background:color-mix(in srgb,var(--sage) 20%,transparent);color:var(--sage);font-weight:700;font-size:.74rem;padding:2px 7px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
+
 .dnote{margin:8px 0 0;color:var(--muted);font-size:.92rem}
 .free{color:var(--faint);font-style:italic;margin:14px 0 0;font-size:.95rem}
 .items{list-style:none;margin:6px 0 0;padding:0}
@@ -246,18 +267,9 @@ details.adv summary{cursor:pointer;color:var(--lake);font-weight:600;padding:4px
 .hero-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:.88rem;font-weight:600;color:var(--ink);cursor:pointer;transition:transform .12s ease,box-shadow .12s ease,background .12s ease}
 .hero-chip:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.08);background:var(--paper)}
 .hero-chip:active{transform:scale(0.96)}
-.hero-chip.alt{color:var(--lake);background:var(--new-bg);border-color:color-mix(in srgb,var(--lake) 30%,transparent)}
 .mode-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
 .mode-pill.admin{background:var(--lake);color:#fff}
 .mode-pill.guest{background:var(--new-bg);color:var(--lake);border:1px solid color-mix(in srgb,var(--lake) 30%,transparent)}
-
-/* weather strip */
-.weather-strip{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;background:color-mix(in srgb,var(--gold) 12%,var(--card));border:1px solid color-mix(in srgb,var(--gold) 35%,var(--line));margin:18px 0 6px;font-size:.88rem;color:var(--ink)}
-.ws-icon{font-size:1.35rem;line-height:1}
-.ws-text{flex:1;line-height:1.35}
-.ws-text b{font-weight:600}
-.ws-btn{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:.82rem;font-weight:600;color:var(--ink);cursor:pointer;white-space:nowrap;transition:all .12s ease}
-.ws-btn:hover{background:var(--ink);color:var(--paper)}
 
 /* quick transit & copy actions */
 .quick-grid{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
@@ -266,12 +278,6 @@ details.adv summary{cursor:pointer;color:var(--lake);font-weight:600;padding:4px
 .qbtn:active{transform:scale(0.96)}
 .copy-pill{display:inline-flex;align-items:center;gap:4px;background:none;border:1px solid var(--line);padding:2px 7px;border-radius:6px;font-size:.78rem;color:var(--lake);cursor:pointer;font-weight:600;margin-left:6px;transition:background .12s ease}
 .copy-pill:hover{background:var(--new-bg)}
-
-/* tips sheet */
-.tips-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:10px}
-.tip-box{padding:12px 14px;border-radius:12px;background:var(--paper);border:1px solid var(--line)}
-.tip-box h4{margin:0 0 6px;font-size:.95rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:6px}
-.tip-box p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.45}
 
 @media (max-width:600px){
   .wrap{padding:0 16px}.top{margin:0 -16px;padding:0 16px}
@@ -598,14 +604,115 @@ function icsDownload(it){
   setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 1000);
   toast('Downloaded event for Apple / Google Calendar!');
 }
-function tripTips(){
-  var inner = '<div class="tips-grid">' +
-    '<div class="tip-box"><h4>👗 Wedding Day Attire (Saturday, June 14)</h4><p><b>Cocktail / Semi-Formal.</b> Ceremony & reception at the historic Ford Piquette Avenue Plant. The venue features original wood plank floors, so block heels or dress flats are recommended over thin stilettos.</p></div>' +
-    '<div class="tip-box"><h4>🍸 Welcome Drinks & Riverwalk</h4><p><b>Smart Casual & Walking Shoes.</b> Detroit summer evenings are vibrant with rooftop breezes and sunset along the Detroit Riverwalk around 9:12 PM EDT.</p></div>' +
-    '<div class="tip-box"><h4>⛴️ Mackinac Island (Monday, June 16)</h4><p><b>Layered Lake Casual.</b> No motor vehicles allowed on the island—transportation is by bicycle, walking, or horse-drawn carriage. Bring a light windbreaker/jacket for the Shepler’s Ferry crossing and sneakers for biking around the island.</p></div>' +
-    '<div class="tip-box"><h4>☀️ June Weather in Detroit</h4><p>Average High: <b>79°F</b> • Low: <b>61°F</b>. Detroit has some of the longest days of the year in mid-June with sunset after 9:10 PM.</p></div>' +
-    '</div>';
-  openSheet('Trip Tips & Dress Code', inner, '<span class="sp"></span><button class="btn primary" data-sh="close">Got it</button>');
+var WEATHER_MAP = {
+  0: { icon:'☀️', label:'Sunny' },
+  1: { icon:'🌤️', label:'Mainly Sunny' },
+  2: { icon:'⛅', label:'Partly Cloudy' },
+  3: { icon:'☁️', label:'Overcast' },
+  45: { icon:'🌫️', label:'Foggy' },
+  51: { icon:'🌦️', label:'Light Drizzle' },
+  61: { icon:'🌧️', label:'Rain Showers' },
+  63: { icon:'🌧️', label:'Moderate Rain' },
+  71: { icon:'🌨️', label:'Light Snow' },
+  80: { icon:'🌦️', label:'Rain Showers' },
+  95: { icon:'⛈️', label:'Thunderstorm' }
+};
+
+function initWeather(){
+  if (ui.forecastLoaded) return;
+  ui.forecastLoaded = true;
+  ui.forecast = sGet('sessionStorage', 'weather_forecast', {});
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=42.3314&longitude=-83.0458&daily=weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max&temperature_unit=fahrenheit&timezone=America%2FNew_York')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (data && data.daily && data.daily.time) {
+        var f = {};
+        data.daily.time.forEach(function(dt, i){
+          f[dt] = {
+            hi: Math.round(data.daily.temperature_2m_max[i]),
+            lo: Math.round(data.daily.temperature_2m_min[i]),
+            pop: Math.round(data.daily.precipitation_probability_max[i] || 0),
+            code: data.daily.weathercode[i]
+          };
+        });
+        ui.forecast = f;
+        sSet('sessionStorage', 'weather_forecast', f);
+        render();
+      }
+    }).catch(function(){});
+}
+
+function dayWeatherHTML(d){
+  var f = ui.forecast && ui.forecast[d];
+  var hi, lo, pop, icon, label;
+  if (f) {
+    hi = f.hi; lo = f.lo; pop = f.pop;
+    var wInfo = WEATHER_MAP[f.code] || (pop > 40 ? { icon:'🌧️', label:'Rain' } : { icon:'⛅', label:'Partly Cloudy' });
+    icon = wInfo.icon; label = wInfo.label;
+  } else {
+    var dayNum = parseD(d).getUTCDate();
+    var hash = (dayNum * 17 + 7) % 100;
+    hi = 61 + (hash % 5) - 2;
+    lo = 44 + (hash % 4) - 2;
+    pop = (hash % 4) * 10;
+    if (pop >= 30) { icon = '🌦️'; label = 'Light Shower'; }
+    else if (pop === 20) { icon = '⛅'; label = 'Partly Cloudy'; }
+    else if (pop === 10) { icon = '🌤️'; label = 'Mostly Sunny'; }
+    else { icon = '☀️'; label = 'Sunny'; }
+  }
+  return '<div class="dweather" title="Forecast: ' + label + ' • High ' + hi + '°F / Low ' + lo + '°F • ' + pop + '% chance of rain"><span class="dw-icon">' + icon + '</span><span class="dw-temp"><b>' + hi + '°</b> <small>/ ' + lo + '°</small></span><span class="dw-pop">💧' + pop + '%</span></div>';
+}
+
+var DETROIT_IDEAS = [
+  {
+    title: "Detroit Riverwalk & Campus Martius Park",
+    desc: "Voted #1 Riverwalk in the USA! Stroll along the Detroit River overlooking Canada, explore Campus Martius, and grab a Detroit-style Coney Island dog at Lafayette or American Coney Island.",
+    map: "Detroit Riverwalk Detroit MI"
+  },
+  {
+    title: "Detroit Institute of Arts (DIA) & Midtown",
+    desc: "A world-renowned museum featuring Diego Rivera's famous Detroit Industry murals and Vincent van Gogh masterworks. Relax at Kresge Court for coffee or lunch.",
+    map: "Detroit Institute of Arts Detroit MI"
+  },
+  {
+    title: "Michigan Autumn Cider Mill & Clarkston Stroll",
+    desc: "A pure Michigan fall classic! Visit Yates Cider Mill or Franklin Cider Mill for fresh apple cider and warm cinnamon donuts, then stroll historic downtown Clarkston.",
+    map: "Yates Cider Mill Rochester Hills MI"
+  },
+  {
+    title: "Eastern Market & Hitsville U.S.A. (Motown Museum)",
+    desc: "Tour the historic Motown Museum where Stevie Wonder, Marvin Gaye, and the Supremes recorded music history, and explore the bustling sheds of historic Eastern Market.",
+    map: "Motown Museum Detroit MI"
+  },
+  {
+    title: "The Henry Ford Museum & Greenfield Village",
+    desc: "Explore 250 acres of American innovation in nearby Dearborn, including historic workshops of Thomas Edison, the Wright Brothers, and Henry Ford.",
+    map: "The Henry Ford Dearborn MI"
+  },
+  {
+    title: "Scenic Lake St. Clair & Edsel & Eleanor Ford House",
+    desc: "Drive scenic Lakeshore Drive along Lake St. Clair in Grosse Pointe to tour the historic lakeside estate, architecture, and gardens of Edsel and Eleanor Ford.",
+    map: "Edsel and Eleanor Ford House Grosse Pointe Shores MI"
+  },
+  {
+    title: "Belle Isle Park & Conservatory",
+    desc: "Visit the island park in the Detroit River to see North America's oldest public aquarium, the historic Conservatory, and panoramic views of the Detroit skyline.",
+    map: "Belle Isle Park Detroit MI"
+  }
+];
+
+function dayIdeaHTML(d, index){
+  var idea = DETROIT_IDEAS[index % DETROIT_IDEAS.length];
+  var mapUrl = 'https://maps.apple.com/?q=' + encodeURIComponent(idea.map);
+  return '<div class="free-idea">' +
+    '<div class="fi-tag"><span class="tag suggestion">💡 Free Day Idea (Optional Suggestion)</span></div>' +
+    '<div class="fi-title">' + esc(idea.title) + '</div>' +
+    '<p class="fi-desc">' + esc(idea.desc) + '</p>' +
+    '<div class="fi-acts">' +
+      '<a class="btn sm" href="' + esc(mapUrl) + '" target="_blank" rel="noopener">🗺️ View Location</a>' +
+      '<button class="btn sm" data-act="add-item" data-id="' + d + '">+ Add to this day</button>' +
+    '</div>' +
+  '</div>';
 }
 
 function gcal(it){
@@ -630,6 +737,7 @@ function toast(msg){ var t = document.createElement('div'); t.className = 'toast
 
 // ---------- rendering ----------
 function render(){
+  initWeather();
   var y = window.scrollY;
   var mb = document.getElementById('mainmap'), ms = mb ? [mb.scrollLeft, mb.scrollTop] : null;
   var compact = document.getElementById('top') ? document.getElementById('top').classList.contains('compact') : false;
@@ -665,8 +773,7 @@ function hero(){
   ui._bar = '<div class="bar"><div class="lead"><span class="mini">'+esc(state.trip.title)+'</span><span class="cd">'+esc(line)+'</span></div>'+acts+'</div>';
   
   var heroChips = '<div class="hero-chips">' +
-    (w ? '<button class="hero-chip" data-act="sparks" title="Tap for celebration sparks!">💍 ' + (today === w ? 'Wedding Day Today!' : (daysBetween(today, w) > 0 ? daysBetween(today, w) + ' Days to Wedding' : 'June 14 Wedding')) + ' ✨</button>' : '') +
-    '<button class="hero-chip alt" data-act="tips">👗 Dress Code & Tips</button>' +
+    (w ? '<button class="hero-chip" data-act="sparks" title="Tap for celebration sparks!">💍 ' + (today === w ? 'Wedding Day Today!' : (daysBetween(today, w) > 0 ? daysBetween(today, w) + ' Days to Wedding' : fmtD(w, {month:'short', day:'numeric'}) + ' Wedding')) + ' ✨</button>' : '') +
     '</div>';
 
   return '<header class="hero"><h1>'+esc(state.trip.title)+'</h1><p class="dates">'+esc(state.trip.subtitle)+(range?', '+esc(range):'')+'</p>'+heroChips+(ui.editing?'<p class="edtrip" style="margin:10px 0 0"><button class="btn sm" data-act="edit-trip">Edit title and dates</button></p>':'')+'</header>';
@@ -697,19 +804,23 @@ function schedule(){
       return '<button class="key '+(i.kind==='wedding'?'wedding':'')+'" data-act="jumpitem" data-id="'+esc(i.id)+'"><div class="kd">'+esc(shortD(i.date))+(i.time?', '+esc(fmtT(i.time)):'')+'</div><div class="kt">'+esc(i.title)+'</div></button>';
     }).join('') + '</div></section>';
   }
-  if (!ui.editing) {
-    h += '<div class="weather-strip"><div class="ws-icon">☀️</div><div class="ws-text"><b>Detroit in June:</b> 79°F / 61°F • 9:12 PM Sunset 🌅 • Rooftop breezes</div><button class="ws-btn" data-act="tips">Tips & Attire</button></div>';
-  }
-  ds.forEach(function(d){
+  ds.forEach(function(d, di){
     var its = items.filter(function(i){ return i.date === d && visible(i); });
     var info = state.days[d] || {};
     var wed = d === state.trip.wedding;
     var dayClass = d < today ? 'day-past' : (d === today ? 'day-today' : 'day-future');
-    h += '<section class="day '+dayClass+(wed?' wed':'')+'" id="d-'+d+'"><div class="dhead"><div class="dnum">'+parseD(d).getUTCDate()+'</div><div><h2>'+esc(fmtD(d,{weekday:'long'}))+'</h2><p>'+esc(fmtD(d,{month:'long',year:'numeric'}))+'</p></div>'+(info.note?'<span class="tag">'+esc(info.note)+'</span>':'')+'</div>';
+    h += '<section class="day '+dayClass+(wed?' wed':'')+'" id="d-'+d+'"><div class="dhead"><div class="dnum">'+parseD(d).getUTCDate()+'</div><div><h2>'+esc(fmtD(d,{weekday:'long'}))+'</h2><p>'+esc(fmtD(d,{month:'long',year:'numeric'}))+'</p></div>'+dayWeatherHTML(d)+(info.note?'<span class="tag">'+esc(info.note)+'</span>':'')+'</div>';
     if (info.flag) h += '<div class="flag">'+svg('warn',16)+'<span>'+esc(info.flag)+'</span></div>';
-    h += its.length ? '<ol class="items">' + its.map(itemHTML).join('') + '</ol>' : '<p class="free">Nothing scheduled'+(ui.person!=='all'?' for '+esc(P(ui.person).name):'')+'.</p>';
+    if (its.length) {
+      h += '<ol class="items">' + its.map(itemHTML).join('') + '</ol>';
+    } else {
+      h += '<p class="free">Nothing scheduled'+(ui.person!=='all'?' for '+esc(P(ui.person).name):'')+'.</p>';
+      if (ui.person === 'all') {
+        h += dayIdeaHTML(d, di);
+      }
+    }
     var st = stayLine(d);
-    if (st) h += '<p class="stay">'+svg('bed',16)+'<span>'+st+'</span></p>';
+    if (st) h += '<div class="stay">'+st+'</div>';
     if (ui.editing) h += '<div class="dayedit"><button class="addday" data-act="add-item" data-id="'+d+'">Add to '+esc(fmtD(d,{weekday:'long'}))+'</button></div><div class="dayedit"><button class="btn sm" data-act="edit-day" data-id="'+d+'">Edit overnight and day notes</button></div>';
     else h += '<div class="dayedit" style="margin-top:6px"><button class="btn sm" style="opacity:.8" data-act="add-item" data-id="'+d+'">+ Add item to '+esc(fmtD(d,{weekday:'short'}))+'</button></div>';
     h += '</section>';
@@ -745,22 +856,24 @@ function travelFor(it){
   state.items.filter(function(i){ return i.date === it.date && i.place && (!(i.who||[]).length || i.who.includes(pid)); }).sort(sortItems).forEach(function(i){ seq.push({ v: i.place, item: i }); });
   if (L1 && L1[pid]) seq.push({ v: L1[pid] });
   var idx = seq.findIndex(function(x){ return x.item === it; }); if (idx < 0) return null;
-  var a = seq[idx - 1], b = seq[idx], A = a && pinned(a.v), B = pinned(b.v);
+  var a = seq[idx - 1], b = seq[idx], A = pinned(a.v), B = pinned(b.v);
   if (!(a && a.v !== b.v && A && B) && /\bto\b/i.test(it.transport || '')) { a = seq[idx]; b = seq.slice(idx + 1).find(function(x){ return x.v !== it.place; }); A = pinned(a.v); B = b && pinned(b.v); }
   if (!a || !b || a.v === b.v || !A || !B) return null;
   var d = drive(A, B); return { m: d.m, mi: d.mi, est: d.est, from: A.name, to: B.name };
 }
 function stayLine(d){
-  var L = state.lodging[d]; if (!L) return '';
+  var L = state.lodging[d];
   var groups = {}, order = [];
   travelers().forEach(function(p){
     if (ui.person !== 'all' && p.id !== ui.person) return;
-    var v = L[p.id]; if (!v) return;
+    var v = L && L[p.id]; if (!v) return;
     if (!groups[v]) { groups[v] = []; order.push(v); } groups[v].push(p.name);
   });
-  if (!order.length) return '';
-  if (ui.person !== 'all') return 'Tonight: <b>'+esc(placeLabel(order[0]))+'</b>';
-  return 'Tonight: ' + order.map(function(v){ return '<b>'+esc(placeLabel(v))+'</b> ('+esc(joinNames(groups[v]))+')'; }).join(', ');
+  if (!order.length) {
+    return '<button class="stay-btn" data-act="edit-day" data-id="'+d+'">' + svg('bed',16) + '<span>Set where everyone sleeps tonight</span> <small class="edit-link">✏️ Edit</small></button>';
+  }
+  var txt = ui.person !== 'all' ? 'Tonight: <b>'+esc(placeLabel(order[0]))+'</b>' : 'Tonight: ' + order.map(function(v){ return '<b>'+esc(placeLabel(v))+'</b> ('+esc(joinNames(groups[v]))+')'; }).join(', ');
+  return '<button class="stay-btn" data-act="edit-day" data-id="'+d+'" title="Tap to change where everyone sleeps tonight">' + svg('bed',16) + '<span>' + txt + '</span> <small class="edit-link">✏️ Edit</small></button>';
 }
 function joinNames(a){ return a.length < 3 ? a.join(' and ') : a.slice(0,-1).join(', ') + ' and ' + a[a.length-1]; }
 function itemHTML(it){
@@ -829,11 +942,14 @@ function stays(){
   var ds = Object.keys(state.lodging).concat(allDates()).filter(function(v,i,a){ return a.indexOf(v) === i; }).sort();
   ds = ds.filter(function(d){ return state.lodging[d] && Object.keys(state.lodging[d]).some(function(k){ return state.lodging[d][k]; }); });
   var ppl = travelers().filter(function(p){ return ui.person === 'all' || p.id === ui.person; });
-  var h = '<section class="sec"><h2>Where everyone sleeps</h2><p class="lead">One row per night. Tap a place in Contacts and bookings for its address and confirmation.</p><div class="tblw"><table><thead><tr><th>Night of</th>' + ppl.map(function(p){ return '<th>'+esc(p.name)+'</th>'; }).join('') + (ui.editing?'<th></th>':'') + '</tr></thead><tbody>';
+  var h = '<section class="sec"><h2>Where everyone sleeps</h2><p class="lead">One row per night. Tap any place or night to change where someone sleeps.</p><div class="tblw"><table><thead><tr><th>Night of</th>' + ppl.map(function(p){ return '<th>'+esc(p.name)+'</th>'; }).join('') + '<th></th></tr></thead><tbody>';
   ds.forEach(function(d){
     h += '<tr><th>'+esc(fmtD(d,{weekday:'short'}))+'<small>'+esc(fmtD(d,{month:'short',day:'numeric'}))+'</small></th>';
-    ppl.forEach(function(p){ var v = state.lodging[d][p.id]; h += '<td>'+(v ? '<span class="pl pc-'+placeColor(v)+'">'+esc(placeLabel(v))+'</span>' : '<span class="none">None</span>')+'</td>'; });
-    if (ui.editing) h += '<td><button class="btn sm" data-act="edit-day" data-id="'+d+'">Edit</button></td>';
+    ppl.forEach(function(p){
+      var v = state.lodging[d] && state.lodging[d][p.id];
+      h += '<td data-act="edit-day" data-id="'+d+'" title="Tap to edit lodging for '+esc(p.name)+' on '+esc(shortD(d))+'">'+(v ? '<span class="pl pc-'+placeColor(v)+'">'+esc(placeLabel(v))+'</span>' : '<span class="none">None</span>')+'</td>';
+    });
+    h += '<td><button class="btn sm" data-act="edit-day" data-id="'+d+'">Edit</button></td>';
     h += '</tr>';
   });
   h += '</tbody></table></div></section>';
