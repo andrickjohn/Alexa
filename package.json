@@ -1,0 +1,5 @@
+{
+  "name": "detroit-wedding-trip",
+  "private": true,
+  "engines": { "node": ">=18" }
+}

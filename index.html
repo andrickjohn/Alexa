@@ -1,0 +1,1306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Detroit Wedding Trip</title>
+<meta name="description" content="Shared itinerary for the Detroit wedding trip — flights, hotels, events and a map with drive times.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💍</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style id="css">
+:root{
+  --paper:#F4F6F4;--card:#FFFFFF;--ink:#17212B;--muted:#56626E;--faint:#8B959E;--line:#DCE1DD;
+  --lake:#2A5A7A;--maple:#A3382A;--gold:#9C7019;--sage:#4F6F55;--plum:#6D4F84;
+  --warn-bg:#FAF0E2;--warn-ink:#744410;--new-bg:#E4EEF4;
+  --serif:"Gloock","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Figtree",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0F151B;--card:#161F28;--ink:#E8ECE9;--muted:#A0AAB3;--faint:#6F7A84;--line:#26313B;
+  --lake:#86B5D3;--maple:#EC907E;--gold:#DDB261;--sage:#98B79C;--plum:#BDA0D1;
+  --warn-bg:#2E2416;--warn-ink:#EBC58C;--new-bg:#1C2E3B;color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#0F151B;--card:#161F28;--ink:#E8ECE9;--muted:#A0AAB3;--faint:#6F7A84;--line:#26313B;
+  --lake:#86B5D3;--maple:#EC907E;--gold:#DDB261;--sage:#98B79C;--plum:#BDA0D1;
+  --warn-bg:#2E2416;--warn-ink:#EBC58C;--new-bg:#1C2E3B;color-scheme:dark;}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-anchor:none}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+a{color:var(--lake)}
+:focus-visible{outline:2px solid var(--lake);outline-offset:2px;border-radius:6px}
+.wrap{max-width:780px;margin:0 auto;padding:0 20px}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* hero */
+.hero{padding:40px 0 4px}
+.hero h1{font:400 clamp(2.5rem,8vw,3.9rem)/1 var(--serif);letter-spacing:-.01em;margin:0}
+.hero .dates{margin:10px 0 0;color:var(--muted);font-size:1.05rem}
+.hero .count{margin:6px 0 0;font-weight:600;color:var(--lake)}
+.hero-actions{display:flex;gap:8px;flex-shrink:0;padding-top:6px}
+
+/* people */
+.people{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:6px -20px 14px;padding:0 20px}
+.people::-webkit-scrollbar{display:none}
+.pchip{flex-shrink:0}
+.pchip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 14px 4px 4px;cursor:pointer;font-weight:500;font-size:.95rem}
+.pchip.all{padding:4px 14px}
+.pchip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.av{width:26px;height:26px;border-radius:50%;display:inline-grid;place-items:center;font-size:.75rem;font-weight:700;color:#fff;background:var(--pc,var(--faint));flex-shrink:0}
+.pc-lake{--pc:var(--lake)}.pc-maple{--pc:var(--maple)}.pc-gold{--pc:var(--gold)}.pc-sage{--pc:var(--sage)}.pc-plum{--pc:var(--plum)}.pc-gray{--pc:var(--faint)}
+:root[data-theme="dark"] .av,.darkav .av{color:#0F151B}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .av{color:#0F151B}}
+
+/* tabs */
+.tabs{display:flex;gap:22px;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:none;border:0;padding:10px 0;margin-bottom:-1px;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;white-space:nowrap;font-weight:500}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* sticky top */
+.top{position:sticky;top:0;z-index:10;background:var(--paper);margin:0 -20px;padding:0 20px;border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:12px;min-height:50px;padding:6px 0 2px}
+.lead{display:grid;flex:1;min-width:0}
+.lead > *{grid-area:1/1;align-self:center;transition:opacity .18s ease,transform .18s ease;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini{font:400 1.45rem/1.1 var(--serif);opacity:0;transform:translateY(6px);pointer-events:none}
+.cd{color:var(--lake);font-weight:600}
+.top.compact .mini{opacity:1;transform:none}
+.top.compact .cd{opacity:0;transform:translateY(-6px)}
+@media (prefers-reduced-motion:reduce){.lead > *{transition:none}}
+.bar .btn{flex-shrink:0}
+.top .tabs{border-bottom:0}
+/* rail */
+.rail{border-top:1px solid var(--line);padding:6px 0 6px}
+.rail-in{display:flex;gap:4px;align-items:flex-start}
+.rgrid{display:flex;gap:2px;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.rgrid::-webkit-scrollbar{display:none}
+.ts{display:none}
+.rd{flex:0 0 46px;background:none;border:0;padding:4px 0 6px;cursor:pointer;display:flex;flex-direction:column;align-items:center;border-radius:10px;position:relative}
+.rd:hover{background:var(--card)}
+.rd small{font-size:.72rem;color:var(--muted)}
+.rd b{font:400 1.35rem/1.1 var(--serif);width:34px;height:34px;display:grid;place-items:center;border-radius:50%}
+.rd.wed b{color:var(--maple);box-shadow:inset 0 0 0 1.5px var(--maple)}
+.rd.today::after{content:"";position:absolute;bottom:1px;width:5px;height:5px;border-radius:50%;background:var(--lake)}
+.rd.empty{opacity:.4}
+.rd.sel b{background:var(--ink);color:var(--paper)}
+.rd.all b{font:600 .8rem/1 var(--sans)}
+.rd.all.sel b{background:var(--ink);color:var(--paper)}
+
+/* up next + key moments */
+.next{margin:22px 0 0;padding:16px 18px;border-radius:14px;background:var(--new-bg)}
+.next p{margin:0}
+.next .lbl{color:var(--muted);font-size:.88rem}
+.next .t{font-weight:600;font-size:1.08rem}
+.keys{margin:26px 0 4px}
+.keys h2{font:600 .95rem/1.3 var(--sans);color:var(--muted);margin:0 0 10px}
+.keylist{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.key{background:var(--card);padding:12px 14px;border:0;text-align:left;cursor:pointer}
+.key .kd{font-size:.82rem;color:var(--muted)}
+.key .kt{font-weight:600;line-height:1.3}
+.key.wedding .kt{font:400 1.12rem/1.25 var(--serif);color:var(--maple)}
+
+/* days */
+.day{margin-top:40px}
+.dhead{display:flex;align-items:flex-end;gap:14px}
+.dnum{font:400 3.4rem/.85 var(--serif);min-width:62px}
+.day.wed .dnum{color:var(--maple)}
+.dhead h2{margin:0;font:600 1.12rem/1.2 var(--sans)}
+.dhead p{margin:2px 0 0;color:var(--muted);font-size:.92rem}
+.dhead .tag{margin-left:auto;font-size:.82rem;color:var(--maple);font-weight:600;align-self:center}
+.stay{display:flex;gap:8px;align-items:flex-start;color:var(--muted);font-size:.92rem;margin:14px 0 0;padding:10px 0 0;border-top:1px solid var(--line)}
+.stay svg{flex-shrink:0;margin-top:2px}
+.stay b{color:var(--ink);font-weight:600}
+.dnote{margin:8px 0 0;color:var(--muted);font-size:.92rem}
+.free{color:var(--faint);font-style:italic;margin:14px 0 0;font-size:.95rem}
+.items{list-style:none;margin:6px 0 0;padding:0}
+.item{display:grid;grid-template-columns:78px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.items .item:first-child{border-top:0}
+.when{font-weight:600;font-variant-numeric:tabular-nums;font-size:.95rem;padding-top:1px}
+.when small{display:block;color:var(--faint);font-weight:500;font-size:.75rem}
+.when .any{color:var(--faint);font-weight:500}
+.ibtn{all:unset;display:block;cursor:pointer;width:100%;border-radius:6px}
+.ititle{display:flex;gap:8px;align-items:flex-start;font-weight:600;font-size:1.03rem;line-height:1.3}
+.ititle svg{flex-shrink:0;margin-top:1px;color:var(--kc,var(--muted))}
+.k-flight{--kc:var(--lake)}.k-wedding{--kc:var(--maple)}.k-game{--kc:var(--sage)}.k-meal{--kc:var(--gold)}.k-visit{--kc:var(--plum)}
+.k-wedding .ititle{font:400 1.3rem/1.2 var(--serif);color:var(--maple)}
+.imeta{color:var(--muted);font-size:.92rem;margin:3px 0 0 26px;display:flex;flex-wrap:wrap;gap:4px 14px}
+.tr{display:inline-flex;gap:5px;align-items:center}
+.tt{color:var(--ink);font-weight:600;margin-left:2px}
+.badge{display:inline-block;font-size:.72rem;font-weight:700;color:var(--lake);background:var(--new-bg);border-radius:6px;padding:1px 6px;margin-left:6px;vertical-align:2px;font-family:var(--sans)}
+.who{display:flex;margin:8px 0 0 26px}
+.who .av{width:22px;height:22px;font-size:.66rem;margin-right:-4px;box-shadow:0 0 0 2px var(--paper)}
+.flag{display:flex;gap:8px;align-items:flex-start;background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:8px 12px;font-size:.88rem;margin:10px 0 0 26px;line-height:1.4}
+.day > .flag{margin-left:0}
+.flag svg{flex-shrink:0;margin-top:2px}
+.more{margin:12px 0 0 26px;padding:12px 14px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.more dl{display:grid;grid-template-columns:104px 1fr;gap:6px 12px;margin:0;font-size:.93rem}
+.more dt{color:var(--muted)}
+.more dd{margin:0;overflow-wrap:anywhere}
+.more .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.more .empty{color:var(--faint);font-size:.9rem;margin:0}
+.addday{display:block;width:100%;margin-top:10px;padding:10px;border:1.5px dashed var(--line);border-radius:12px;background:none;color:var(--muted);cursor:pointer;font-weight:500}
+.addday:hover{border-color:var(--lake);color:var(--lake)}
+.dayedit{display:flex;gap:8px;margin-top:10px}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);cursor:pointer;font-weight:500;font-size:.93rem;text-decoration:none;color:var(--ink)}
+.btn.sm{padding:5px 10px;font-size:.85rem}
+.btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.btn.danger{color:var(--maple)}
+.btn.on{background:var(--lake);border-color:var(--lake);color:#fff}
+
+/* sections: stays / contacts / updates */
+.sec{margin-top:30px}
+.sec h2{font:400 1.7rem/1.1 var(--serif);margin:0 0 4px}
+.sec .lead{color:var(--muted);margin:0 0 16px;font-size:.95rem}
+.tblw{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+tr:last-child td,tr:last-child th{border-bottom:0}
+thead th{color:var(--muted);font-weight:600}
+tbody th{font-weight:600;position:sticky;left:0;background:var(--card)}
+tbody th small{display:block;color:var(--muted);font-weight:500}
+.pl{display:inline-block;padding:2px 8px;border-radius:7px;background:color-mix(in srgb,var(--pc,var(--faint)) 15%,transparent);color:var(--ink)}
+.none{color:var(--faint)}
+.rows{border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:14px 16px;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row .n{font-weight:600}
+.row .s{color:var(--muted);font-size:.92rem}
+.row .r{grid-row:span 3;align-self:start}
+.row a{text-decoration:none}
+.log{list-style:none;margin:0;padding:0}
+.log li{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:.94rem}
+.log li:first-child{border-top:0}
+.log time{color:var(--muted)}
+.foot{margin:48px 0 120px;color:var(--faint);font-size:.85rem;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+
+/* publish bar + toast */
+.pbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom));z-index:20;display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);border-radius:14px;padding:8px 8px 8px 16px;box-shadow:0 8px 30px rgba(0,0,0,.22);width:max-content;max-width:calc(100vw - 24px)}
+.pbar span{font-size:.92rem}
+.pbar .btn{background:transparent;color:var(--paper);border-color:color-mix(in srgb,var(--paper) 30%,transparent)}
+.pbar .btn.primary{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.toast{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:40;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:12px;font-size:.92rem;max-width:calc(100vw - 24px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.notice{margin:16px 0 0;padding:12px 14px;border-radius:12px;background:var(--warn-bg);color:var(--warn-ink);font-size:.92rem;display:flex;gap:10px;justify-content:space-between;align-items:center}
+
+/* sheet */
+dialog.sheet{border:0;padding:0;border-radius:18px;width:min(580px,calc(100vw - 24px));max-height:90vh;background:var(--card);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+dialog.sheet::backdrop{background:rgba(10,15,20,.45)}
+.sh{display:flex;flex-direction:column;max-height:90vh}
+.sh-head{padding:18px 20px 10px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.sh-head h3{margin:0;font:400 1.5rem/1.1 var(--serif)}
+.sh-body{padding:6px 20px 16px;overflow-y:auto}
+.sh-foot{padding:12px 20px calc(14px + env(safe-area-inset-bottom));border-top:1px solid var(--line);display:flex;gap:8px;align-items:center}
+.sh-foot .sp{flex:1}
+.fld{display:block;margin:12px 0 0}
+.fld > span{display:block;font-size:.85rem;color:var(--muted);margin-bottom:4px;font-weight:500}
+.fld input[type=text],.fld input[type=date],.fld input[type=time],.fld input[type=tel],.fld select,.fld textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);font:16px/1.4 var(--sans);min-height:44px}
+.fld textarea{min-height:80px;resize:vertical}
+.g3{display:grid;grid-template-columns:1.4fr 1fr .8fr;gap:10px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.chks{display:flex;flex-wrap:wrap;gap:8px}
+.chk{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:4px 12px 4px 4px;cursor:pointer;background:var(--paper)}
+.chk input{position:absolute;opacity:0;pointer-events:none}
+.chk:has(input:checked){background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chk:has(input:focus-visible){outline:2px solid var(--lake);outline-offset:2px}
+.tog{display:flex;gap:10px;align-items:center;margin:14px 0 0;font-size:.95rem}
+.tog input{width:20px;height:20px;accent-color:var(--lake)}
+.hint{color:var(--faint);font-size:.82rem;margin:4px 0 0}
+details.adv{margin-top:16px;border-top:1px solid var(--line);padding-top:10px}
+details.adv summary{cursor:pointer;color:var(--lake);font-weight:600;padding:4px 0}
+@media (max-width:600px){
+  .wrap{padding:0 16px}.top{margin:0 -16px;padding:0 16px}
+  .people{flex-wrap:wrap;overflow:visible;margin:4px 0 8px;padding:0;gap:6px}
+  .pchip{font-size:.88rem;padding:3px 11px 3px 3px;gap:6px}.pchip.all{padding:3px 11px}
+  .pchip .av{width:22px;height:22px;font-size:.66rem}
+  .tabs{gap:0;justify-content:space-between}.tab{font-size:.92rem;padding:9px 0}
+  .tl{display:none}.ts{display:inline}
+  .rgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:0;overflow:visible}
+  .rd{flex:none;width:auto;padding:2px 0 3px}
+  .rd.r2 small{display:none}
+  .rd b{width:32px;height:32px;font-size:1.22rem}
+  .rd.all{flex:0 0 40px}
+  .mini{font-size:1.25rem}
+  .hero{padding-top:28px}
+  .item{grid-template-columns:62px 1fr;gap:10px}
+  .imeta,.who,.flag,.more{margin-left:0}
+  .more dl{grid-template-columns:92px 1fr}
+  .g3{grid-template-columns:1fr 1fr}.g3 > :first-child{grid-column:1/-1}
+  dialog.sheet{width:100%;max-width:100%;margin:auto 0 0;border-radius:18px 18px 0 0;max-height:94vh}
+  .sh{max-height:94vh}
+  .log li{grid-template-columns:1fr;gap:2px}
+}
+/* map */
+.mapwrap{position:relative;margin-top:18px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#E3E8E5}
+.mapbox{overflow:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.mapinner{position:relative;aspect-ratio:3204/3043}
+.mapinner img{position:absolute;inset:0;width:100%;height:100%;display:block;user-select:none;-webkit-user-select:none;-webkit-user-drag:none}
+.route{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.route polyline{fill:none;stroke:var(--maple);stroke-width:2.5;stroke-dasharray:7 5;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.pin{position:absolute;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid #fff;background:var(--pc,var(--lake));color:#fff;font:700 .78rem/1 var(--sans);display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:0 2px 6px rgba(0,0,0,.28);z-index:1}
+.pin.sel{width:34px;height:34px;z-index:3;box-shadow:0 0 0 3px color-mix(in srgb,var(--pc,var(--lake)) 35%,transparent),0 3px 10px rgba(0,0,0,.3)}
+.pin .pl2{position:absolute;left:calc(100% + 6px);top:50%;transform:translateY(-50%);background:var(--card);color:var(--ink);font:600 .82rem/1.2 var(--sans);padding:5px 9px;border-radius:8px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.pin.drop{background:var(--maple);pointer-events:none}
+.mapctl{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:6px;z-index:4}
+.mapctl button{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 1.15rem/1 var(--sans);cursor:pointer;display:grid;place-items:center}
+.mapctl button.fit{font-size:.72rem}
+.attr{font-size:.72rem;color:var(--faint);margin:6px 2px 0}
+.mapsum{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:18px 0 0;color:var(--muted);font-size:.95rem}
+.mapsum b{color:var(--ink)}
+.mapcard{margin-top:14px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+.mapcard h3{margin:0;font:400 1.35rem/1.2 var(--serif)}
+.mapcard ul{margin:8px 0 0;padding:0;list-style:none;font-size:.93rem}
+.mapcard li{padding:3px 0}
+.mapcard li b{font-weight:600}
+.mapcard .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.num{width:26px;height:26px;border-radius:50%;background:var(--pc,var(--lake));color:#fff;display:inline-grid;place-items:center;font:700 .75rem/1 var(--sans);flex-shrink:0}
+.prow{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left;cursor:pointer;color:var(--ink)}
+.prow:first-child{border-top:0}
+.prow.sel{background:var(--new-bg)}
+.prow .n{font-weight:600}
+.prow .s{color:var(--muted);font-size:.9rem}
+.miss{margin:14px 0 0;color:var(--muted);font-size:.92rem}
+.mv{--pd:38px;position:relative;height:min(68vh,620px,calc((100vw - 34px)*0.95));border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#E3E8E5;touch-action:none;cursor:grab;margin-top:14px;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;outline-offset:3px}
+.mv.drag{cursor:grabbing}
+.mvlayer{position:absolute;inset:0}
+.mvimg{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform;max-width:none;pointer-events:none}
+.mvover{position:absolute;inset:0;pointer-events:none}
+.legs{position:absolute;left:0;top:0;overflow:visible}
+.leg{fill:none;stroke:var(--pc);stroke-width:3;stroke-linecap:round;opacity:.8}
+.leg.dash{stroke-dasharray:1 7;stroke-width:3.5}
+.leg.sel{stroke-width:5.5;opacity:1}
+.hit{fill:none;stroke:transparent;stroke-width:20;pointer-events:stroke;cursor:pointer}
+.lbadge{position:absolute;transform:translate(-50%,-50%);display:inline-flex;gap:4px;align-items:center;padding:3px 9px 3px 6px;border-radius:999px;background:var(--card);color:var(--ink);border:1.5px solid var(--pc);font:600 .74rem/1.1 var(--sans);white-space:nowrap;pointer-events:auto;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.lbadge svg{color:var(--pc)}
+.lbadge.sel{background:var(--pc);color:#fff}.lbadge.sel svg{color:#fff}
+.mpin{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;background:none;border:0;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;z-index:2}
+.mpin.sel{z-index:3}
+.mpin .pb{width:var(--pd,38px);height:var(--pd,38px);border-radius:50%;background:var(--pc);color:#fff;display:grid;place-items:center;border:2.5px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.mpin.sel .pb{width:46px;height:46px;box-shadow:0 0 0 5px color-mix(in srgb,var(--pc) 30%,transparent),0 3px 10px rgba(0,0,0,.3)}
+.mlbl{position:absolute;pointer-events:auto;cursor:pointer;border:0;background:var(--card);border-radius:8px;padding:4px 9px;box-shadow:0 1px 5px rgba(0,0,0,.2);text-align:center;color:var(--ink);z-index:2}
+.mlbl b{display:block;font:600 12.5px/1.3 var(--sans);white-space:nowrap}
+.mlbl i{display:block;font:500 11.5px/1.3 var(--sans);font-style:normal;color:var(--muted);white-space:nowrap}
+.mlbl.sm{padding:3px 8px}.mlbl.c{padding:2px 8px}
+.mpin{z-index:3}.mlbl.sm b{font-size:11.5px}.mlbl.sm i{font-size:10.5px}
+.mlbl.sel{box-shadow:0 0 0 2px var(--ink),0 2px 8px rgba(0,0,0,.25);z-index:4}
+.lead{stroke:var(--pc);stroke-width:1.5;opacity:.9}
+.tdot{fill:var(--pc);stroke:#fff;stroke-width:1.5}
+.mpin .pt{position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%);background:var(--card);border-radius:8px;padding:4px 9px;white-space:nowrap;box-shadow:0 1px 5px rgba(0,0,0,.2);text-align:center}
+.mpin .pt b{display:block;font:600 .78rem/1.25 var(--sans);color:var(--ink)}
+.mpin .pt i{display:block;font:500 .72rem/1.25 var(--sans);font-style:normal;color:var(--muted)}
+.mpin.cluster{flex-direction:row;background:var(--card);border-radius:999px;padding:4px 12px 4px 4px;box-shadow:0 2px 8px rgba(0,0,0,.28)}
+.cb{width:30px;height:30px;border-radius:50%;background:var(--pc);color:#fff;display:grid;place-items:center;border:2px solid var(--card);margin-right:-9px}
+.cn{margin-left:16px;font:700 .85rem/1 var(--sans);color:var(--ink)}
+.mvsheet{position:absolute;left:10px;right:10px;bottom:10px;max-height:55%;overflow:auto;background:var(--card);color:var(--ink);border-radius:14px;padding:14px 16px;box-shadow:0 8px 30px rgba(0,0,0,.28);z-index:5;touch-action:pan-y;cursor:auto;user-select:text;-webkit-user-select:text}
+@media (max-width:519px){.mv{--pd:34px}}
+@media (min-width:720px){.mvsheet{left:12px;right:auto;top:12px;bottom:auto;width:350px;max-height:calc(100% - 24px)}}
+.mvsheet .x{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;border:0;background:var(--paper);font-size:1.25rem;line-height:1;cursor:pointer;color:var(--ink)}
+.shd{display:flex;gap:10px;align-items:flex-start;padding-right:32px}
+.shd h3{margin:0;font:400 1.22rem/1.2 var(--serif)}
+.shd p{margin:3px 0 0;color:var(--muted);font-size:.88rem}
+.mvsheet ul{margin:10px 0 0;padding:0;list-style:none;font-size:.9rem;line-height:1.4}
+.mvsheet li{padding:6px 0;border-top:1px solid var(--line)}
+.mvsheet li:first-child{border-top:0}
+.mvsheet .mut{color:var(--muted);white-space:nowrap}
+.mvsheet .lb{color:var(--maple);font-weight:600}
+.mvsheet .sub{margin:12px 0 0;font-weight:600;font-size:.85rem;color:var(--muted)}
+.mvsheet .acts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.lk{background:none;border:0;padding:0;color:var(--lake);font:600 .9rem var(--sans);cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:10px 2px 0;font-size:.8rem;opacity:.85;color:var(--muted);align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:22px;height:0;border-top:3px solid var(--pc)}
+.sw.dash{border-top-style:dotted}
+.lnote{color:var(--faint)}
+.mv .mapctl{z-index:6}
+.num svg{color:#fff}
+
+.pinfld .mapwrap{margin-top:6px}
+.pinfld .mapbox{max-height:52vh}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mvimg,:root:not([data-theme="light"]) .mapinner img{filter:invert(.9) hue-rotate(180deg) saturate(.7) brightness(.9)}:root:not([data-theme="light"]) .mapwrap,:root:not([data-theme="light"]) .mv{background:#1B232B}}
+:root[data-theme="dark"] .mvimg,:root[data-theme="dark"] .mapinner img{filter:invert(.9) hue-rotate(180deg) saturate(.7) brightness(.9)}
+:root[data-theme="dark"] .mapwrap,:root[data-theme="dark"] .mv{background:#1B232B}
+.pin,.num{color:#fff}
+@media print{.rail,.tabs,.people,.hero-actions,.pbar,.addday,.dayedit,.foot .btn{display:none!important}.more{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="application/json" id="state">{"rev": 8, "updatedAt": "2026-09-19T20:35:21.000Z", "trip": {"title": "Detroit Wedding Trip", "subtitle": "Maui to Detroit and back", "wedding": "2026-10-16"}, "people": [{"id": "john", "name": "John", "traveler": true, "color": "lake", "phone": "", "notes": ""}, {"id": "brenda", "name": "Brenda", "traveler": true, "color": "maple", "phone": "", "notes": ""}, {"id": "matt", "name": "Matt", "traveler": true, "color": "sage", "phone": "", "notes": ""}, {"id": "katie", "name": "Katie", "traveler": true, "color": "gold", "phone": "", "notes": ""}, {"id": "nicholai", "name": "Nicholai", "traveler": true, "color": "plum", "phone": "", "notes": ""}, {"id": "adam", "name": "Adam", "traveler": false, "color": "gray", "phone": "", "notes": "Hosting at Adam's House"}, {"id": "rocky", "name": "Rocky", "traveler": false, "color": "gray", "phone": "", "notes": "Matt stays at Rocky's Oct 10 to 12"}, {"id": "heidi-dave", "name": "Heidi & Dave", "traveler": false, "color": "gray", "phone": "", "notes": "Clarkston"}, {"id": "cassandra", "name": "Cassandra", "traveler": false, "color": "gray", "phone": "", "notes": "Fenton"}], "places": [{"id": "ogg", "name": "Kahului Airport (OGG)", "address": "", "phone": "", "conf": "", "notes": "", "map": "Kahului Airport OGG Maui", "offMap": true, "icon": "airport"}, {"id": "dtw", "name": "Detroit Metro Airport (DTW)", "address": "", "phone": "", "conf": "", "notes": "", "map": "Detroit Metropolitan Wayne County Airport", "lat": 42.2057, "lon": -83.353, "icon": "airport", "short": "DTW Airport"}, {"id": "adam", "name": "Adam's House", "address": "5947 BLACKBERRY LN CLARKSTON, MI 48348-5177", "phone": "", "conf": "", "notes": "", "map": "", "icon": "house", "lat": 42.72673, "lon": -83.33121}, {"id": "rocky", "name": "Rocky's House", "address": "4000 Baldwin Road, Auburn Hills, MI 48326", "phone": "", "conf": "", "notes": "", "map": "", "icon": "house", "lat": 42.70253, "lon": -83.29954}, {"id": "atheneum", "name": "Atheneum Suite Hotel", "address": "1000 Brush St, Detroit, MI 48226", "phone": "", "conf": "", "notes": "Check-in Wed Oct 14", "map": "Atheneum Suite Hotel Detroit", "lat": 42.3341, "lon": -83.0427, "icon": "hotel", "short": "Atheneum"}, {"id": "whitney", "name": "The David Whitney", "address": "1 Park Ave, Detroit, MI 48226", "phone": "", "conf": "", "notes": "From Fri Oct 16", "map": "Aloft Detroit at The David Whitney", "lat": 42.3357, "lon": -83.0503, "icon": "hotel", "short": "David Whitney"}, {"id": "ccd", "name": "Country Club of Detroit", "address": "220 Country Club Dr, Grosse Pointe Farms, MI 48236", "phone": "", "conf": "", "notes": "Rehearsal, ceremony and reception", "map": "Country Club of Detroit Grosse Pointe Farms MI", "lat": 42.4174, "lon": -82.8987, "icon": "club", "short": "Country Club"}, {"id": "mw", "name": "Men's Wearhouse, Grosse Pointe", "address": "19435 Mack Ave, Grosse Pointe Woods, MI 48236", "phone": "", "conf": "", "notes": "Tux fitting and return", "map": "Men's Wearhouse Grosse Pointe MI", "lat": 42.423, "lon": -82.9103, "icon": "shop", "short": "Men's Wearhouse"}, {"id": "roeper", "name": "Roeper School", "address": "41190 Woodward Ave, Bloomfield Hills, MI 48304", "phone": "", "conf": "", "notes": "", "map": "Roeper School Bloomfield Hills MI", "lat": 42.5933, "lon": -83.2522, "icon": "sports", "short": "Roeper"}, {"id": "ocs", "name": "Oakland Christian School", "address": "3075 Shimmons Rd, Auburn Hills, MI 48326", "phone": "", "conf": "", "notes": "", "map": "Oakland Christian School Auburn Hills MI", "lat": 42.6905, "lon": -83.2341, "icon": "sports", "short": "Oakland Christian"}, {"id": "icb", "name": "Inter-City Baptist School", "address": "4700 Allen Rd, Allen Park, MI 48101", "phone": "", "conf": "", "notes": "", "map": "Inter-City Baptist School Allen Park MI", "lat": 42.2671, "lon": -83.1989, "icon": "sports", "short": "Inter-City Baptist"}, {"id": "clarkston", "name": "Clarkston", "address": "", "phone": "", "conf": "", "notes": "", "map": "Clarkston, MI", "lat": 42.7359, "lon": -83.4188, "icon": "town"}, {"id": "fenton", "name": "Fenton", "address": "", "phone": "", "conf": "", "notes": "", "map": "Fenton, MI", "lat": 42.7978, "lon": -83.705, "icon": "town"}], "items": [{"id": "i01", "date": "2026-10-06", "time": "", "tz": "HST", "title": "Start packing", "kind": "task", "place": "", "who": ["john", "brenda", "matt"], "transport": "", "key": false, "flag": "", "d": {}}, {"id": "i02", "date": "2026-10-07", "time": "18:00", "tz": "HST", "title": "Fly out of Maui", "kind": "flight", "place": "ogg", "who": ["john", "brenda", "matt"], "transport": "Flight", "key": true, "flag": "", "d": {"notes": "Overnight flight, lands DTW Thu 10:45 AM"}}, {"id": "i03", "date": "2026-10-08", "time": "10:45", "tz": "ET", "title": "Land in Detroit", "kind": "flight", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "Flight", "key": false, "flag": "", "d": {}}, {"id": "i04", "date": "2026-10-08", "time": "11:00", "tz": "ET", "title": "Pick up rental car", "kind": "car", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "", "key": false, "flag": "", "d": {}}, {"id": "i05", "date": "2026-10-08", "time": "12:00", "tz": "ET", "title": "Settle in at Adam's", "kind": "visit", "place": "adam", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i06", "date": "2026-10-08", "time": "16:00", "tz": "ET", "title": "Eliott's football game", "kind": "game", "place": "clarkston", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i07", "date": "2026-10-09", "time": "12:00", "tz": "ET", "title": "Visit Cassandra", "kind": "visit", "place": "fenton", "who": ["brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i08", "date": "2026-10-09", "time": "16:30", "tz": "ET", "title": "Brooks' soccer game", "kind": "game", "place": "roeper", "who": ["john", "brenda", "matt"], "transport": "Adam's car", "key": false, "flag": "", "d": {}}, {"id": "i09", "date": "2026-10-09", "time": "18:30", "tz": "ET", "title": "Visit Heidi & Dave", "kind": "visit", "place": "clarkston", "who": ["john", "brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}, "updatedAt": "2026-09-19T19:50:12.459Z"}, {"id": "i10", "date": "2026-10-12", "time": "16:30", "tz": "ET", "title": "Brooks' soccer game", "kind": "game", "place": "ocs", "who": ["john", "brenda", "matt"], "transport": "Adam's car", "key": false, "flag": "", "d": {}}, {"id": "i11", "date": "2026-10-13", "time": "16:30", "tz": "ET", "title": "Brooks' soccer game", "kind": "game", "place": "icb", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i12", "date": "2026-10-13", "time": "18:00", "tz": "HST", "title": "Katie & Nicholai fly out of Maui", "kind": "flight", "place": "ogg", "who": ["katie", "nicholai"], "transport": "Flight", "key": true, "flag": "", "d": {"notes": "Overnight flight, lands DTW Wed 10:45 AM"}}, {"id": "i13", "date": "2026-10-14", "time": "10:45", "tz": "ET", "title": "Katie & Nicholai land in Detroit", "kind": "flight", "place": "dtw", "who": ["katie", "nicholai"], "transport": "Uber to hotel", "key": false, "flag": "Hotel check-in is at 6 PM, about 7 hours after landing. Plan the afternoon or ask the Atheneum about early check-in.", "d": {}}, {"id": "i14", "date": "2026-10-14", "time": "15:00", "tz": "ET", "title": "Tux fitting", "kind": "errand", "place": "mw", "who": ["john", "brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i15", "date": "2026-10-14", "time": "18:00", "tz": "ET", "title": "Check in at the Atheneum", "kind": "stay", "place": "atheneum", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": false, "flag": "Matt is listed here but sleeps at Adam's House this week. Confirm whether he's just joining.", "d": {}}, {"id": "i16", "date": "2026-10-15", "time": "16:30", "tz": "ET", "title": "Eliott's football game", "kind": "game", "place": "clarkston", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": false, "flag": "Overlaps the 5:00 rehearsal in Grosse Pointe, about an hour's drive away. John and Brenda can't make both.", "d": {}}, {"id": "i17", "date": "2026-10-15", "time": "17:00", "tz": "ET", "title": "Wedding rehearsal", "kind": "wedding", "place": "ccd", "who": ["john", "brenda"], "transport": "Rental Car", "key": true, "flag": "Conflicts with Eliott's 4:30 game in Clarkston.", "d": {}}, {"id": "i18", "date": "2026-10-15", "time": "18:00", "tz": "ET", "title": "Rehearsal dinner", "kind": "meal", "place": "", "who": ["john", "brenda"], "transport": "Rental Car", "key": true, "flag": "Location still TBD.", "d": {}}, {"id": "i19", "date": "2026-10-16", "time": "08:30", "tz": "ET", "title": "Ruby's soccer game", "kind": "game", "place": "", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "Location still TBD.", "d": {}}, {"id": "i20", "date": "2026-10-16", "time": "16:00", "tz": "ET", "title": "Alexa's Wedding!", "kind": "wedding", "place": "ccd", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": true, "flag": "", "d": {}, "updatedAt": "2026-09-19T17:04:14.007Z"}, {"id": "i21", "date": "2026-10-16", "time": "17:00", "tz": "ET", "title": "Reception", "kind": "wedding", "place": "ccd", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": true, "flag": "", "d": {}}, {"id": "i22", "date": "2026-10-16", "time": "23:00", "tz": "ET", "title": "After-party bowling", "kind": "other", "place": "", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": true, "flag": "", "d": {}}, {"id": "i23", "date": "2026-10-17", "time": "", "tz": "ET", "title": "Return the tux", "kind": "errand", "place": "mw", "who": ["john", "brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i24", "date": "2026-10-18", "time": "08:00", "tz": "ET", "title": "Katie & Nicholai fly home to Maui", "kind": "flight", "place": "dtw", "who": ["katie", "nicholai"], "transport": "Uber to DTW", "key": false, "flag": "", "d": {}}, {"id": "i25", "date": "2026-10-19", "time": "06:00", "tz": "ET", "title": "Drop off rental car", "kind": "car", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "Returning the car at 6:00 for a 7:00 flight leaves no time for check-in and security. Aim for 5:00 or earlier.", "d": {}}, {"id": "i26", "date": "2026-10-19", "time": "07:00", "tz": "ET", "title": "Fly home to Maui", "kind": "flight", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "Flight", "key": true, "flag": "", "d": {}}], "lodging": {"2026-10-07": {"john": "On the flight", "brenda": "On the flight", "matt": "On the flight"}, "2026-10-08": {"john": "adam", "brenda": "adam", "matt": "adam"}, "2026-10-09": {"john": "adam", "brenda": "adam", "matt": "adam"}, "2026-10-10": {"john": "adam", "brenda": "adam", "matt": "rocky"}, "2026-10-11": {"john": "adam", "brenda": "adam", "matt": "rocky"}, "2026-10-12": {"john": "adam", "brenda": "adam", "matt": "rocky"}, "2026-10-13": {"john": "adam", "brenda": "adam", "matt": "adam", "katie": "On the flight", "nicholai": "On the flight"}, "2026-10-14": {"john": "atheneum", "brenda": "atheneum", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-15": {"john": "atheneum", "brenda": "atheneum", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-16": {"john": "whitney", "brenda": "whitney", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-17": {"john": "whitney", "brenda": "whitney", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-18": {"john": "adam", "brenda": "adam"}}, "days": {"2026-10-16": {"note": "Wedding day", "flag": "John and Brenda move from the Atheneum to the David Whitney today, but there's no checkout or check-in time on the schedule yet."}, "2026-10-18": {"note": "", "flag": "Only one overnight was listed for tonight. Confirm where John, Brenda and Matt sleep."}}, "log": [{"at": "2026-09-19T20:35:21.000Z", "text": "Map labels on every place; pinned Adam's and Rocky's with drive times"}, {"at": "2026-09-19T20:28:51.670Z", "text": "Updated Rocky's House"}, {"at": "2026-09-19T20:27:02.961Z", "text": "Updated Adam's House"}, {"at": "2026-09-19T20:17:37.000Z", "text": "Map upgraded: place icons, drive routes with times, and drag, scroll and pinch zoom"}, {"at": "2026-09-19T20:03:30.000Z", "text": "Added the map, pinned 10 places with addresses, and renamed Turo car to Rental Car"}, {"at": "2026-09-19T19:50:17.392Z", "text": "Changed Visit Heidi & Dave (Fri, Oct 9)"}, {"at": "2026-09-19T17:04:43.973Z", "text": "Changed Alexa's Wedding! (Fri, Oct 16)"}, {"at": "2026-09-18T20:00:00.000Z", "text": "Itinerary created from the original sheet"}], "drives": {"atheneum|dtw": {"m": 33, "mi": 23.1}, "dtw|whitney": {"m": 32, "mi": 22.0}, "ccd|dtw": {"m": 48, "mi": 31.4}, "dtw|mw": {"m": 43, "mi": 30.5}, "dtw|roeper": {"m": 56, "mi": 33.3}, "dtw|ocs": {"m": 63, "mi": 50.1}, "dtw|icb": {"m": 20, "mi": 11.7}, "clarkston|dtw": {"m": 66, "mi": 45.3}, "dtw|fenton": {"m": 75, "mi": 64.0}, "atheneum|whitney": {"m": 2, "mi": 0.6}, "atheneum|ccd": {"m": 25, "mi": 13.3}, "atheneum|mw": {"m": 20, "mi": 12.3}, "atheneum|roeper": {"m": 34, "mi": 26.6}, "atheneum|ocs": {"m": 39, "mi": 31.9}, "atheneum|icb": {"m": 19, "mi": 11.7}, "atheneum|clarkston": {"m": 48, "mi": 41.5}, "atheneum|fenton": {"m": 69, "mi": 58.3}, "ccd|whitney": {"m": 25, "mi": 13.3}, "mw|whitney": {"m": 20, "mi": 12.3}, "roeper|whitney": {"m": 34, "mi": 26.6}, "ocs|whitney": {"m": 39, "mi": 31.9}, "icb|whitney": {"m": 17, "mi": 10.8}, "clarkston|whitney": {"m": 48, "mi": 41.5}, "fenton|whitney": {"m": 70, "mi": 58.3}, "ccd|mw": {"m": 7, "mi": 2.0}, "ccd|roeper": {"m": 48, "mi": 32.6}, "ccd|ocs": {"m": 54, "mi": 38.5}, "ccd|icb": {"m": 36, "mi": 21.7}, "ccd|clarkston": {"m": 63, "mi": 48.1}, "ccd|fenton": {"m": 84, "mi": 64.8}, "mw|roeper": {"m": 42, "mi": 30.5}, "mw|ocs": {"m": 47, "mi": 36.4}, "icb|mw": {"m": 31, "mi": 20.8}, "clarkston|mw": {"m": 56, "mi": 46.0}, "fenton|mw": {"m": 78, "mi": 62.8}, "ocs|roeper": {"m": 15, "mi": 9.7}, "icb|roeper": {"m": 43, "mi": 24.6}, "clarkston|roeper": {"m": 24, "mi": 19.3}, "fenton|roeper": {"m": 46, "mi": 36.0}, "icb|ocs": {"m": 51, "mi": 40.4}, "clarkston|ocs": {"m": 17, "mi": 12.0}, "fenton|ocs": {"m": 38, "mi": 28.8}, "clarkston|icb": {"m": 60, "mi": 50.0}, "fenton|icb": {"m": 78, "mi": 64.4}, "clarkston|fenton": {"m": 26, "mi": 18.4}, "adam|rocky": {"m": 10, "mi": 3.7}, "adam|dtw": {"m": 70, "mi": 55.3}, "adam|atheneum": {"m": 46, "mi": 37.1}, "adam|whitney": {"m": 46, "mi": 37.1}, "adam|ccd": {"m": 60, "mi": 43.7}, "adam|mw": {"m": 54, "mi": 41.6}, "adam|roeper": {"m": 22, "mi": 14.9}, "adam|ocs": {"m": 15, "mi": 7.6}, "adam|icb": {"m": 58, "mi": 45.6}, "adam|clarkston": {"m": 13, "mi": 6.3}, "adam|fenton": {"m": 36, "mi": 24.1}, "dtw|rocky": {"m": 65, "mi": 52.2}, "atheneum|rocky": {"m": 41, "mi": 34.0}, "rocky|whitney": {"m": 42, "mi": 33.9}, "ccd|rocky": {"m": 56, "mi": 40.5}, "mw|rocky": {"m": 50, "mi": 38.4}, "rocky|roeper": {"m": 18, "mi": 11.7}, "ocs|rocky": {"m": 10, "mi": 4.4}, "icb|rocky": {"m": 54, "mi": 42.5}, "clarkston|rocky": {"m": 13, "mi": 8.3}, "fenton|rocky": {"m": 34, "mi": 25.1}}}</script>
+<script>window.TRIP_API = "/api/data";</script>
+<script id="appjs">
+(function(){
+'use strict';
+var API = window.TRIP_API || '';
+var app = document.getElementById('app');
+var saved = JSON.parse(document.getElementById('state').textContent);
+var state = JSON.parse(JSON.stringify(saved));
+var pending = [];
+var TZ = { ET: -4, HST: -10 };
+var TZNAME = { ET: 'America/Detroit', HST: 'Pacific/Honolulu' };
+var COLORS = ['lake','maple','gold','sage','plum'];
+var KINDS = [['other','General'],['flight','Flight'],['car','Car'],['stay','Hotel or stay'],['wedding','Wedding'],['meal','Meal'],['game','Game or sport'],['visit','Visit'],['errand','Errand'],['task','To-do']];
+var ICON = {
+  flight:'M21 15v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5.5z',
+  car:'M5 11l1.6-4.4A2 2 0 0 1 8.5 5.3h7a2 2 0 0 1 1.9 1.3L19 11M3.5 11h17v6h-17zM7 17v2.2M17 17v2.2M7 14h.01M17 14h.01',
+  stay:'M3 19V6M3 15h18v4M21 15v-2.5A2.5 2.5 0 0 0 18.5 10H10v5M6.5 12.5a1.5 1.5 0 1 0 0-.01',
+  game:'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM12 7.5l3.6 2.6-1.4 4.2H9.8l-1.4-4.2z',
+  wedding:'M9 8.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 1 0 0-11zM15 4.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 1 0 0-11z',
+  meal:'M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 0-3 2.2-3 5.3 0 2.2 1 3.7 3 3.7M17 3v18',
+  visit:'M3.5 11L12 4l8.5 7M5.5 9.5V20h13V9.5M10 20v-5h4v5',
+  errand:'M6 8h12l-1 12H7zM9 8V6.5a3 3 0 0 1 6 0V8',
+  task:'M5 12.5l4.2 4L19 7',
+  other:'M12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6z',
+  bed:'M3 19V6M3 15h18v4M21 15v-2.5A2.5 2.5 0 0 0 18.5 10H10v5M6.5 12.5a1.5 1.5 0 1 0 0-.01',
+  warn:'M12 4l9 16H3zM12 10v4M12 17h.01'
+};
+function svg(k, s){ s = s || 18; return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+(ICON[k]||ICON.other)+'"/></svg>'; }
+function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function store(kind){ try { return window[kind]; } catch(e){ return null; } }
+function sGet(kind, k, d){ try { var v = store(kind).getItem('wedtrip:'+k); return v == null ? d : JSON.parse(v); } catch(e){ return d; } }
+function sSet(kind, k, v){ try { if (v == null) store(kind).removeItem('wedtrip:'+k); else store(kind).setItem('wedtrip:'+k, JSON.stringify(v)); } catch(e){} }
+
+var ui = { person: sGet('localStorage','person','all'), tab:'schedule', editing:false, canEdit:false, wantEdit:false, art:null, dl:null, open:{}, notice:'', mapDates:{}, mapZoom:1, mapSel:null, mapView:null, md:null, lastDrag:0 };
+if (!['all'].concat(state.people.map(function(p){return p.id;})).includes(ui.person)) ui.person = 'all';
+
+// restore local draft
+var draft = sGet('localStorage','draft',null);
+if (draft) {
+  if (draft.publishing === saved.rev) { sSet('localStorage','draft',null); }
+  else if (draft.rev === saved.rev) { state = draft.state; pending = draft.pending || []; ui.wantEdit = true; }
+  else { ui.notice = 'A newer version was published before your '+(draft.pending||[]).length+' unpublished change(s) went out, so they were set aside. The schedule below is the latest.'; sSet('localStorage','draft',null); }
+}
+var view = sGet('sessionStorage','view',null);
+if (view) { ui.tab = view.tab || 'schedule'; ui.wantEdit = ui.wantEdit || !!view.editing; sSet('sessionStorage','view',null); }
+
+// ---------- helpers ----------
+function P(id){ return state.people.find(function(p){ return p.id === id; }); }
+function place(v){ return v ? state.places.find(function(p){ return p.id === v; }) : null; }
+function placeLabel(v){ var p = place(v); return p ? p.name : (v || ''); }
+function placeColor(v){ var i = state.places.findIndex(function(p){ return p.id === v; }); return i < 0 ? 'gray' : COLORS[i % COLORS.length]; }
+function travelers(){ return state.people.filter(function(p){ return p.traveler; }); }
+function parseD(s){ var a = s.split('-').map(Number); return new Date(Date.UTC(a[0], a[1]-1, a[2])); }
+function iso(d){ return d.toISOString().slice(0,10); }
+function fmtD(s, o){ return parseD(s).toLocaleDateString('en-US', Object.assign({ timeZone:'UTC' }, o)); }
+function shortD(s){ return fmtD(s,{ weekday:'short', month:'short', day:'numeric' }); }
+function fmtT(t){ if (!t) return ''; var a = t.split(':').map(Number); var h = a[0], m = a[1]; return ((h+11)%12+1) + (m ? ':'+String(m).padStart(2,'0') : '') + (h >= 12 ? ' PM' : ' AM'); }
+function instant(it){ var d = parseD(it.date).getTime(); if (!it.time) return d - (TZ[it.tz]||-4)*3600e3; var a = it.time.split(':').map(Number); return d + (a[0]*60 + a[1])*60e3 - (TZ[it.tz]||-4)*3600e3; }
+function todayET(){ return iso(new Date(Date.now() - 4*3600e3)); }
+function daysBetween(a, b){ return Math.round((parseD(b) - parseD(a)) / 864e5); }
+function sortItems(a, b){ return a.date === b.date ? ((a.time ? instant(a) : -1) - (b.time ? instant(b) : -1)) : (a.date < b.date ? -1 : 1); }
+function visible(it){ return ui.person === 'all' || !(it.who && it.who.length) || it.who.includes(ui.person); }
+function allDates(){
+  var ds = state.items.map(function(i){ return i.date; }).concat(Object.keys(state.lodging), Object.keys(state.days), [state.trip.wedding]).filter(Boolean).sort();
+  if (!ds.length) return [];
+  var out = [], d = parseD(ds[0]), end = parseD(ds[ds.length-1]);
+  while (d <= end) { out.push(iso(d)); d = new Date(d.getTime() + 864e5); }
+  return out;
+}
+function av(p){ if (!p) return ''; return '<span class="av pc-'+esc(p.color||'gray')+'" title="'+esc(p.name)+'">'+esc(p.name.replace(/[^A-Za-z]/g,'').slice(0,1).toUpperCase())+'</span>'; }
+function mapUrl(pl, it){
+  var addr = (it && it.d && it.d.address) || (pl && (pl.address || pl.map || pl.name)) || (it && it.place);
+  return addr ? 'https://maps.apple.com/?q=' + encodeURIComponent(addr) : '';
+}
+function gcal(it){
+  var start, end, pl = place(it.place);
+  var base = it.date.replace(/-/g,'');
+  if (it.time) {
+    var t = it.time.replace(':','') + '00';
+    var a = it.time.split(':').map(Number), eh = a[0] + 1, ed = it.date;
+    if (eh >= 24) { eh -= 24; ed = iso(new Date(parseD(it.date).getTime() + 864e5)); }
+    start = base + 'T' + t; end = ed.replace(/-/g,'') + 'T' + String(eh).padStart(2,'0') + String(a[1]).padStart(2,'0') + '00';
+  } else { start = base; end = iso(new Date(parseD(it.date).getTime() + 864e5)).replace(/-/g,''); }
+  var q = 'action=TEMPLATE&text=' + encodeURIComponent(it.title) + '&dates=' + start + '/' + end + (it.time ? '&ctz=' + TZNAME[it.tz||'ET'] : '') + '&location=' + encodeURIComponent((it.d && it.d.address) || (pl ? (pl.address || pl.name) : (it.place||''))) + '&details=' + encodeURIComponent((it.d && it.d.notes) || '');
+  return 'https://calendar.google.com/calendar/render?' + q;
+}
+function recent(ts){ return ts && (Date.now() - new Date(ts).getTime()) < 3*864e5; }
+function ago(ts){
+  var s = (Date.now() - new Date(ts).getTime())/1000;
+  if (s < 90) return 'just now'; if (s < 3600) return Math.round(s/60)+' min ago'; if (s < 86400) return Math.round(s/3600)+' hr ago';
+  return new Date(ts).toLocaleDateString('en-US',{ month:'short', day:'numeric' });
+}
+function toast(msg){ var t = document.createElement('div'); t.className = 'toast'; t.setAttribute('role','status'); t.textContent = msg; document.body.appendChild(t); setTimeout(function(){ t.remove(); }, 3200); }
+
+// ---------- rendering ----------
+function render(){
+  var y = window.scrollY;
+  var mb = document.getElementById('mainmap'), ms = mb ? [mb.scrollLeft, mb.scrollTop] : null;
+  var compact = document.getElementById('top') ? document.getElementById('top').classList.contains('compact') : false;
+  var heroH = hero();
+  app.innerHTML = '<div class="wrap">' + heroH + (ui.notice ? '<div class="notice"><span>'+esc(ui.notice)+'</span><button class="btn sm" data-act="dismiss">OK</button></div>' : '') + '<div class="top'+(compact?' compact':'')+'" id="top">' + ui._bar + peopleNav() + tabsNav() + (ui.tab === 'schedule' || ui.tab === 'map' ? rail() : '') + '</div><main>' + body() + '</main>' + foot() + '</div>' + pbar();
+  window.scrollTo(0, y);
+  var box = document.getElementById('mainmap');
+  if (box) { attachMap(box, mapImg()); if (ms) { box.scrollLeft = ms[0]; box.scrollTop = ms[1]; } }
+  if (ui.tab === 'map') mountMap(); else mv = null;
+  onScroll();
+}
+function hero(){
+  var ds = allDates(), first = ds[0], last = ds[ds.length-1], today = todayET(), line = '';
+  var w = state.trip.wedding;
+  if (first && today < first) {
+    var mine = state.items.filter(function(i){ return i.kind === 'flight' && visible(i); }).sort(sortItems)[0];
+    var parts = [];
+    if (w) { var n = daysBetween(today, w); parts.push(n === 1 ? 'Wedding tomorrow' : 'Wedding in ' + n + ' days'); }
+    if (mine && ui.person !== 'all') { var f = daysBetween(today, mine.date); parts.push(P(ui.person).name + (f === 0 ? ' flies today' : ' flies in ' + f + (f === 1 ? ' day' : ' days'))); }
+    line = parts.join('. ');
+  } else if (w && today === w) line = 'Today is the wedding';
+  else if (w && today < w) { var n2 = daysBetween(today, w); line = 'Wedding in ' + n2 + (n2 === 1 ? ' day' : ' days'); }
+  else if (last && today > last) line = 'Everyone is home. Thanks for a great trip.';
+  var range = first ? fmtD(first,{ month:'short', day:'numeric' }) + ' to ' + fmtD(last,{ month:'short', day:'numeric', year:'numeric' }) : '';
+  var acts = '';
+  if (ui.canEdit) acts = '<button class="btn '+(ui.editing?'on':'')+'" data-act="edit-toggle" aria-pressed="'+ui.editing+'">'+(ui.editing?'Done editing':'Edit')+'</button>';
+  ui._bar = '<div class="bar"><div class="lead"><span class="mini">'+esc(state.trip.title)+'</span><span class="cd">'+esc(line)+'</span></div>'+acts+'</div>';
+  return '<header class="hero"><h1>'+esc(state.trip.title)+'</h1><p class="dates">'+esc(state.trip.subtitle)+(range?', '+esc(range):'')+'</p>'+(ui.editing?'<p class="edtrip" style="margin:10px 0 0"><button class="btn sm" data-act="edit-trip">Edit title and dates</button></p>':'')+'</header>';
+}
+function peopleNav(){
+  var h = '<nav class="people" aria-label="Show schedule for"><button class="pchip all" data-act="person" data-id="all" aria-pressed="'+(ui.person==='all')+'">Everyone</button>';
+  travelers().forEach(function(p){ h += '<button class="pchip" data-act="person" data-id="'+esc(p.id)+'" aria-pressed="'+(ui.person===p.id)+'">'+av(p)+esc(p.name)+'</button>'; });
+  return h + '</nav>';
+}
+function tabsNav(){
+  var t = [['schedule','Schedule'],['map','Map'],['stays','Where everyone sleeps','Sleeping'],['contacts','Contacts and bookings','Contacts'],['updates','Updates']];
+  return '<div class="tabs" role="tablist">' + t.map(function(x){ return '<button class="tab" role="tab" data-act="tab" data-id="'+x[0]+'" aria-selected="'+(ui.tab===x[0])+'">'+(x[2] ? '<span class="tl">'+x[1]+'</span><span class="ts">'+x[2]+'</span>' : x[1])+'</button>'; }).join('') + '</div>';
+}
+function body(){ return ui.tab === 'map' ? mapTab() : ui.tab === 'stays' ? stays() : ui.tab === 'contacts' ? contacts() : ui.tab === 'updates' ? updates() : schedule(); }
+
+function schedule(){
+  var ds = allDates(), today = todayET(), items = state.items.slice().sort(sortItems);
+  var h = '';
+  // up next
+  var now = Date.now();
+  if (ds.length && today >= ds[0] && today <= ds[ds.length-1]) {
+    var nxt = items.filter(function(i){ return visible(i) && i.time && instant(i) > now - 45*60e3; })[0];
+    if (nxt) { var live = instant(nxt) <= now; h += '<div class="next"><p class="lbl">'+(live?'Happening now':'Up next')+'</p><p class="t">'+esc(nxt.title)+'</p><p>'+esc(shortD(nxt.date))+', '+esc(fmtT(nxt.time))+(nxt.place?' at '+esc(placeLabel(nxt.place)):'')+'</p></div>'; }
+  }
+  var keys = items.filter(function(i){ return i.key && visible(i); });
+  if (keys.length && !ui.editing) {
+    h += '<section class="keys"><h2>Key moments</h2><div class="keylist">' + keys.map(function(i){
+      return '<button class="key '+(i.kind==='wedding'?'wedding':'')+'" data-act="jumpitem" data-id="'+esc(i.id)+'"><div class="kd">'+esc(shortD(i.date))+(i.time?', '+esc(fmtT(i.time)):'')+'</div><div class="kt">'+esc(i.title)+'</div></button>';
+    }).join('') + '</div></section>';
+  }
+  ds.forEach(function(d){
+    var its = items.filter(function(i){ return i.date === d && visible(i); });
+    var info = state.days[d] || {};
+    var wed = d === state.trip.wedding;
+    h += '<section class="day'+(wed?' wed':'')+'" id="d-'+d+'"><div class="dhead"><div class="dnum">'+parseD(d).getUTCDate()+'</div><div><h2>'+esc(fmtD(d,{weekday:'long'}))+'</h2><p>'+esc(fmtD(d,{month:'long',year:'numeric'}))+'</p></div>'+(info.note?'<span class="tag">'+esc(info.note)+'</span>':'')+'</div>';
+    if (info.flag) h += '<div class="flag">'+svg('warn',16)+'<span>'+esc(info.flag)+'</span></div>';
+    h += its.length ? '<ol class="items">' + its.map(itemHTML).join('') + '</ol>' : '<p class="free">Nothing scheduled'+(ui.person!=='all'?' for '+esc(P(ui.person).name):'')+'.</p>';
+    var st = stayLine(d);
+    if (st) h += '<p class="stay">'+svg('bed',16)+'<span>'+st+'</span></p>';
+    if (ui.editing) h += '<div class="dayedit"><button class="addday" data-act="add-item" data-id="'+d+'">Add to '+esc(fmtD(d,{weekday:'long'}))+'</button></div><div class="dayedit"><button class="btn sm" data-act="edit-day" data-id="'+d+'">Edit overnight and day notes</button></div>';
+    h += '</section>';
+  });
+  if (ui.editing) h += '<div style="margin-top:28px"><button class="addday" data-act="add-item" data-id="">Add an item on another date</button></div>';
+  return h;
+}
+function rail(){
+  var ds = allDates(), today = todayET(), isMap = ui.tab === 'map';
+  var anySel = isMap && Object.keys(ui.mapDates).some(function(k){ return ui.mapDates[k]; });
+  var h = '<div class="rail"><div class="rail-in">';
+  if (isMap) h += '<button class="rd all'+(anySel?'':' sel')+'" data-act="mapall" aria-pressed="'+!anySel+'"><small>Dates</small><b>All</b></button>';
+  h += '<div class="rgrid">' + ds.map(function(d, di){
+    var has = state.items.some(function(i){ return i.date === d && visible(i); }) || (isMap && state.lodging[d]);
+    var sel = isMap && ui.mapDates[d];
+    return '<button class="rd'+(di >= 7 ? ' r2' : '')+(d===state.trip.wedding?' wed':'')+(d===today?' today':'')+(has?'':' empty')+(sel?' sel':'')+'" data-act="'+(isMap?'mapday':'jump')+'" data-id="'+d+'"'+(isMap?' aria-pressed="'+!!sel+'"':'')+' aria-label="'+esc(fmtD(d,{weekday:'long',month:'long',day:'numeric'}))+'"><small>'+esc(fmtD(d,{weekday:'short'}).slice(0,2))+'</small><b>'+parseD(d).getUTCDate()+'</b></button>';
+  }).join('') + '</div>';
+  return h + '</div></div>';
+}
+function travelFor(it){
+  var who = it.who || [];
+  if (it.kind === 'flight' && /fl(y|ight)|plane|air/i.test(it.transport || 'flight')) {
+    var fl = state.items.filter(function(i){ return i.kind === 'flight' && i.id !== it.id && i.place !== it.place && (i.who||[]).join() === who.join(); });
+    var t0 = instant(it), pair = null;
+    fl.forEach(function(i){ var dt = (instant(i) - t0)/60000; if (Math.abs(dt) > 0 && Math.abs(dt) < 30*60 && (!pair || Math.abs(dt) < Math.abs(pair))) pair = dt; });
+    return pair ? { m: Math.round(Math.abs(pair)), flight: true } : null;
+  }
+  if (!it.place) return null;
+  var pid = (ui.person !== 'all' && who.includes(ui.person)) ? ui.person : who[0];
+  if (!pid) return null;
+  var seq = [], L0 = state.lodging[prevDay(it.date)], L1 = state.lodging[it.date];
+  if (L0 && L0[pid]) seq.push({ v: L0[pid] });
+  state.items.filter(function(i){ return i.date === it.date && i.place && (!(i.who||[]).length || i.who.includes(pid)); }).sort(sortItems).forEach(function(i){ seq.push({ v: i.place, item: i }); });
+  if (L1 && L1[pid]) seq.push({ v: L1[pid] });
+  var idx = seq.findIndex(function(x){ return x.item === it; }); if (idx < 0) return null;
+  var a = seq[idx - 1], b = seq[idx], A = a && pinned(a.v), B = pinned(b.v);
+  if (!(a && a.v !== b.v && A && B) && /\bto\b/i.test(it.transport || '')) { a = seq[idx]; b = seq.slice(idx + 1).find(function(x){ return x.v !== it.place; }); A = pinned(a.v); B = b && pinned(b.v); }
+  if (!a || !b || a.v === b.v || !A || !B) return null;
+  var d = drive(A, B); return { m: d.m, mi: d.mi, est: d.est, from: A.name, to: B.name };
+}
+function stayLine(d){
+  var L = state.lodging[d]; if (!L) return '';
+  var groups = {}, order = [];
+  travelers().forEach(function(p){
+    if (ui.person !== 'all' && p.id !== ui.person) return;
+    var v = L[p.id]; if (!v) return;
+    if (!groups[v]) { groups[v] = []; order.push(v); } groups[v].push(p.name);
+  });
+  if (!order.length) return '';
+  if (ui.person !== 'all') return 'Tonight: <b>'+esc(placeLabel(order[0]))+'</b>';
+  return 'Tonight: ' + order.map(function(v){ return '<b>'+esc(placeLabel(v))+'</b> ('+esc(joinNames(groups[v]))+')'; }).join(', ');
+}
+function joinNames(a){ return a.length < 3 ? a.join(' and ') : a.slice(0,-1).join(', ') + ' and ' + a[a.length-1]; }
+function itemHTML(it){
+  var pl = place(it.place), open = !!ui.open[it.id];
+  var meta = [];
+  if (it.place) meta.push(esc(placeLabel(it.place)));
+  var tv = it.transport ? travelFor(it) : null;
+  if (it.transport) meta.push('<span class="tr">' + svg(it.kind === 'flight' ? 'flight' : 'car',14) + esc(it.transport) + (tv ? ' <span class="tt">(' + (tv.est ? '~' : '') + esc(durText(tv.m)) + ')</span>' : '') + '</span>');
+  var who = (it.who||[]).map(function(id){ return av(P(id)); }).join('');
+  var h = '<li class="item k-'+esc(it.kind||'other')+'" id="it-'+esc(it.id)+'"><div class="when">'+(it.time ? esc(fmtT(it.time)) + (it.tz && it.tz !== 'ET' ? '<small>'+esc(it.tz)+'</small>' : '') : '<span class="any">Any time</span>')+'</div><div>';
+  h += '<button class="ibtn" data-act="'+(ui.editing?'edit-item':'toggle')+'" data-id="'+esc(it.id)+'" aria-expanded="'+open+'"><div class="ititle">'+svg(it.kind)+'<span>'+esc(it.title)+(recent(it.updatedAt)?'<span class="badge">Updated</span>':'')+'</span></div>'+(meta.length?'<div class="imeta">'+meta.join('')+'</div>':'')+'</button>';
+  if (who) h += '<div class="who" aria-label="'+esc((it.who||[]).map(function(id){ var p = P(id); return p ? p.name : ''; }).join(', '))+'">'+who+'</div>';
+  if (it.flag) h += '<div class="flag">'+svg('warn',16)+'<span>'+esc(it.flag)+'</span></div>';
+  if (open && !ui.editing) h += detailsHTML(it, pl);
+  return h + '</div></li>';
+}
+function detailsHTML(it, pl){
+  var d = it.d || {}, rows = [];
+  var addr = d.address || (pl && pl.address);
+  var m = mapUrl(pl, it);
+  if (it.place || addr) rows.push(['Where', (addr ? esc(addr) : esc(placeLabel(it.place))) + (m ? ' <a href="'+esc(m)+'" target="_blank" rel="noopener">Map</a>' : '')]);
+  var names = (it.who||[]).map(function(id){ var p = P(id); return p ? p.name : ''; }).filter(Boolean);
+  if (names.length) rows.push(['Who', esc(joinNames(names))]);
+  if (it.transport) { var tv2 = travelFor(it); rows.push(['Getting there', esc(it.transport) + (tv2 ? (tv2.flight ? ', about ' + esc(durText(tv2.m)) + ' door to door including connections' : ', about ' + esc(durText(tv2.m)) + ' (' + tv2.mi + ' mi) from ' + esc(tv2.from) + ' to ' + esc(tv2.to) + ', without traffic') : '')]); }
+  if (it.time) rows.push(['Time', esc(fmtT(it.time)) + ' ' + (it.tz === 'HST' ? 'Hawaii time' : 'Detroit time')]);
+  if (d.flight) rows.push(['Flight', esc(d.flight)]);
+  var conf = d.conf || (pl && pl.conf); if (conf) rows.push(['Confirmation', esc(conf)]);
+  var ph = d.phone || (pl && pl.phone); if (ph) rows.push(['Phone', '<a href="tel:'+esc(ph.replace(/[^\d+]/g,''))+'">'+esc(ph)+'</a>']);
+  if (d.notes) rows.push(['Notes', esc(d.notes)]);
+  if (pl && pl.notes && !d.notes) rows.push(['About', esc(pl.notes)]);
+  var h = '<div class="more"><dl>' + rows.map(function(r){ return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'; }).join('') + '</dl>';
+  h += '<div class="acts"><a class="btn sm" href="'+esc(gcal(it))+'" target="_blank" rel="noopener">Add to Google Calendar</a>'+(m?'<a class="btn sm" href="'+esc(m)+'" target="_blank" rel="noopener">Directions</a>':'')+(ui.canEdit?'<button class="btn sm" data-act="edit-item" data-id="'+esc(it.id)+'">Edit</button>':'')+'</div></div>';
+  return h;
+}
+function stays(){
+  var ds = Object.keys(state.lodging).concat(allDates()).filter(function(v,i,a){ return a.indexOf(v) === i; }).sort();
+  ds = ds.filter(function(d){ return state.lodging[d] && Object.keys(state.lodging[d]).some(function(k){ return state.lodging[d][k]; }); });
+  var ppl = travelers().filter(function(p){ return ui.person === 'all' || p.id === ui.person; });
+  var h = '<section class="sec"><h2>Where everyone sleeps</h2><p class="lead">One row per night. Tap a place in Contacts and bookings for its address and confirmation.</p><div class="tblw"><table><thead><tr><th>Night of</th>' + ppl.map(function(p){ return '<th>'+esc(p.name)+'</th>'; }).join('') + (ui.editing?'<th></th>':'') + '</tr></thead><tbody>';
+  ds.forEach(function(d){
+    h += '<tr><th>'+esc(fmtD(d,{weekday:'short'}))+'<small>'+esc(fmtD(d,{month:'short',day:'numeric'}))+'</small></th>';
+    ppl.forEach(function(p){ var v = state.lodging[d][p.id]; h += '<td>'+(v ? '<span class="pl pc-'+placeColor(v)+'">'+esc(placeLabel(v))+'</span>' : '<span class="none">None</span>')+'</td>'; });
+    if (ui.editing) h += '<td><button class="btn sm" data-act="edit-day" data-id="'+d+'">Edit</button></td>';
+    h += '</tr>';
+  });
+  h += '</tbody></table></div></section>';
+  return h;
+}
+function contacts(){
+  var h = '<section class="sec"><h2>People</h2><p class="lead">Phone numbers are tappable on iPhone.</p><div class="rows">';
+  state.people.forEach(function(p){
+    h += '<div class="row"><div class="n" style="display:flex;gap:10px;align-items:center">'+av(p)+esc(p.name)+(p.traveler?'':' <span class="s">(not traveling)</span>')+'</div><div class="r">'+(ui.editing?'<button class="btn sm" data-act="edit-person" data-id="'+esc(p.id)+'">Edit</button>':(p.phone?'<a class="btn sm" href="tel:'+esc(p.phone.replace(/[^\d+]/g,''))+'">Call</a>':''))+'</div>';
+    h += '<div class="s">'+(p.phone?esc(p.phone):'<span class="none">No phone yet</span>')+'</div>'+(p.notes?'<div class="s">'+esc(p.notes)+'</div>':'')+'</div>';
+  });
+  h += '</div>' + (ui.editing?'<p><button class="btn" data-act="add-person">Add a person</button></p>':'') + '</section>';
+  var fl = state.items.filter(function(i){ return i.kind === 'flight' && visible(i); }).sort(sortItems);
+  if (fl.length) {
+    h += '<section class="sec"><h2>Flights</h2><p class="lead">Times are local to the airport.</p><div class="rows">';
+    fl.forEach(function(i){
+      h += '<div class="row"><div class="n">'+esc(i.title)+'</div><div class="r"><button class="btn sm" data-act="'+(ui.editing?'edit-item':'gotoitem')+'" data-id="'+esc(i.id)+'">'+(ui.editing?'Edit':'View')+'</button></div><div class="s">'+esc(shortD(i.date))+(i.time?', '+esc(fmtT(i.time))+' '+(i.tz==='HST'?'HST':'ET'):'')+', '+esc(joinNames((i.who||[]).map(function(id){ var p = P(id); return p ? p.name : ''; })))+'</div><div class="s">'+(i.d&&i.d.flight?'Flight '+esc(i.d.flight):'<span class="none">Flight number not added</span>')+(i.d&&i.d.conf?', confirmation '+esc(i.d.conf):'')+'</div></div>';
+    });
+    h += '</div></section>';
+  }
+  h += '<section class="sec"><h2>Places</h2><p class="lead">Addresses, phone numbers and confirmations entered here show up on every item at that place.</p><div class="rows">';
+  state.places.forEach(function(p){
+    var m = mapUrl(p);
+    h += '<div class="row"><div class="n">'+esc(p.name)+'</div><div class="r">'+(ui.editing?'<button class="btn sm" data-act="edit-place" data-id="'+esc(p.id)+'">Edit</button>':(m?'<a class="btn sm" href="'+esc(m)+'" target="_blank" rel="noopener">Map</a>':''))+'</div>';
+    var bits = [p.address, p.phone ? p.phone : '', p.conf ? 'Confirmation ' + p.conf : ''].filter(Boolean);
+    h += '<div class="s">'+(bits.length?esc(bits.join(', ')):'<span class="none">No address yet</span>')+'</div>'+(p.notes?'<div class="s">'+esc(p.notes)+'</div>':'')+(!p.offMap && p.lat == null ? '<div class="s"><span class="none">Not pinned on the map</span></div>' : '')+'</div>';
+  });
+  h += '</div>' + (ui.editing?'<p><button class="btn" data-act="add-place">Add a place</button></p>':'') + '</section>';
+  return h;
+}
+function updates(){
+  var h = '<section class="sec"><h2>Updates</h2><p class="lead">Last published '+esc(ago(state.updatedAt))+'. Newest changes first.</p>';
+  if (pending.length) h += '<div class="notice"><span>'+pending.length+' change(s) not published yet: '+esc(pending.slice(-3).join('; '))+'</span></div>';
+  h += '<ul class="log">' + (state.log||[]).map(function(l){ return '<li><time datetime="'+esc(l.at)+'">'+esc(ago(l.at))+'</time><span>'+esc(l.text)+'</span></li>'; }).join('') + '</ul></section>';
+  return h;
+}
+function foot(){
+  return '<footer class="foot"><span>Updated '+esc(ago(state.updatedAt))+'. Detroit times unless marked HST.</span><span style="display:flex;gap:8px;flex-wrap:wrap">'+(ui.dl?'<button class="btn sm" data-act="csv">Download as spreadsheet</button>':'')+(API?(ui.canEdit?'<button class="btn sm" data-act="signout">Editor sign out</button>':'<button class="btn sm" data-act="signin">Editor sign in</button>'):'')+'</span></footer>';
+}
+function pbar(){
+  if (!ui.canEdit || !pending.length) return '';
+  return '<div class="pbar" role="region" aria-label="Unpublished changes"><span>'+pending.length+(pending.length===1?' change':' changes')+' not shared yet</span><button class="btn sm" data-act="discard">Discard</button><button class="btn sm primary" data-act="publish">Publish to everyone</button></div>';
+}
+
+
+// ---------- map ----------
+var MAP = { W:-83.85, E:-82.75, N:42.90, S:42.13 };
+function merc(lat){ return Math.log(Math.tan(Math.PI/4 + lat*Math.PI/360)); }
+function project(lat, lon){ if (lat == null || lon == null) return null; var x = (lon-MAP.W)/(MAP.E-MAP.W), y = (merc(MAP.N)-merc(lat))/(merc(MAP.N)-merc(MAP.S)); return (x < 0 || x > 1 || y < 0 || y > 1) ? null : { x: x*100, y: y*100 }; }
+function unproject(fx, fy){ var lon = MAP.W + fx*(MAP.E-MAP.W); var m = merc(MAP.N) - fy*(merc(MAP.N)-merc(MAP.S)); return { lat: +((2*Math.atan(Math.exp(m)) - Math.PI/2)*180/Math.PI).toFixed(5), lon: +lon.toFixed(5) }; }
+var baseSrc = ((document.getElementById('basemap') || {}).textContent || '').trim() || '/basemap.jpg';
+var baseImg = null;
+function mapImg(){ if (!baseImg) { baseImg = new Image(); baseImg.alt = ''; baseImg.draggable = false; baseImg.decoding = 'async'; baseImg.src = baseSrc; } return baseImg; }
+var ZOOMS = [1, 2, 3, 4.5];
+function mapShell(id, zoom, inner, ctlPrefix){
+  return '<div class="mapwrap"><div class="mapbox" id="'+id+'" style="height:'+(zoom === 1 ? 'auto' : 'min(58vh,560px)')+'"><div class="mapinner" style="width:'+(zoom*100)+'%"><div class="mapslot"></div>'+inner+'</div></div>' +
+    '<div class="mapctl"><button '+ctlPrefix+'="zin" aria-label="Zoom in">+</button><button '+ctlPrefix+'="zout" aria-label="Zoom out">&minus;</button><button class="fit" '+ctlPrefix+'="zfit" aria-label="Show whole map">All</button></div></div>';
+}
+function attachMap(box, img){ var slot = box.querySelector('.mapslot'); if (slot && img.parentNode !== slot) slot.appendChild(img); }
+function setZoom(box, z, focus){
+  var inner = box.firstChild, w0 = inner.offsetWidth || 1, h0 = inner.offsetHeight || 1;
+  var cx = focus ? focus.x/100 : (box.scrollLeft + box.clientWidth/2)/w0;
+  var cy = focus ? focus.y/100 : (box.scrollTop + Math.min(box.clientHeight, h0)/2)/h0;
+  inner.style.width = (z*100) + '%';
+  box.style.height = z === 1 ? 'auto' : 'min(58vh,560px)';
+  box.scrollLeft = cx*inner.offsetWidth - box.clientWidth/2;
+  box.scrollTop = cy*inner.offsetHeight - box.clientHeight/2;
+}
+function stepZoom(z, dir){ var i = ZOOMS.indexOf(z); if (i < 0) i = 0; return dir === 'zfit' ? 1 : ZOOMS[Math.max(0, Math.min(ZOOMS.length-1, i + (dir === 'zin' ? 1 : -1)))]; }
+var PICON = {
+  airport:'M21 15v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V8l-8 5v2l8-2.5V18l-2 1.5V21l3.5-1 3.5 1v-1.5L13 18v-5.5z',
+  house:'M3.5 11L12 4l8.5 7M5.5 9.5V20h13V9.5M10 20v-5h4v5',
+  hotel:'M3 19V6M3 15h18v4M21 15v-2.5A2.5 2.5 0 0 0 18.5 10H10v5M6.5 12.5a1.5 1.5 0 1 0 0-.01',
+  club:'M7 21V3.5l10 3.8L7 11M3.5 21h10',
+  sports:'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM12 7.5l3.6 2.6-1.4 4.2H9.8l-1.4-4.2z',
+  shop:'M12 7.5a2.2 2.2 0 1 1 2.2-2.2M12 7.5v1.6L3 16h18l-9-6.9',
+  town:'M4 21V9.5l6-3V21M10 21V4l8 3v14M3 21h18M13 10h2M13 14h2M6.5 13h1M6.5 16.5h1',
+  food:'M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 0-3 2.2-3 5.3 0 2.2 1 3.7 3 3.7M17 3v18',
+  place:'M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21zM12 7.5a2.3 2.3 0 1 0 0 4.6a2.3 2.3 0 1 0 0-4.6z'
+};
+var PICONS = [['place','Pin'],['airport','Airport'],['house','House'],['hotel','Hotel'],['club','Club or venue'],['sports','Sports field or school'],['shop','Shop'],['town','Town'],['food','Restaurant']];
+var PCOL = { airport:'plum', house:'sage', hotel:'sage', club:'maple', sports:'lake', shop:'gold', town:'lake', food:'gold', place:'lake' };
+function picon(k, s){ return '<svg width="'+(s||18)+'" height="'+(s||18)+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+(PICON[k]||PICON.place)+'"/></svg>'; }
+function pIconOf(pl){ return (pl && pl.icon) || 'place'; }
+var MW = 3204, MH = 3043;
+function worldXY(pl){ var p = pl && project(pl.lat, pl.lon); return p ? { x: p.x/100*MW, y: p.y/100*MH } : null; }
+function modeOf(t){ t = (t||'').toLowerCase(); if (/uber|lyft|taxi/.test(t)) return 'uber'; if (/fl(y|ight)|plane/.test(t)) return 'flight'; if (/rental|turo/.test(t) || !t) return 'car'; return 'other'; }
+var MCOL = { car:'lake', uber:'gold', other:'sage', flight:'plum' };
+function hav(a, b){ var R = 3958.8, t = Math.PI/180, dl = (b.lat-a.lat)*t, dn = (b.lon-a.lon)*t; var h = Math.sin(dl/2)*Math.sin(dl/2) + Math.cos(a.lat*t)*Math.cos(b.lat*t)*Math.sin(dn/2)*Math.sin(dn/2); return 2*R*Math.asin(Math.sqrt(h)); }
+function drive(a, b){
+  var k = [a.id, b.id].sort().join('|'), d = state.drives && state.drives[k];
+  if (d) return { m: d.m, mi: d.mi, est: false };
+  var mi = hav(a, b)*1.3; return { m: Math.round(mi/38*60 + 4), mi: Math.round(mi*10)/10, est: true };
+}
+function durText(m){ return m < 60 ? m + ' min' : Math.floor(m/60) + ' hr' + (m%60 ? ' ' + (m%60) + ' min' : ''); }
+function pinned(v){ var pl = place(v); return pl && !pl.offMap && project(pl.lat, pl.lon) ? pl : null; }
+function rangeText(dates){
+  dates = dates.slice().sort(); var out = [], a = dates[0], b = dates[0];
+  function push(){ out.push(a === b ? fmtD(a,{month:'short',day:'numeric'}) : fmtD(a,{month:'short',day:'numeric'}) + ' to ' + parseD(b).getUTCDate()); }
+  for (var i = 1; i < dates.length; i++) { if (daysBetween(b, dates[i]) === 1) b = dates[i]; else { push(); a = b = dates[i]; } }
+  if (a) push(); return out.join(', ');
+}
+function prevDay(d){ return iso(new Date(parseD(d).getTime() - 864e5)); }
+function mapData(){
+  var dsel = Object.keys(ui.mapDates).filter(function(k){ return ui.mapDates[k]; });
+  function inDate(d){ return !dsel.length || dsel.indexOf(d) >= 0; }
+  var groups = {}, noPlace = [];
+  function add(v, e, t){
+    var pl = place(v); if (pl && pl.offMap) return;
+    var key = pl ? pl.id : v;
+    if (!groups[key]) groups[key] = { key: key, pl: pl, name: pl ? pl.name : v, entries: [], first: t, w: worldXY(pl) };
+    groups[key].entries.push(e); groups[key].first = Math.min(groups[key].first, t);
+  }
+  var items = state.items.filter(function(i){ return visible(i) && inDate(i.date); }).sort(sortItems);
+  items.forEach(function(i){ if (i.place) add(i.place, { item: i }, instant(i)); else if (i.kind !== 'task') noPlace.push(i); });
+  var ppl = travelers().filter(function(p){ return ui.person === 'all' || p.id === ui.person; });
+  Object.keys(state.lodging).forEach(function(d){
+    if (!inDate(d)) return;
+    ppl.forEach(function(p){ var v = state.lodging[d][p.id]; if (v && v !== 'On the flight') add(v, { night: d, pid: p.id }, parseD(d).getTime() + 26*3600e3); });
+  });
+  // legs: per person, per day: last night's bed -> stops -> tonight's bed
+  var legs = {}, flights = [];
+  allDates().forEach(function(d){
+    if (!inDate(d)) return;
+    ppl.forEach(function(p){
+      var seq = [], L0 = state.lodging[prevDay(d)], L1 = state.lodging[d];
+      if (L0 && L0[p.id]) seq.push({ v: L0[p.id], bed: true });
+      state.items.filter(function(i){ return i.date === d && i.place && (!(i.who||[]).length || i.who.includes(p.id)); }).sort(sortItems).forEach(function(i){ seq.push({ v: i.place, item: i }); });
+      if (L1 && L1[p.id]) seq.push({ v: L1[p.id], bed: true, end: true });
+      for (var j = 1; j < seq.length; j++) {
+        var a = seq[j-1], b = seq[j], A = pinned(a.v), B = pinned(b.v);
+        if (a.v === b.v || !A || !B) continue;
+        var itm = b.item || a.item, tr = (a.item && /\bto\b/i.test(a.item.transport||'') ? a.item.transport : '') || (b.item && b.item.transport) || (a.item && a.item.transport) || '';
+        if (b.item && b.item.kind === 'flight' && b.item.place === a.v) continue;
+        var mode = modeOf(tr); if (mode === 'flight') { mode = 'car'; tr = 'Rental Car'; }
+        var key = [A.id, B.id].sort().join('|') + '|' + mode;
+        if (!legs[key]) legs[key] = { key: key, a: A, b: B, mode: mode, label: mode === 'uber' ? 'Uber' : mode === 'car' ? 'Rental Car' : tr, trips: [], dr: drive(A, B) };
+        var tk = d + (itm ? itm.id : '') + A.id + B.id;
+        var ex = legs[key].trips.find(function(t){ return t.k === tk; });
+        if (ex) ex.who.push(p.id); else legs[key].trips.push({ k: tk, date: d, from: A, to: B, item: b.item || null, back: !b.item, who: [p.id] });
+      }
+    });
+  });
+  items.forEach(function(i){ if (i.kind === 'flight' && pinned(i.place)) flights.push(i); });
+  var all = Object.keys(groups).map(function(k){ return groups[k]; }).sort(function(a, b){ return a.first - b.first; });
+  return { pins: all.filter(function(g){ return g.w; }), missing: all.filter(function(g){ return !g.w; }), noPlace: noPlace, legs: Object.keys(legs).map(function(k){ return legs[k]; }), flights: flights, dsel: dsel };
+}
+function whenText(g){
+  var its = g.entries.filter(function(e){ return e.item; }).map(function(e){ return e.item; });
+  var nights = g.entries.filter(function(e){ return e.night; }).map(function(e){ return e.night; }).filter(function(v, i, a){ return a.indexOf(v) === i; });
+  if (its.length === 1 && !nights.length) return fmtD(its[0].date,{weekday:'short'}) + (its[0].time ? ' ' + fmtT(its[0].time) : ' ' + fmtD(its[0].date,{month:'short',day:'numeric'}));
+  var ds = its.map(function(i){ return i.date; }).concat(nights).filter(function(v, i, a){ return a.indexOf(v) === i; });
+  return (nights.length && !its.length ? 'Nights ' : '') + rangeText(ds);
+}
+function groupLines(g){
+  var its = g.entries.filter(function(e){ return e.item; }).map(function(e){ return e.item; });
+  var nights = {}, byRange = {}, order = [];
+  g.entries.forEach(function(e){ if (e.night) (nights[e.pid] = nights[e.pid] || []).push(e.night); });
+  Object.keys(nights).forEach(function(pid){ var r = rangeText(nights[pid]); if (!byRange[r]) { byRange[r] = []; order.push(r); } byRange[r].push(P(pid).name); });
+  return { items: its, nights: order.map(function(r){ return joinNames(byRange[r]) + ', ' + r; }) };
+}
+function whoNames(ids){ return joinNames((ids||[]).map(function(id){ var p = P(id); return p ? p.name : ''; }).filter(Boolean)); }
+function leaveBy(t, m){ if (!t) return ''; var a = t.split(':').map(Number), mins = a[0]*60 + a[1] - m - 10; mins = Math.floor(mins/5)*5; if (mins < 0) mins += 1440; return fmtT(String(Math.floor(mins/60)).padStart(2,'0') + ':' + String(mins%60).padStart(2,'0')); }
+
+function mapTab(){
+  var md = mapData(); ui.md = md;
+  var who = ui.person === 'all' ? 'everyone' : P(ui.person).name;
+  var when = md.dsel.length ? md.dsel.slice().sort().map(function(d){ return fmtD(d,{month:'short',day:'numeric'}); }).join(', ') : 'all dates';
+  var h = '<section class="sec" style="margin-top:0"><div class="mapsum"><span><b>'+md.pins.length+'</b> '+(md.pins.length===1?'place':'places')+' and <b>'+md.legs.length+'</b> '+(md.legs.length===1?'drive':'drives')+' for '+esc(who)+', '+esc(when)+'</span>'+(md.dsel.length || ui.person !== 'all' ? '<button class="btn sm" data-act="mapclear">Show everything</button>' : '')+'</div>';
+  h += '<div class="mv" id="mv" tabindex="0" aria-label="Trip map. Drag to move, scroll or pinch to zoom."><div class="mvlayer"></div><div class="mvover"></div>' +
+    '<div class="mapctl"><button data-act="mv" data-id="in" aria-label="Zoom in">+</button><button data-act="mv" data-id="out" aria-label="Zoom out">&minus;</button><button class="fit" data-act="mv" data-id="fit" aria-label="Fit all places">Fit</button></div>' + selSheet(md) + '</div>';
+  var modes = {}; md.legs.forEach(function(l){ modes[l.label] = l.mode; });
+  h += '<div class="legend">' + Object.keys(modes).map(function(k){ return '<span><i class="sw pc-'+MCOL[modes[k]]+(modes[k]==='uber'?' dash':'')+'"></i>'+esc(k)+'</span>'; }).join('') + (md.flights.length ? '<span><i class="sw pc-plum dash"></i>Flights to and from Maui</span>' : '') + '<span class="lnote">Drive times are typical, without traffic.</span></div>';
+  h += '<p class="attr">Drag to move. Scroll, pinch or double-tap to zoom. Tap anything for details. Basemap: Esri, HERE, Garmin, OpenStreetMap contributors. Routing: OSRM.</p>';
+  if (md.pins.length) {
+    h += '<div class="rows" style="margin-top:14px">' + md.pins.map(function(g){
+      var gl = groupLines(g), bits = [];
+      if (gl.items.length) bits.push(gl.items.length === 1 ? shortD(gl.items[0].date) + (gl.items[0].time?', '+fmtT(gl.items[0].time):'') + ': ' + gl.items[0].title : gl.items.length + ' stops, ' + whenText(g));
+      if (gl.nights.length) bits.push('Overnight: ' + gl.nights.join('; '));
+      var ic = pIconOf(g.pl), sel = ui.mapSel && ui.mapSel.type === 'place' && ui.mapSel.id === g.key;
+      return '<button class="prow'+(sel?' sel':'')+'" data-act="mapsel" data-type="place" data-id="'+esc(g.key)+'"><span class="num pc-'+PCOL[ic]+'">'+picon(ic,15)+'</span><span><span class="n">'+esc(g.name)+'</span><br><span class="s">'+esc(bits.join('. '))+'</span></span></button>';
+    }).join('') + '</div>';
+  } else h += '<p class="free">Nothing on the map for this filter. Pick another name or date.</p>';
+  var miss = md.missing.map(function(g){ return g.name; });
+  if (miss.length) h += '<p class="miss">Not pinned yet, so drives to and from these are missing: '+esc(joinNames(miss))+'.'+(ui.canEdit?' Tap Edit, then set a pin under Contacts and bookings.':'')+'</p>';
+  if (md.noPlace.length) h += '<p class="miss">No location yet: '+esc(joinNames(md.noPlace.map(function(i){ return i.title + ' (' + shortD(i.date) + ')'; })))+'.</p>';
+  return h + '</section>';
+}
+function selSheet(md){
+  var s = ui.mapSel; if (!s) return '';
+  var h = '';
+  if (s.type === 'place') {
+    var g = md.pins.find(function(x){ return x.key === s.id; }); if (!g) return '';
+    var gl = groupLines(g), pl = g.pl, m = mapUrl(pl), ic = pIconOf(pl);
+    h += '<div class="shd"><span class="num pc-'+PCOL[ic]+'">'+picon(ic,15)+'</span><div><h3>'+esc(g.name)+'</h3>'+(pl && pl.address ? '<p>'+esc(pl.address)+'</p>' : '')+'</div></div><ul>';
+    gl.items.forEach(function(i){ h += '<li><b>'+esc(shortD(i.date))+(i.time?', '+esc(fmtT(i.time)):'')+'</b> '+esc(i.title)+((i.who||[]).length?' <span class="mut">'+esc(whoNames(i.who))+'</span>':'')+'</li>'; });
+    gl.nights.forEach(function(n){ h += '<li><b>Overnight</b> '+esc(n)+'</li>'; });
+    h += '</ul>';
+    var near = md.legs.filter(function(l){ return l.a.id === g.key || l.b.id === g.key; });
+    if (near.length) h += '<p class="sub">Drives</p><ul>' + near.map(function(l){ var o = l.a.id === g.key ? l.b : l.a; return '<li><button class="lk" data-act="mapsel" data-type="leg" data-id="'+esc(l.key)+'">'+esc(o.name)+'</button> <span class="mut">'+(l.dr.est?'about ':'')+esc(durText(l.dr.m))+', '+l.dr.mi+' mi, '+esc(l.label)+'</span></li>'; }).join('') + '</ul>';
+    h += '<div class="acts">' + (m ? '<a class="btn sm" href="'+esc(m)+'" target="_blank" rel="noopener">Directions</a>' : '') + (pl && pl.phone ? '<a class="btn sm" href="tel:'+esc(pl.phone.replace(/[^\d+]/g,''))+'">Call</a>' : '') + (ui.editing && pl ? '<button class="btn sm" data-act="edit-place" data-id="'+esc(pl.id)+'">Edit place</button>' : '') + '</div>';
+  } else if (s.type === 'leg') {
+    var l = md.legs.find(function(x){ return x.key === s.id; }); if (!l) return '';
+    h += '<div class="shd"><span class="num pc-'+MCOL[l.mode]+'">'+svg('car',15)+'</span><div><h3>'+esc(l.a.name)+' and '+esc(l.b.name)+'</h3><p>'+(l.dr.est?'About ':'')+esc(durText(l.dr.m))+' each way, '+l.dr.mi+' mi, by '+esc(l.label)+(l.dr.est?' (estimate)':'')+'</p></div></div><ul>';
+    l.trips.sort(function(a, b){ return a.date < b.date ? -1 : 1; }).forEach(function(t){
+      var lb = t.item && t.item.time ? leaveBy(t.item.time, l.dr.m) : '';
+      h += '<li><b>'+esc(shortD(t.date))+'</b> '+esc(t.from.name)+' to '+esc(t.to.name)+(t.item ? ' for '+esc(t.item.title)+(t.item.time?' at '+esc(fmtT(t.item.time)):'') : '')+(lb?', <span class="lb">leave by '+esc(lb)+'</span>':'')+' <span class="mut">'+esc(whoNames(t.who))+'</span></li>';
+    });
+    var g1 = mapUrl(l.a), g2 = l.b.address || l.b.map || l.b.name;
+    h += '</ul><div class="acts"><a class="btn sm" href="https://maps.apple.com/?saddr='+encodeURIComponent(l.a.address || l.a.map || l.a.name)+'&daddr='+encodeURIComponent(g2)+'" target="_blank" rel="noopener">Directions</a></div>';
+  } else if (s.type === 'flight') {
+    h += '<div class="shd"><span class="num pc-plum">'+picon('airport',15)+'</span><div><h3>Flights to and from Maui</h3><p>Detroit Metro Airport (DTW)</p></div></div><ul>';
+    md.flights.forEach(function(i){ h += '<li><b>'+esc(shortD(i.date))+(i.time?', '+esc(fmtT(i.time)):'')+'</b> '+esc(i.title)+(i.d && i.d.flight ? ', flight '+esc(i.d.flight) : '')+' <span class="mut">'+esc(whoNames(i.who))+'</span></li>'; });
+    h += '</ul>';
+  }
+  return h ? '<div class="mvsheet" role="dialog" aria-label="Details"><button class="x" data-act="mapsel" data-type="" aria-label="Close">&times;</button>' + h + '</div>' : '';
+}
+
+// ---------- interactive map viewer ----------
+var mv = null;
+function mountMap(){
+  var el = document.getElementById('mv'); if (!el) { mv = null; return; }
+  if (ui.mapView && ui.mapView.reset) ui.mapView = null;
+  var img = mapImg(); img.className = 'mvimg'; img.style.width = MW + 'px'; img.style.height = MH + 'px';
+  el.querySelector('.mvlayer').appendChild(img);
+  mv = { el: el, over: el.querySelector('.mvover'), img: img, cw: el.clientWidth, ch: el.clientHeight, raf: 0 };
+  var v = ui.mapView;
+  if (!v || v.cw !== mv.cw) fitMap();
+  applyView(); bindMap(mv);
+}
+function kmin(){ return Math.max(mv.cw/MW, mv.ch/MH); }
+var KMAX = 1.2;
+function fitMap(focus){
+  var ws = [];
+  if (focus) ws = [focus];
+  else ui.md.pins.forEach(function(g){ ws.push(g.w); });
+  if (!ws.length) ui.md.flights.forEach(function(i){ ws.push(worldXY(place(i.place))); });
+  var k, cx, cy;
+  if (!ws.length) { k = kmin(); cx = MW/2; cy = MH/2; }
+  else {
+    var x0 = Math.min.apply(null, ws.map(function(w){ return w.x; })), x1 = Math.max.apply(null, ws.map(function(w){ return w.x; }));
+    var y0 = Math.min.apply(null, ws.map(function(w){ return w.y; })), y1 = Math.max.apply(null, ws.map(function(w){ return w.y; }));
+    var pad = mv.cw < 520 ? 62 : 80;
+    k = Math.min((mv.cw - pad*2)/Math.max(x1 - x0, 1), (mv.ch - pad*2 - 24)/Math.max(y1 - y0, 1));
+    k = Math.max(kmin(), Math.min(focus ? Math.max(ui.mapView ? ui.mapView.k : 0, 0.6) : 0.9, k));
+    cx = (x0 + x1)/2; cy = (y0 + y1)/2;
+  }
+  ui.mapView = { k: k, tx: mv.cw/2 - cx*k, ty: mv.ch/2 - cy*k, cw: mv.cw, user: false };
+}
+function fitTo(ws){
+  var x0 = Math.min.apply(null, ws.map(function(w){ return w.x; })), x1 = Math.max.apply(null, ws.map(function(w){ return w.x; })), y0 = Math.min.apply(null, ws.map(function(w){ return w.y; })), y1 = Math.max.apply(null, ws.map(function(w){ return w.y; }));
+  var v = ui.mapView, k = Math.min((mv.cw - 160)/Math.max(x1 - x0, 1), (mv.ch - 160)/Math.max(y1 - y0, 1));
+  k = Math.max(v.k*2, Math.min(KMAX, k)); v.k = Math.min(KMAX, k); v.tx = mv.cw/2 - (x0 + x1)/2*v.k; v.ty = mv.ch/2 - (y0 + y1)/2*v.k; v.user = true; applyView();
+}
+function clampView(){
+  var v = ui.mapView, w = MW*v.k, h = MH*v.k;
+  v.tx = w <= mv.cw ? (mv.cw - w)/2 : Math.min(mv.cw*0.35, Math.max(mv.cw*0.65 - w, v.tx));
+  v.ty = h <= mv.ch ? (mv.ch - h)/2 : Math.min(mv.ch*0.35, Math.max(mv.ch*0.65 - h, v.ty));
+}
+function zoomAt(px, py, f){
+  var v = ui.mapView, nk = Math.max(kmin(), Math.min(KMAX, v.k*f)), r = nk/v.k;
+  v.tx = px - (px - v.tx)*r; v.ty = py - (py - v.ty)*r; v.k = nk; v.user = true;
+}
+function applyView(){
+  if (!mv) return; clampView();
+  var v = ui.mapView;
+  mv.img.style.transform = 'translate(' + v.tx + 'px,' + v.ty + 'px) scale(' + v.k + ')';
+  drawOverlay();
+}
+function sched(){ if (mv && !mv.raf) mv.raf = requestAnimationFrame(function(){ mv.raf = 0; applyView(); }); }
+function S(w){ var v = ui.mapView; return { x: w.x*v.k + v.tx, y: w.y*v.k + v.ty }; }
+var _tctx = null;
+function tw(t, f){ if (!_tctx) _tctx = document.createElement('canvas').getContext('2d'); _tctx.font = f; return _tctx.measureText(t).width; }
+function ovl(a, b){ var x = Math.max(0, Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x)), y = Math.max(0, Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y)); return x*y; }
+function legText(l){ var d = (l.dr.est ? '~' : '') + durText(l.dr.m); return l.mode === 'uber' ? d + ' by Uber' : l.mode === 'car' ? d + ' drive' : d + ' by ' + l.label; }
+function drawOverlay(){
+  var md = ui.md, sel = ui.mapSel || {}, cw = mv.cw, ch = mv.ch, small = cw < 520;
+  var FN = '600 ' + (small ? 11.5 : 12.5) + 'px Figtree, system-ui, sans-serif', FW = '500 ' + (small ? 10.5 : 11.5) + 'px Figtree, system-ui, sans-serif';
+  var R = small ? 17 : 19;
+  var svgp = '', badges = '', pins = '', labels = '', occ = [{ x: cw - 58, y: 0, w: 58, h: 150 }];
+  // 1. pins: true screen spot, spread apart when they would sit on top of each other
+  var pts = md.pins.map(function(g){ var t = S(g.w); return { g: g, t: t, d: t }; }), groups = [];
+  pts.forEach(function(p){
+    var hit = groups.filter(function(G){ return G.some(function(q){ return Math.hypot(q.t.x - p.t.x, q.t.y - p.t.y) < R*2.4; }); });
+    if (!hit.length) groups.push([p]); else { var m = hit[0]; m.push(p); hit.slice(1).forEach(function(G){ G.forEach(function(q){ m.push(q); }); groups.splice(groups.indexOf(G), 1); }); }
+  });
+  groups.forEach(function(G){
+    if (G.length === 1) return;
+    var cx = 0, cy = 0; G.forEach(function(p){ cx += p.t.x; cy += p.t.y; }); cx /= G.length; cy /= G.length;
+    G.sort(function(a, b){ return Math.atan2(a.t.y - cy, a.t.x - cx) - Math.atan2(b.t.y - cy, b.t.x - cx); });
+    var r = R*1.35 + R*0.45*G.length, a0 = Math.atan2(G[0].t.y - cy, G[0].t.x - cx);
+    if (G.length === 2 && Math.hypot(G[0].t.x - G[1].t.x, G[0].t.y - G[1].t.y) < 1) a0 = -Math.PI/2;
+    G.forEach(function(p, i){ var a = a0 + i*2*Math.PI/G.length; p.d = { x: cx + r*Math.cos(a), y: cy + r*Math.sin(a) }; p.c = { x: cx, y: cy }; });
+  });
+  pts.forEach(function(p){ occ.push({ x: p.d.x - R - 3, y: p.d.y - R - 3, w: 2*R + 6, h: 2*R + 6 }); });
+  // 2. flights: dotted arc from the airport off toward Maui
+  var dtw = md.flights.length && worldXY(place(md.flights[0].place));
+  var arcs = [];
+  if (dtw) {
+    var Dp = pts.find(function(p){ return p.g.pl && p.g.pl.id === md.flights[0].place; }), D = Dp ? Dp.d : S(dtw), E = { x: -30, y: D.y - Math.min(170, ch*0.35) };
+    var C = { x: (D.x + E.x)/2, y: Math.min(D.y, E.y) - 60 };
+    svgp += '<path class="leg pc-plum dash'+(sel.type==='flight'?' sel':'')+'" d="M'+D.x+' '+D.y+' Q'+C.x+' '+C.y+' '+E.x+' '+E.y+'"/><path class="hit" data-act="mapsel" data-type="flight" data-id="f" d="M'+D.x+' '+D.y+' Q'+C.x+' '+C.y+' '+E.x+' '+E.y+'"/>';
+    if (D.x > 90) arcs.push({ A: D, C: C, B: E, text: 'Flights to Maui', icon: picon('airport', 13), pc: 'plum', act: 'data-type="flight" data-id="f"', isSel: sel.type === 'flight', ts: [0.45, 0.35, 0.55, 0.6] });
+  }
+  // 3. drives
+  var tpos = {}; pts.forEach(function(p){ tpos[p.g.key] = p.d; });
+  md.legs.forEach(function(l){
+    var A = tpos[l.a.id] || S(worldXY(l.a)), B = tpos[l.b.id] || S(worldXY(l.b));
+    var dx = B.x - A.x, dy = B.y - A.y, len = Math.hypot(dx, dy); if (len < 2) return;
+    var sgn = l.a.id < l.b.id ? 1 : -1, off = Math.min(60, len*0.16) * sgn * ({ car: 1, other: -1, uber: 1.8 }[l.mode] || 1);
+    var C = { x: (A.x + B.x)/2 - dy/len*off, y: (A.y + B.y)/2 + dx/len*off };
+    var isSel = sel.type === 'leg' && sel.id === l.key;
+    svgp += '<path class="leg pc-'+MCOL[l.mode]+(l.mode==='uber'?' dash':'')+(isSel?' sel':'')+'" d="M'+A.x+' '+A.y+' Q'+C.x+' '+C.y+' '+B.x+' '+B.y+'"/><path class="hit" data-act="mapsel" data-type="leg" data-id="'+esc(l.key)+'" d="M'+A.x+' '+A.y+' Q'+C.x+' '+C.y+' '+B.x+' '+B.y+'"/>';
+    if (len > 70 || isSel) arcs.push({ A: A, C: C, B: B, text: legText(l), icon: svg('car', 13), pc: MCOL[l.mode], act: 'data-type="leg" data-id="'+esc(l.key)+'"', isSel: isSel, label: l.a.name + ' to ' + l.b.name, ts: [0.5, 0.38, 0.62, 0.28, 0.72] });
+  });
+  // leader lines + true-spot dots for spread pins
+  pts.forEach(function(p){ if (p.c) svgp += '<line class="lead pc-'+PCOL[pIconOf(p.g.pl)]+'" x1="'+p.t.x+'" y1="'+p.t.y+'" x2="'+p.d.x+'" y2="'+p.d.y+'"/><circle class="tdot pc-'+PCOL[pIconOf(p.g.pl)]+'" cx="'+p.t.x+'" cy="'+p.t.y+'" r="3.5"/>'; });
+  // 4. labels for every place, placed where they collide least
+  var order = pts.slice().sort(function(a, b){ var as = sel.type === 'place' && sel.id === a.g.key, bs = sel.type === 'place' && sel.id === b.g.key; return as !== bs ? (as ? -1 : 1) : a.g.first - b.g.first; });
+  var leaders = '';
+  order.forEach(function(p){
+    var g = p.g, when = whenText(g), d = p.d, isSel = sel.type === 'place' && sel.id === g.key, ic = pIconOf(g.pl);
+    var short = (g.pl && g.pl.short) || g.name.replace(/\s*[,(].*$/, '');
+    var variants = [{ n: g.name, w2: when, h: small ? 34 : 38, pen: 0 }];
+    if (!isSel) variants.push({ n: short, w2: '', h: small ? 20 : 22, pen: 45 });
+    var best = null, bs = Infinity;
+    variants.forEach(function(v){
+      var w = Math.ceil(Math.max(tw(v.n, FN), v.w2 ? tw(v.w2, FW) : 0)) + 18, h = v.h;
+      [R + 4, R*2.6].forEach(function(gap, ring){
+        var q = gap*0.7, cands = [
+          { x: d.x - w/2, y: d.y + gap }, { x: d.x - w/2, y: d.y - gap - h }, { x: d.x + gap, y: d.y - h/2 }, { x: d.x - gap - w, y: d.y - h/2 },
+          { x: d.x + q, y: d.y + q }, { x: d.x - q - w, y: d.y + q }, { x: d.x + q, y: d.y - q - h }, { x: d.x - q - w, y: d.y - q - h }
+        ];
+        if (p.c) { var ox = d.x - p.c.x, oy = d.y - p.c.y; cands.sort(function(a, b){ return ((b.x + w/2 - d.x)*ox + (b.y + h/2 - d.y)*oy) - ((a.x + w/2 - d.x)*ox + (a.y + h/2 - d.y)*oy); }); }
+        cands.forEach(function(c, i){
+          var r = { x: c.x, y: c.y, w: w, h: h }, sc = i*2 + ring*35 + v.pen;
+          occ.forEach(function(o){ sc += ovl(r, o); });
+          if (r.x < 2) sc += (2 - r.x)*h*3; if (r.x + w > cw - 2) sc += (r.x + w - cw + 2)*h*3; if (r.y < 2) sc += (2 - r.y)*w*3; if (r.y + h > ch - 2) sc += (r.y + h - ch + 2)*w*3;
+          if (sc < bs) { bs = sc; best = { r: r, v: v, ring: ring }; }
+        });
+      });
+    });
+    var r = best.r; occ.push(r);
+    if (best.ring) { var lx = Math.max(r.x, Math.min(r.x + r.w, d.x)), ly = Math.max(r.y, Math.min(r.y + r.h, d.y)); leaders += '<line class="lead pc-'+PCOL[ic]+'" x1="'+d.x+'" y1="'+d.y+'" x2="'+lx+'" y2="'+ly+'"/>'; }
+    pins += '<button class="mpin pc-'+PCOL[ic]+(isSel?' sel':'')+'" style="left:'+d.x+'px;top:'+d.y+'px" data-act="mapsel" data-type="place" data-id="'+esc(g.key)+'" aria-label="'+esc(g.name+', '+when)+'"><span class="pb">'+picon(ic, small ? 15 : 17)+'</span></button>';
+    labels += '<button class="mlbl'+(isSel?' sel':'')+(small?' sm':'')+(best.v.w2?'':' c')+'" style="left:'+r.x+'px;top:'+r.y+'px;width:'+r.w+'px" data-act="mapsel" data-type="place" data-id="'+esc(g.key)+'" tabindex="-1" aria-hidden="true"><b>'+esc(best.v.n)+'</b>'+(best.v.w2?'<i>'+esc(best.v.w2)+'</i>':'')+'</button>';
+  });
+  svgp += leaders;
+  // 5. drive badges, nudged along their route to stay clear of labels
+  arcs.sort(function(a, b){ return (b.isSel ? 1 : 0) - (a.isSel ? 1 : 0); }).forEach(function(a){
+    var w = Math.ceil(tw(a.text, '600 12px Figtree, system-ui, sans-serif')) + 34, h = 24, pick = null;
+    for (var i = 0; i < a.ts.length && !pick; i++) {
+      var t = a.ts[i], u = 1 - t, M = { x: u*u*a.A.x + 2*u*t*a.C.x + t*t*a.B.x, y: u*u*a.A.y + 2*u*t*a.C.y + t*t*a.B.y };
+      var r = { x: M.x - w/2, y: M.y - h/2, w: w, h: h };
+      if (r.x < 0 || r.y < 0 || r.x + w > cw || r.y + h > ch) continue;
+      if (!occ.some(function(o){ return ovl(r, o) > 20; })) pick = r;
+    }
+    if (!pick && a.isSel) { var M2 = { x: 0.25*a.A.x + 0.5*a.C.x + 0.25*a.B.x, y: 0.25*a.A.y + 0.5*a.C.y + 0.25*a.B.y }; pick = { x: M2.x - w/2, y: M2.y - h/2, w: w, h: h }; }
+    if (!pick) return;
+    occ.push(pick);
+    badges += '<button class="lbadge pc-'+a.pc+(a.isSel?' sel':'')+'" style="left:'+(pick.x + w/2)+'px;top:'+(pick.y + h/2)+'px" data-act="mapsel" '+a.act+(a.label?' aria-label="'+esc(a.label+', '+a.text)+'"':'')+'>'+a.icon+'<span>'+esc(a.text)+'</span></button>';
+  });
+  mv.over.innerHTML = '<svg class="legs" width="'+cw+'" height="'+ch+'">'+svgp+'</svg>' + badges + pins + labels;
+}
+
+function bindMap(m){
+  var el = m.el, P2 = {}, n = 0, moved = false;
+  function local(e){ var r = el.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+  function pair(){ var ks = Object.keys(P2); var a = P2[ks[0]], b = P2[ks[1]]; return { x: (a.x + b.x)/2, y: (a.y + b.y)/2, d: Math.hypot(a.x - b.x, a.y - b.y) }; }
+  el.addEventListener('pointerdown', function(e){
+    if (e.target.closest('.mvsheet,.mapctl') || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    var p = local(e); P2[e.pointerId] = { x: p.x, y: p.y, x0: p.x, y0: p.y }; n = Object.keys(P2).length; if (n === 1) moved = false;
+  });
+  el.addEventListener('pointermove', function(e){
+    var q = P2[e.pointerId]; if (!q) return;
+    var p = local(e);
+    if (n >= 2) {
+      var before = pair(); q.x = p.x; q.y = p.y; var after = pair();
+      if (before.d > 0) zoomAt(after.x, after.y, after.d/before.d);
+      ui.mapView.tx += after.x - before.x; ui.mapView.ty += after.y - before.y; moved = true;
+      try { el.setPointerCapture(e.pointerId); } catch(x){}
+    } else {
+      if (!moved && Math.hypot(p.x - q.x0, p.y - q.y0) < 5) return;
+      if (!moved) { moved = true; el.classList.add('drag'); try { el.setPointerCapture(e.pointerId); } catch(x){} }
+      ui.mapView.tx += p.x - q.x; ui.mapView.ty += p.y - q.y; q.x = p.x; q.y = p.y;
+    }
+    ui.mapView.user = true; sched();
+  });
+  function up(e){ if (!P2[e.pointerId]) return; delete P2[e.pointerId]; n = Object.keys(P2).length; if (moved) { ui.lastDrag = Date.now(); } if (!n) el.classList.remove('drag'); }
+  el.addEventListener('pointerup', up); el.addEventListener('pointercancel', up);
+  el.addEventListener('wheel', function(e){
+    if (e.target.closest('.mvsheet')) return;
+    e.preventDefault(); var p = local(e);
+    var dy = e.deltaMode === 1 ? e.deltaY*16 : e.deltaY;
+    zoomAt(p.x, p.y, Math.exp(-dy*(e.ctrlKey ? 0.012 : 0.0022))); sched();
+  }, { passive: false });
+  el.addEventListener('dblclick', function(e){ if (e.target.closest('.mvsheet,.mapctl,.mpin,.lbadge')) return; var p = local(e); zoomAt(p.x, p.y, 2); sched(); });
+  el.addEventListener('keydown', function(e){
+    var v = ui.mapView, s = 60, hit = true;
+    if (e.key === '+' || e.key === '=') zoomAt(m.cw/2, m.ch/2, 1.5); else if (e.key === '-') zoomAt(m.cw/2, m.ch/2, 1/1.5);
+    else if (e.key === 'ArrowLeft') v.tx += s; else if (e.key === 'ArrowRight') v.tx -= s; else if (e.key === 'ArrowUp') v.ty += s; else if (e.key === 'ArrowDown') v.ty -= s; else hit = false;
+    if (hit) { e.preventDefault(); v.user = true; sched(); }
+  });
+  if (window.ResizeObserver) new ResizeObserver(function(){ if (!mv || mv.el !== el) return; var cw = el.clientWidth, ch = el.clientHeight; if (cw === mv.cw && ch === mv.ch) return; var v = ui.mapView, cx = (mv.cw/2 - v.tx)/v.k, cy = (mv.ch/2 - v.ty)/v.k; mv.cw = cw; mv.ch = ch; v.cw = cw; if (!v.user) fitMap(); else { v.tx = cw/2 - cx*v.k; v.ty = ch/2 - cy*v.k; } applyView(); }).observe(el);
+}
+function centerOn(w, minK){
+  var v = ui.mapView; if (!v || !mv) return;
+  if (minK && v.k < minK) v.k = Math.min(KMAX, minK);
+  var wide = window.innerWidth >= 720 && ui.mapSel; v.tx = mv.cw/2 + (wide ? 181 : 0) - w.x*v.k; v.ty = mv.ch/2 - w.y*v.k - (!wide && ui.mapSel ? mv.ch*0.22 : 0); v.user = true; applyView();
+}
+
+var lastCompact = false, holdCompact = 0;
+function onScroll(){
+  var top = document.getElementById('top'); if (!top) return;
+  var hero = app.querySelector('.hero'), c = window.scrollY > (hero ? hero.offsetTop + hero.offsetHeight - 24 : 90);
+  if (c !== lastCompact || top.classList.contains('compact') !== c) { lastCompact = c; top.classList.toggle('compact', c); }
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+function scrollToEl(el, center){
+  var top = document.getElementById('top');
+  holdCompact = Date.now() + 1200;
+  if (top && !top.classList.contains('compact')) { lastCompact = true; top.classList.add('compact'); }
+  var off = top ? top.offsetHeight : 0;
+  var r = el.getBoundingClientRect();
+  var y = window.scrollY + r.top - off - (center ? Math.max(12, (window.innerHeight - off - r.height)/2) : 12);
+  window.scrollTo({ top: Math.max(0, y), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+}
+
+// ---------- editing ----------
+var dlg = document.createElement('dialog'); dlg.className = 'sheet'; document.body.appendChild(dlg);
+dlg.addEventListener('click', function(e){ if (e.target === dlg) dlg.close(); });
+function field(label, name, val, type, extra){ return '<label class="fld"><span>'+label+'</span><input type="'+(type||'text')+'" name="'+name+'" value="'+esc(val||'')+'" '+(extra||'')+'></label>'; }
+function placeList(){ return '<datalist id="dl-places">' + state.places.map(function(p){ return '<option value="'+esc(p.name)+'">'; }).join('') + '<option value="On the flight"></datalist>'; }
+function transList(){ var s = {}; state.items.forEach(function(i){ if (i.transport) s[i.transport] = 1; }); ['Rental Car','Uber','Flight','Walk'].forEach(function(t){ s[t] = 1; }); return '<datalist id="dl-trans">' + Object.keys(s).map(function(t){ return '<option value="'+esc(t)+'">'; }).join('') + '</datalist>'; }
+function resolvePlace(txt){ txt = (txt||'').trim(); if (!txt) return ''; var p = state.places.find(function(p){ return p.name.toLowerCase() === txt.toLowerCase(); }); return p ? p.id : txt; }
+function F(n){ var el = dlg.querySelector('[name="'+n+'"]'); return el ? (el.type === 'checkbox' ? el.checked : el.value.trim()) : ''; }
+function openSheet(title, inner, foot){
+  dlg.innerHTML = '<div class="sh"><div class="sh-head"><h3>'+esc(title)+'</h3><button class="btn sm" data-sh="close">Cancel</button></div><div class="sh-body">'+inner+'</div><div class="sh-foot">'+foot+'</div></div>';
+  dlg.showModal();
+  var f = dlg.querySelector('input[type=text]'); if (f && window.matchMedia('(pointer:fine)').matches) f.focus();
+}
+function change(summary){ pending.push(summary); sSet('localStorage','draft',{ rev: saved.rev, state: state, pending: pending }); dlg.open && dlg.close(); render(); }
+function newId(p){ return p + Date.now().toString(36) + Math.random().toString(36).slice(2,5); }
+
+function editItem(id, date){
+  var it = id ? state.items.find(function(i){ return i.id === id; }) : { id:'', date: date || state.trip.wedding, time:'', tz:'ET', title:'', kind:'other', place:'', who:[], transport:'', key:false, flag:'', d:{} };
+  var d = it.d || {};
+  var inner = placeList() + transList() + field('What', 'title', it.title, 'text', 'placeholder="e.g. Brunch with the family" required') +
+    '<div class="g3">' + field('Date','date',it.date,'date') + field('Time (optional)','time',it.time,'time') +
+    '<label class="fld"><span>Time zone</span><select name="tz"><option value="ET"'+(it.tz!=='HST'?' selected':'')+'>Detroit</option><option value="HST"'+(it.tz==='HST'?' selected':'')+'>Hawaii</option></select></label></div>' +
+    '<div class="g2"><label class="fld"><span>Type</span><select name="kind">' + KINDS.map(function(k){ return '<option value="'+k[0]+'"'+(it.kind===k[0]?' selected':'')+'>'+k[1]+'</option>'; }).join('') + '</select></label>' +
+    field('Where','place',placeLabel(it.place),'text','list="dl-places" placeholder="Pick a place or type one"') + '</div>' +
+    '<div class="fld"><span>Who</span><div class="chks">' + travelers().map(function(p){ return '<label class="chk">'+av(p)+'<input type="checkbox" name="who-'+esc(p.id)+'"'+((it.who||[]).includes(p.id)?' checked':'')+'>'+esc(p.name)+'</label>'; }).join('') + '</div><p class="hint">Leave everyone unchecked to show it to all.</p></div>' +
+    field('Getting there','transport',it.transport,'text','list="dl-trans" placeholder="Turo car, Uber"') +
+    '<label class="tog"><input type="checkbox" name="key"'+(it.key?' checked':'')+'> Show in key moments at the top</label>' +
+    '<details class="adv"'+(d.flight||d.conf||d.phone||d.address||d.notes||it.flag?' open':'')+'><summary>Details, bookings and heads-up</summary>' +
+    '<div class="g2">' + field('Flight','flight',d.flight,'text','placeholder="HA 32"') + field('Confirmation','conf',d.conf) + '</div>' +
+    '<div class="g2">' + field('Phone','phone',d.phone,'tel') + field('Address (if different)','address',d.address) + '</div>' +
+    '<label class="fld"><span>Notes</span><textarea name="notes" placeholder="Dress code, parking, who is driving">'+esc(d.notes||'')+'</textarea></label>' +
+    field('Heads-up banner','flag',it.flag,'text','placeholder="Shown in amber on the item"') + '<p class="hint">Clear it once the issue is sorted.</p></details>';
+  var foot = (id ? '<button class="btn danger" data-sh="del-item" data-id="'+esc(id)+'">Delete</button><button class="btn" data-sh="dup-item" data-id="'+esc(id)+'">Duplicate</button>' : '') + '<span class="sp"></span><button class="btn primary" data-sh="save-item" data-id="'+esc(id)+'">'+(id?'Save':'Add')+'</button>';
+  openSheet(id ? 'Edit item' : 'Add an item', inner, foot);
+}
+function saveItem(id){
+  var title = F('title'), date = F('date');
+  if (!title || !date) { toast(!title ? 'Give it a name first.' : 'Pick a date.'); return; }
+  var it = id ? state.items.find(function(i){ return i.id === id; }) : null;
+  var nu = !it; if (nu) { it = { id: newId('i') }; state.items.push(it); }
+  it.title = title; it.date = date; it.time = F('time'); it.tz = F('tz') || 'ET'; it.kind = F('kind') || 'other';
+  it.place = resolvePlace(F('place')); it.transport = F('transport'); it.key = F('key'); it.flag = F('flag');
+  it.who = travelers().filter(function(p){ return F('who-'+p.id); }).map(function(p){ return p.id; });
+  it.d = { flight:F('flight'), conf:F('conf'), phone:F('phone'), address:F('address'), notes:F('notes') };
+  Object.keys(it.d).forEach(function(k){ if (!it.d[k]) delete it.d[k]; });
+  it.updatedAt = new Date().toISOString();
+  change((nu ? 'Added ' : 'Changed ') + title + ' (' + shortD(date) + ')');
+}
+function editDay(d){
+  var L = state.lodging[d] || {}, info = state.days[d] || {};
+  var inner = placeList() + '<p class="hint" style="margin-top:0">'+esc(fmtD(d,{weekday:'long',month:'long',day:'numeric'}))+'</p>' +
+    travelers().map(function(p){ return field(p.name+' sleeps at', 'L-'+p.id, placeLabel(L[p.id]), 'text', 'list="dl-places" placeholder="Leave blank if not on the trip"'); }).join('') +
+    field('Day label','note',info.note,'text','placeholder="e.g. Wedding day"') + field('Heads-up banner for the day','flag',info.flag);
+  openSheet('Overnight and day notes', inner, '<span class="sp"></span><button class="btn primary" data-sh="save-day" data-id="'+d+'">Save</button>');
+}
+function saveDay(d){
+  var L = {}; travelers().forEach(function(p){ var v = resolvePlace(F('L-'+p.id)); if (v) L[p.id] = v; });
+  var had = state.lodging[d] || {};
+  travelers().length && Object.keys(had).forEach(function(k){ if (!P(k) || !P(k).traveler) L[k] = had[k]; });
+  if (Object.keys(L).length) state.lodging[d] = L; else delete state.lodging[d];
+  var info = { note: F('note'), flag: F('flag') };
+  if (info.note || info.flag) state.days[d] = info; else delete state.days[d];
+  change('Updated overnight plans and notes for ' + shortD(d));
+}
+function editPerson(id){
+  var p = id ? P(id) : { id:'', name:'', traveler:true, color: COLORS[travelers().length % COLORS.length], phone:'', notes:'' };
+  var inner = field('Name','name',p.name) + field('Phone','phone',p.phone,'tel') + field('Notes','notes',p.notes,'text','placeholder="Relationship, role, where they are staying"') +
+    '<label class="tog"><input type="checkbox" name="traveler"'+(p.traveler?' checked':'')+'> On the trip (gets their own schedule filter)</label>' +
+    '<label class="fld"><span>Color</span><select name="color">' + COLORS.concat(['gray']).map(function(c){ return '<option value="'+c+'"'+(p.color===c?' selected':'')+'>'+({lake:'Lake blue',maple:'Maple red',gold:'Gold',sage:'Sage green',plum:'Plum',gray:'Gray'})[c]+'</option>'; }).join('') + '</select></label>';
+  openSheet(id ? 'Edit person' : 'Add a person', inner, (id?'<button class="btn danger" data-sh="del-person" data-id="'+esc(id)+'">Remove</button>':'')+'<span class="sp"></span><button class="btn primary" data-sh="save-person" data-id="'+esc(id)+'">Save</button>');
+}
+function savePerson(id){
+  var name = F('name'); if (!name) { toast('Add a name first.'); return; }
+  var p = id ? P(id) : null; if (!p) { p = { id: newId('p') }; state.people.push(p); }
+  p.name = name; p.phone = F('phone'); p.notes = F('notes'); p.traveler = F('traveler'); p.color = F('color') || 'gray';
+  change((id ? 'Updated ' : 'Added ') + name);
+}
+function editPlace(id){
+  var p = id ? place(id) : { id:'', name:'', address:'', phone:'', conf:'', notes:'', map:'' };
+  pinTmp = { lat: p.lat, lon: p.lon, z: 1 };
+  var pos = project(p.lat, p.lon);
+  var pinSec = p.offMap ? '<p class="hint" style="margin-top:14px">This place is outside the map area, so it has no pin.</p>' :
+    '<div class="fld pinfld"><span>Map pin</span>' + mapShell('pinmap', 1, '<span class="pin drop" id="droppin" style="'+(pos?'left:'+pos.x+'%;top:'+pos.y+'%':'display:none')+'"></span>', 'data-sh="pz" data-id') + '<p class="hint">Tap the map to drop the pin. Zoom in first for accuracy.'+(p.lat != null ? ' <button class="btn sm" data-sh="clearpin" style="margin-left:6px">Remove pin</button>' : '')+'</p></div>';
+  var inner = field('Name','name',p.name) + field('Address','address',p.address,'text','placeholder="Street, city"') + '<div class="g2">' + field('Phone','phone',p.phone,'tel') + field('Confirmation','conf',p.conf) + '</div>' + field('Notes','notes',p.notes,'text','placeholder="Check-in time, parking, door code"') + field('Map search (if no address)','map',p.map,'text','placeholder="What to search in Maps"') + field('Short name on the map (optional)','short',p.short,'text','placeholder="e.g. Country Club"') + '<label class="fld"><span>Map icon</span><select name="icon">' + PICONS.map(function(o){ return '<option value="'+o[0]+'"'+(pIconOf(p)===o[0]?' selected':'')+'>'+o[1]+'</option>'; }).join('') + '</select></label>' + pinSec;
+  openSheet(id ? 'Edit place' : 'Add a place', inner, (id?'<button class="btn danger" data-sh="del-place" data-id="'+esc(id)+'">Remove</button>':'')+'<span class="sp"></span><button class="btn primary" data-sh="save-place" data-id="'+esc(id)+'">Save</button>');
+  var pb = document.getElementById('pinmap');
+  if (pb) {
+    var im2 = mapImg().cloneNode(); im2.className = ''; im2.style.cssText = ''; attachMap(pb, im2);
+    pb.firstChild.addEventListener('click', function(ev){
+      var r = pb.firstChild.getBoundingClientRect(); var fx = (ev.clientX - r.left)/r.width, fy = (ev.clientY - r.top)/r.height;
+      if (fx < 0 || fx > 1 || fy < 0 || fy > 1) return;
+      var ll = unproject(fx, fy); pinTmp.lat = ll.lat; pinTmp.lon = ll.lon;
+      var dp = document.getElementById('droppin'); dp.style.display = ''; dp.style.left = (fx*100)+'%'; dp.style.top = (fy*100)+'%';
+    });
+  }
+}
+var pinTmp = null;
+function savePlace(id){
+  var name = F('name'); if (!name) { toast('Add a name first.'); return; }
+  var p = id ? place(id) : null; if (!p) { p = { id: newId('pl') }; state.places.push(p); }
+  ['address','phone','conf','notes','map','icon','short'].forEach(function(k){ p[k] = F(k); }); p.name = name;
+  if (pinTmp && !p.offMap) { if (pinTmp.lat != null) { p.lat = pinTmp.lat; p.lon = pinTmp.lon; } else { delete p.lat; delete p.lon; } }
+  change((id ? 'Updated ' : 'Added ') + name);
+}
+function editTrip(){
+  var inner = field('Title','title',state.trip.title) + field('Subtitle','subtitle',state.trip.subtitle) + field('Wedding date','wedding',state.trip.wedding,'date');
+  openSheet('Trip details', inner, '<span class="sp"></span><button class="btn primary" data-sh="save-trip">Save</button>');
+}
+
+dlg.addEventListener('click', function(e){
+  var b = e.target.closest('[data-sh]'); if (!b) return;
+  var a = b.dataset.sh, id = b.dataset.id;
+  if (a === 'close') return dlg.close();
+  if (a === 'pz') { var pb = document.getElementById('pinmap'); pinTmp.z = stepZoom(pinTmp.z, id); setZoom(pb, pinTmp.z, pinTmp.z > 1 && pinTmp.lat != null && id === 'zin' ? project(pinTmp.lat, pinTmp.lon) : null); return; }
+  if (a === 'clearpin') { pinTmp.lat = null; pinTmp.lon = null; var dp = document.getElementById('droppin'); if (dp) dp.style.display = 'none'; b.remove(); return; }
+  if (a === 'save-item') return saveItem(id);
+  if (a === 'del-item') { var it = state.items.find(function(i){ return i.id === id; }); if (!confirm('Delete "'+it.title+'"?')) return; state.items = state.items.filter(function(i){ return i.id !== id; }); return change('Removed ' + it.title + ' (' + shortD(it.date) + ')'); }
+  if (a === 'dup-item') { var src = state.items.find(function(i){ return i.id === id; }); var c = JSON.parse(JSON.stringify(src)); c.id = newId('i'); c.title = src.title + ' (copy)'; c.updatedAt = new Date().toISOString(); state.items.push(c); pending.push('Added ' + c.title); dlg.close(); return editItem(c.id); }
+  if (a === 'save-day') return saveDay(id);
+  if (a === 'save-person') return savePerson(id);
+  if (a === 'del-person') { var p = P(id); if (!confirm('Remove '+p.name+'? They will be taken off every item.')) return; state.people = state.people.filter(function(x){ return x.id !== id; }); state.items.forEach(function(i){ i.who = (i.who||[]).filter(function(w){ return w !== id; }); }); Object.keys(state.lodging).forEach(function(d){ delete state.lodging[d][id]; }); if (ui.person === id) ui.person = 'all'; return change('Removed ' + p.name); }
+  if (a === 'save-place') return savePlace(id);
+  if (a === 'del-place') { var pl = place(id); if (!confirm('Remove '+pl.name+'? Items there will keep the name as plain text.')) return; state.places = state.places.filter(function(x){ return x.id !== id; }); state.items.forEach(function(i){ if (i.place === id) i.place = pl.name; }); Object.keys(state.lodging).forEach(function(d){ Object.keys(state.lodging[d]).forEach(function(k){ if (state.lodging[d][k] === id) state.lodging[d][k] = pl.name; }); }); return change('Removed place ' + pl.name); }
+  if (a === 'save-trip') { state.trip.title = F('title') || state.trip.title; state.trip.subtitle = F('subtitle'); state.trip.wedding = F('wedding') || state.trip.wedding; return change('Updated trip details'); }
+});
+
+// ---------- publish ----------
+function buildDoc(s){
+  var css = document.getElementById('css').textContent;
+  var js = document.getElementById('appjs').textContent;
+  var json = JSON.stringify(s).replace(/</g, '\\u003c');
+  var S = 'scr' + 'ipt';
+  return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<title>' + esc(s.trip.title) + '</title>\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">\n<style id="css">' + css + '</style>\n</head>\n<body>\n<div id="app"></div>\n<' + S + ' type="application/json" id="state">' + json + '</' + S + '>\n<' + S + ' type="text/plain" id="basemap">' + baseSrc + '</' + S + '>\n<' + S + ' id="appjs">' + js + '</' + S + '>\n</body>\n</html>\n';
+}
+var publishing = false;
+function publish(retry){
+  if (API) return publishHosted();
+  if (publishing || !ui.art || !pending.length) return;
+  publishing = true;
+  var next = JSON.parse(JSON.stringify(state));
+  next.rev = saved.rev + 1; next.updatedAt = new Date().toISOString();
+  var at = next.updatedAt;
+  next.log = pending.slice().reverse().map(function(t){ return { at: at, text: t }; }).concat(state.log || []).slice(0, 60);
+  sSet('localStorage','draft',{ rev: saved.rev, state: state, pending: pending, publishing: next.rev });
+  sSet('sessionStorage','view',{ tab: ui.tab, editing: ui.editing });
+  var bar = document.querySelector('.pbar span'); if (bar) bar.textContent = 'Publishing...';
+  ui.art.publish(buildDoc(next)).then(function(){
+    publishing = false; saved = next; state = JSON.parse(JSON.stringify(next)); pending = [];
+    sSet('localStorage','draft',null); render(); toast('Published. Everyone with the link sees it now.');
+  }).catch(function(err){
+    publishing = false;
+    var code = err && err.code;
+    var d = sGet('localStorage','draft',null); if (d) { delete d.publishing; sSet('localStorage','draft',d); }
+    sSet('sessionStorage','view',null);
+    if (code === 'conflict') { toast('Someone else just published. Loading their version.'); return; }
+    if (code === 'not_writer' || code === 'not_granted' || code === 'consent_required' || code === 'not_declared' || code === 'capability_disabled' || code === 'capability_removed') { ui.canEdit = false; ui.editing = false; render(); toast('This link is view-only for you.'); return; }
+    if (code === 'rate_limited') { render(); toast('Publishing too often. Wait a minute, then publish again.'); return; }
+    if (code === 'too_large') { render(); toast('The itinerary is too large to publish.'); return; }
+    if (!retry && (code === 'upstream_error' || !code)) { setTimeout(function(){ publish(true); }, 1200 + Math.random()*1500); return; }
+    render(); toast('Publishing failed. Your changes are kept here. Try again.');
+  });
+}
+
+// ---------- CSV ----------
+function csv(){
+  var rows = [['Date','Day','Time','Time zone','Item','Where','Address','Who','Getting there','Flight','Confirmation','Phone','Notes','Heads-up']];
+  state.items.slice().sort(sortItems).filter(visible).forEach(function(i){
+    var pl = place(i.place), d = i.d || {};
+    rows.push([i.date, fmtD(i.date,{weekday:'short'}), fmtT(i.time), i.time ? (i.tz==='HST'?'Hawaii':'Detroit') : '', i.title, placeLabel(i.place), d.address || (pl && pl.address) || '', (i.who||[]).map(function(id){ var p = P(id); return p ? p.name : ''; }).join(', '), i.transport, d.flight||'', d.conf || (pl && pl.conf) || '', d.phone || (pl && pl.phone) || '', d.notes||'', i.flag||'']);
+  });
+  var text = rows.map(function(r){ return r.map(function(c){ c = String(c == null ? '' : c); return /[",\n]/.test(c) ? '"' + c.replace(/"/g,'""') + '"' : c; }).join(','); }).join('\n');
+  ui.dl.save({ filename: (state.trip.title || 'itinerary').replace(/[^\w ]+/g,'').trim().replace(/\s+/g,'-').toLowerCase() + (ui.person!=='all'?'-'+ui.person:'') + '.csv', data: text }).catch(function(e){ if (e && e.code === 'unavailable') { ui.dl = null; render(); } });
+}
+
+// ---------- events ----------
+app.addEventListener('click', function(e){
+  if (ui.lastDrag && Date.now() - ui.lastDrag < 350 && e.target.closest('#mv')) return;
+  var b = e.target.closest('[data-act]');
+  if (!b) { if (ui.mapSel && e.target.closest('#mv') && !e.target.closest('.mvsheet')) { ui.mapSel = null; render(); } return; }
+  var a = b.dataset.act, id = b.dataset.id;
+  if (a === 'person') { ui.person = id; ui.mapView = null; ui.mapSel = null; sSet('localStorage','person',id); render(); }
+  else if (a === 'tab') { ui.tab = id; render(); window.scrollTo(0, 0); lastCompact = false; onScroll(); }
+  else if (a === 'toggle') { ui.open[id] = !ui.open[id]; render(); }
+  else if (a === 'jump') { var el = document.getElementById('d-' + id); if (el) scrollToEl(el, false); }
+  else if (a === 'jumpitem' || a === 'gotoitem') { ui.tab = 'schedule'; ui.open[id] = true; render(); var t = document.getElementById('it-' + id); if (t) scrollToEl(t, true); }
+  else if (a === 'mapday') { ui.mapDates[id] = !ui.mapDates[id]; ui.mapSel = null; ui.mapView = null; render(); }
+  else if (a === 'mapall') { ui.mapDates = {}; ui.mapSel = null; ui.mapView = null; render(); }
+  else if (a === 'mapclear') { ui.mapDates = {}; ui.person = 'all'; sSet('localStorage','person','all'); ui.mapSel = null; ui.mapView = null; render(); }
+  else if (a === 'mapsel') {
+    var ty = b.dataset.type, fromList = !!b.closest('.rows'), inSheet = !!b.closest('.mvsheet');
+    ui.mapSel = ty ? { type: ty, id: id } : null; render();
+    if (ui.mapSel) {
+      var tg = ty === 'place' ? ui.md.pins.find(function(x){ return x.key === id; }) : null;
+      var tl = ty === 'leg' ? ui.md.legs.find(function(x){ return x.key === id; }) : null;
+      if (tg) centerOn(tg.w, fromList ? 0.3 : 0); else if (tl) { var wa = worldXY(tl.a), wb = worldXY(tl.b); centerOn({ x: (wa.x + wb.x)/2, y: (wa.y + wb.y)/2 }); }
+      if (fromList) { var mvel = document.getElementById('mv'); if (mvel) scrollToEl(mvel, false); }
+    }
+  }
+  else if (a === 'mapcluster') { var ws = id.split(',').map(function(k){ var g = ui.md.pins.find(function(x){ return x.key === k; }); return g && g.w; }).filter(Boolean); if (ws.length && mv) fitTo(ws); }
+  else if (a === 'mv') { if (!mv) return; if (id === 'fit') { ui.mapView = null; fitMap(); applyView(); } else { zoomAt(mv.cw/2, mv.ch/2, id === 'in' ? 1.7 : 1/1.7); applyView(); } }
+  else if (a === 'mapzoom') { var bx = document.getElementById('mainmap'); var nz = stepZoom(ui.mapZoom, id); var sp = ui.mapSel && place(ui.mapSel); var f = (id === 'zin' && ui.mapZoom === 1 && sp) ? project(sp.lat, sp.lon) : null; ui.mapZoom = nz; if (bx) { setZoom(bx, nz, f); var mwz = document.querySelector('.mapwrap'), tp = document.getElementById('top'); if (nz > 1 && mwz && mwz.getBoundingClientRect().bottom > window.innerHeight) scrollToEl(mwz, false); } }
+  else if (a === 'pin') {
+    ui.mapSel = ui.mapSel === id && e.target.closest('.pin') ? '' : id; render();
+    var sp2 = place(ui.mapSel), bx2 = document.getElementById('mainmap');
+    if (sp2 && bx2 && ui.mapZoom > 1) setZoom(bx2, ui.mapZoom, project(sp2.lat, sp2.lon));
+    if (ui.mapSel && !e.target.closest('.pin')) { var mw = document.querySelector('.mapwrap'); if (mw) scrollToEl(mw, false); }
+  }
+  else if (a === 'edit-toggle') { ui.editing = !ui.editing; render(); }
+  else if (a === 'edit-item') editItem(id);
+  else if (a === 'add-item') editItem('', id);
+  else if (a === 'edit-day') editDay(id);
+  else if (a === 'edit-person') editPerson(id);
+  else if (a === 'add-person') editPerson('');
+  else if (a === 'edit-place') editPlace(id);
+  else if (a === 'add-place') editPlace('');
+  else if (a === 'edit-trip') editTrip();
+  else if (a === 'publish') publish(false);
+  else if (a === 'discard') { if (!confirm('Discard ' + pending.length + ' unpublished change(s)?')) return; state = JSON.parse(JSON.stringify(saved)); pending = []; sSet('localStorage','draft',null); render(); }
+  else if (a === 'dismiss') { ui.notice = ''; render(); }
+  else if (a === 'csv') csv();
+  else if (a === 'signin') signIn();
+  else if (a === 'signout') { sSet('localStorage','editkey',null); ui.canEdit = false; ui.editing = false; render(); toast('Signed out. This device can only view now.'); }
+});
+
+render();
+if (view && view.scrollY) window.scrollTo(0, view.scrollY);
+
+// light up editing when the viewer allows it
+
+// ---------- hosted mode (Vercel): shared data via /api/data ----------
+function editKey(){ return sGet('localStorage','editkey',''); }
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function api(method, body){
+  return fetch(API + (method === 'GET' ? '?t=' + Date.now() : ''), { method: method, cache: 'no-store', headers: Object.assign({ 'Content-Type': 'application/json' }, method === 'GET' ? {} : { 'x-edit-key': editKey() }), body: body ? JSON.stringify(body) : undefined })
+    .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok, status: r.status, j: j }; }); });
+}
+function signIn(){
+  var pw = window.prompt('Editor password'); if (!pw) return;
+  sSet('localStorage','editkey',pw);
+  api('POST', { verify: true }).then(function(r){
+    if (r.ok) { ui.canEdit = true; ui.editing = true; render(); toast('Signed in. Tap items to edit, then Publish to everyone.'); }
+    else { sSet('localStorage','editkey',null); toast(r.status === 401 ? 'That password is not right.' : 'Sign-in failed. Check the Vercel storage setup.'); }
+  }).catch(function(){ sSet('localStorage','editkey',null); toast('Sign-in failed. Check your connection.'); });
+}
+function publishHosted(){
+  if (publishing || !pending.length) return;
+  publishing = true;
+  var next = clone(state); next.rev = saved.rev + 1; next.updatedAt = new Date().toISOString();
+  next.log = pending.slice().reverse().map(function(t){ return { at: next.updatedAt, text: t }; }).concat(state.log || []).slice(0, 60);
+  var bar = document.querySelector('.pbar span'); if (bar) bar.textContent = 'Publishing...';
+  api('PUT', { state: next, baseRev: saved.rev }).then(function(r){
+    publishing = false;
+    if (r.ok) { saved = next; state = clone(next); pending = []; sSet('localStorage','draft',null); render(); toast('Published. Everyone sees it within 30 seconds.'); return; }
+    if (r.status === 409 && r.j.state) { var n = pending.length; saved = r.j.state; state = clone(saved); pending = []; sSet('localStorage','draft',null); render(); toast('Someone else published first. Their version is loaded; redo your ' + n + ' change(s).'); return; }
+    if (r.status === 401) { sSet('localStorage','editkey',null); ui.canEdit = false; ui.editing = false; render(); toast('The editor password changed. Sign in again; your changes are kept on this device.'); return; }
+    render(); toast('Publishing failed. Your changes are kept here. Try again.');
+  }).catch(function(){ publishing = false; render(); toast('No connection. Your changes are kept here. Try again.'); });
+}
+function pullRemote(first){
+  if (!API || publishing) return;
+  api('GET').then(function(r){
+    var rs = r.ok && r.j && r.j.state; if (!rs || typeof rs.rev !== 'number') return;
+    if (rs.rev <= saved.rev && !(first && rs.rev === saved.rev && rs.updatedAt !== saved.updatedAt)) return;
+    if (pending.length) {
+      if (first && draft && draft.rev !== rs.rev) { ui.notice = 'A newer version was published before your ' + pending.length + ' unpublished change(s) went out, so they were set aside. The schedule below is the latest.'; pending = []; sSet('localStorage','draft',null); }
+      else return;
+    }
+    saved = rs; state = clone(rs); render(); if (!first) toast('Itinerary updated');
+  }).catch(function(){});
+}
+if (API) {
+  ui.dl = { save: function(o){ var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([o.data], { type: 'text/csv' })); a.download = o.filename; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 800); return Promise.resolve({ status: 'saved' }); } };
+  ui.canEdit = !!editKey(); if (ui.canEdit && ui.wantEdit) ui.editing = true;
+  if (!ui.canEdit && pending.length) { state = clone(saved); pending = []; }
+  render(); pullRemote(true);
+  setInterval(function(){ if (!document.hidden) pullRemote(false); }, 30000);
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden) pullRemote(false); });
+} else
+if (window.claude && typeof window.claude.use === 'function') {
+  Promise.all([claude.use('artifact'), claude.use('user'), claude.use('downloads')]).then(function(r){
+    ui.art = r[0]; ui.dl = r[2];
+    var u = r[1];
+    return (u ? u.canEdit().catch(function(){ return false; }) : Promise.resolve(false)).then(function(ce){
+      ui.canEdit = !!(ui.art && ce);
+      if (ui.canEdit && ui.wantEdit) ui.editing = true;
+      if (!ui.canEdit) { ui.editing = false; if (pending.length) { state = JSON.parse(JSON.stringify(saved)); pending = []; } }
+      render();
+    });
+  }).catch(function(){});
+} else { ui.editing = false; if (pending.length) { state = JSON.parse(JSON.stringify(saved)); pending = []; } render(); }
+})();
+</script>
+</body>
+</html>
