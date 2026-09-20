@@ -136,12 +136,21 @@ a{color:var(--lake)}
 .stay-btn .edit-link{margin-left:6px;font-size:.78rem;color:var(--lake);font-weight:600;opacity:.85}
 
 /* free day ideas card */
-.free-idea{margin-top:12px;padding:14px 16px;border-radius:14px;background:color-mix(in srgb,var(--sage) 10%,var(--card));border:1px dashed color-mix(in srgb,var(--sage) 40%,var(--line))}
-.fi-tag{margin-bottom:6px}
-.fi-title{font-weight:700;font-size:1.02rem;color:var(--ink);margin-bottom:4px}
+.free-idea{margin-top:12px;padding:14px 16px;border-radius:14px;background:color-mix(in srgb,var(--sage) 10%,var(--card));border:1px dashed color-mix(in srgb,var(--sage) 40%,var(--line));transition:all .18s ease}
+.fi-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.fi-header-left{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.fi-counter{font-size:.75rem;color:var(--muted);font-weight:600}
+.fi-title{font-weight:700;font-size:1.03rem;color:var(--ink);margin-bottom:4px;line-height:1.3}
 .fi-desc{margin:0;font-size:.88rem;color:var(--muted);line-height:1.45}
-.fi-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.fi-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.fi-web{margin-top:12px;border-top:1px dashed color-mix(in srgb,var(--sage) 30%,var(--line));padding-top:10px}
+.fi-web summary{font-size:.82rem;color:var(--lake);cursor:pointer;font-weight:600;list-style:none}
+.fi-web summary::-webkit-details-marker{display:none}
+.fi-web-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.fi-web-btn{font-size:.78rem;padding:4px 9px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:all .12s ease}
+.fi-web-btn:hover{background:var(--paper);border-color:var(--lake);color:var(--lake)}
 .tag.suggestion{background:color-mix(in srgb,var(--sage) 20%,transparent);color:var(--sage);font-weight:700;font-size:.74rem;padding:2px 7px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
+.tag.cat{background:var(--card);border:1px solid var(--line);color:var(--ink);font-weight:600;font-size:.75rem;padding:2px 8px;border-radius:6px}
 
 .dnote{margin:8px 0 0;color:var(--muted);font-size:.92rem}
 .free{color:var(--faint);font-style:italic;margin:14px 0 0;font-size:.95rem}
@@ -665,53 +674,166 @@ function dayWeatherHTML(d){
 
 var DETROIT_IDEAS = [
   {
-    title: "Detroit Riverwalk & Campus Martius Park",
-    desc: "Voted #1 Riverwalk in the USA! Stroll along the Detroit River overlooking Canada, explore Campus Martius, and grab a Detroit-style Coney Island dog at Lafayette or American Coney Island.",
-    map: "Detroit Riverwalk Detroit MI"
-  },
-  {
+    cat: "🏛️ Arts & Museums",
+    kind: "visit",
     title: "Detroit Institute of Arts (DIA) & Midtown",
-    desc: "A world-renowned museum featuring Diego Rivera's famous Detroit Industry murals and Vincent van Gogh masterworks. Relax at Kresge Court for coffee or lunch.",
+    desc: "A world-renowned museum featuring Diego Rivera's famous Detroit Industry murals and Vincent van Gogh masterworks. Relax at Kresge Court for artisanal coffee or lunch.",
     map: "Detroit Institute of Arts Detroit MI"
   },
   {
-    title: "Michigan Autumn Cider Mill & Clarkston Stroll",
-    desc: "A pure Michigan fall classic! Visit Yates Cider Mill or Franklin Cider Mill for fresh apple cider and warm cinnamon donuts, then stroll historic downtown Clarkston.",
+    cat: "🍷 5-Star Dining",
+    kind: "meal",
+    title: "Prime + Proper (Downtown Detroit)",
+    desc: "Premier 5-star steakhouse with bespoke dry-aging room, caviar service, wood-fired prime cuts, and luxury historic architecture in Capitol Park.",
+    map: "Prime and Proper Detroit MI"
+  },
+  {
+    cat: "🎭 Comedy & Nightlife",
+    kind: "visit",
+    title: "Mark Ridley's Comedy Castle (Royal Oak)",
+    desc: "Legendary Michigan comedy institution where Tim Allen and national headliners started. Great drinks, standup comedy, and vibrant downtown Royal Oak dining.",
+    map: "Mark Ridleys Comedy Castle Royal Oak MI"
+  },
+  {
+    cat: "🍁 Autumn Cider Mill",
+    kind: "visit",
+    title: "Yates Cider Mill & Historic Rochester",
+    desc: "Pure Michigan fall tradition since 1863! Enjoy fresh-pressed apple cider, warm cinnamon spice donuts along the Clinton River trail, and explore Rochester.",
     map: "Yates Cider Mill Rochester Hills MI"
   },
   {
-    title: "Eastern Market & Hitsville U.S.A. (Motown Museum)",
-    desc: "Tour the historic Motown Museum where Stevie Wonder, Marvin Gaye, and the Supremes recorded music history, and explore the bustling sheds of historic Eastern Market.",
-    map: "Motown Museum Detroit MI"
+    cat: "🎷 Jazz & Speakeasy",
+    kind: "visit",
+    title: "Cliff Bell's 1930s Art Deco Jazz Club",
+    desc: "Step back into the golden age of jazz with live musicians, rich mahogany and gold leaf decor, craft cocktails, and classic American cuisine.",
+    map: "Cliff Bells Detroit MI"
   },
   {
-    title: "The Henry Ford Museum & Greenfield Village",
-    desc: "Explore 250 acres of American innovation in nearby Dearborn, including historic workshops of Thomas Edison, the Wright Brothers, and Henry Ford.",
-    map: "The Henry Ford Dearborn MI"
+    cat: "🍽️ Chef Tasting & Dining",
+    kind: "meal",
+    title: "SheWolf Pastificio & Bar (Midtown)",
+    desc: "Acclaimed contemporary Roman trattoria by Chef Anthony Lombardo, celebrating hand-milled heritage grain pastas, seasonal antipasti, and Italian wines.",
+    map: "SheWolf Pastificio and Bar Detroit MI"
   },
   {
-    title: "Scenic Lake St. Clair & Edsel & Eleanor Ford House",
-    desc: "Drive scenic Lakeshore Drive along Lake St. Clair in Grosse Pointe to tour the historic lakeside estate, architecture, and gardens of Edsel and Eleanor Ford.",
+    cat: "🏰 Historic Mansions",
+    kind: "visit",
+    title: "Edsel & Eleanor Ford House on Lake St. Clair",
+    desc: "Drive scenic Lakeshore Drive along Lake St. Clair in Grosse Pointe to tour the 87-acre historic Cotswold-style estate, gardens, and waterfront walking paths.",
     map: "Edsel and Eleanor Ford House Grosse Pointe Shores MI"
   },
   {
-    title: "Belle Isle Park & Conservatory",
-    desc: "Visit the island park in the Detroit River to see North America's oldest public aquarium, the historic Conservatory, and panoramic views of the Detroit skyline.",
+    cat: "🎭 Comedy & Nightlife",
+    kind: "visit",
+    title: "Detroit House of Comedy (District Detroit)",
+    desc: "Top-tier comedy club located in the heart of Downtown Detroit's sports and entertainment district, showcasing touring national and Netflix comedians.",
+    map: "Detroit House of Comedy Detroit MI"
+  },
+  {
+    cat: "🏛️ American Innovation",
+    kind: "visit",
+    title: "The Henry Ford Museum & Greenfield Village",
+    desc: "Explore 250 acres of American innovation in Dearborn: Edison's Menlo Park lab, the Wright Brothers' bicycle shop, Lincoln's chair, and steam locomotives.",
+    map: "The Henry Ford Dearborn MI"
+  },
+  {
+    cat: "🍷 5-Star Dining",
+    kind: "meal",
+    title: "The Apparatus Room (Detroit Foundation Hotel)",
+    desc: "Stunning restaurant in the transformed 1929 Detroit Fire Department Headquarters led by Michelin-starred Chef Thomas Lents, featuring modern Midwestern dining.",
+    map: "The Apparatus Room Detroit MI"
+  },
+  {
+    cat: "🎶 Music History",
+    kind: "visit",
+    title: "Motown Museum (Hitsville U.S.A.) & Eastern Market",
+    desc: "Tour legendary Studio A where Stevie Wonder, Marvin Gaye, and the Supremes recorded music history, then visit Eastern Market for artisan foods.",
+    map: "Motown Museum Detroit MI"
+  },
+  {
+    cat: "🍸 Rooftop & Cocktails",
+    kind: "meal",
+    title: "The Monarch Club (Rooftop Lounge)",
+    desc: "Perched atop the restored Metropolitan Building, offering craft cocktails, fire pits, and sweeping 360-degree panoramic views of the Detroit skyline.",
+    map: "The Monarch Club Detroit MI"
+  },
+  {
+    cat: "🍁 Autumn Cider Mill",
+    kind: "visit",
+    title: "Blake's Orchard & Cider Mill (Armada/Clarkston area)",
+    desc: "Epic fall destination featuring 800 acres of apple orchards, cider press, fresh hot donuts, pumpkin patch, and Blake's Hard Cider tasting room.",
+    map: "Blakes Orchard and Cider Mill Armada MI"
+  },
+  {
+    cat: "🌊 Waterfront & Parks",
+    kind: "visit",
+    title: "Detroit Riverwalk & Campus Martius Park",
+    desc: "Voted #1 Riverwalk in America! Stroll the riverfront looking out to Canada, explore Campus Martius, and grab iconic Detroit Coney Island dogs.",
+    map: "Detroit Riverwalk Detroit MI"
+  },
+  {
+    cat: "🎷 Jazz & Nightlife",
+    kind: "visit",
+    title: "Baker's Keyboard Lounge",
+    desc: "The world's oldest operating jazz club (open since 1934), featuring intimate live jazz, soul food staples, and a famous piano-shaped bar.",
+    map: "Bakers Keyboard Lounge Detroit MI"
+  },
+  {
+    cat: "🏛️ Architectural Wonders",
+    kind: "visit",
+    title: "Guardian Building & Fisher Building Art Deco Tour",
+    desc: "Visit the 'Cathedral of Finance' (Guardian Building) with its dazzling Pewabic tile and Tiffany glass, followed by Albert Kahn's golden Fisher Building.",
+    map: "Guardian Building Detroit MI"
+  },
+  {
+    cat: "🍽️ Farm-to-Table Dining",
+    kind: "meal",
+    title: "Mabel Gray (Chef James Rigato)",
+    desc: "James Beard finalist Chef James Rigato's renowned Hazel Park eatery featuring an ever-evolving seasonal 8-course tasting menu paired with boutique wines.",
+    map: "Mabel Gray Hazel Park MI"
+  },
+  {
+    cat: "🌊 Waterfront & Nature",
+    kind: "visit",
+    title: "Belle Isle Park, Aquarium & Conservatory",
+    desc: "Island park sanctuary in the Detroit River featuring America's oldest public aquarium, Anna Scripps Whitcomb Conservatory, and skyline vistas.",
     map: "Belle Isle Park Detroit MI"
   }
 ];
 
-function dayIdeaHTML(d, index){
-  var idea = DETROIT_IDEAS[index % DETROIT_IDEAS.length];
+function dayIdeaHTML(d, di){
+  var total = DETROIT_IDEAS.length;
+  var cur = (ui.dayIdeaIndex && ui.dayIdeaIndex[d] != null) ? ui.dayIdeaIndex[d] : (di % total);
+  cur = ((cur % total) + total) % total;
+  var idea = DETROIT_IDEAS[cur];
   var mapUrl = 'https://maps.apple.com/?q=' + encodeURIComponent(idea.map);
+  
   return '<div class="free-idea">' +
-    '<div class="fi-tag"><span class="tag suggestion">💡 Free Day Idea (Optional Suggestion)</span></div>' +
+    '<div class="fi-header">' +
+      '<div class="fi-header-left">' +
+        '<span class="tag suggestion">💡 Free Day Idea</span>' +
+        '<span class="tag cat">' + esc(idea.cat) + '</span>' +
+      '</div>' +
+      '<div class="fi-counter">Idea ' + (cur + 1) + ' of ' + total + '</div>' +
+    '</div>' +
     '<div class="fi-title">' + esc(idea.title) + '</div>' +
     '<p class="fi-desc">' + esc(idea.desc) + '</p>' +
     '<div class="fi-acts">' +
+      '<button class="btn sm primary" data-act="next-idea" data-day="' + d + '" title="Click to view another suggested Detroit idea">🔄 Shuffle / Next Idea</button>' +
       '<a class="btn sm" href="' + esc(mapUrl) + '" target="_blank" rel="noopener">🗺️ View Location</a>' +
-      '<button class="btn sm" data-act="add-item" data-id="' + d + '">+ Add to this day</button>' +
+      '<button class="btn sm" data-act="add-item" data-id="' + d + '" data-title="' + esc(idea.title) + '" data-place="' + esc(idea.title) + '" data-kind="' + esc(idea.kind || 'visit') + '">+ Add to this day</button>' +
     '</div>' +
+    '<details class="fi-web">' +
+      '<summary>🌐 Search web for more ideas (5-star dining, comedy, events)...</summary>' +
+      '<div class="fi-web-links">' +
+        '<a class="fi-web-btn" href="https://www.google.com/search?q=best+5+star+fine+dining+restaurants+detroit+michigan" target="_blank" rel="noopener">🍷 5-Star Restaurants</a>' +
+        '<a class="fi-web-btn" href="https://www.google.com/search?q=comedy+clubs+and+standup+shows+detroit+metro" target="_blank" rel="noopener">🎭 Comedy Clubs</a>' +
+        '<a class="fi-web-btn" href="https://www.google.com/search?q=detroit+institute+of+arts+exhibits+and+museums" target="_blank" rel="noopener">🏛️ DIA & Museums</a>' +
+        '<a class="fi-web-btn" href="https://www.google.com/search?q=cider+mills+donuts+clarkston+rochester+detroit" target="_blank" rel="noopener">🍁 Autumn Cider Mills</a>' +
+        '<a class="fi-web-btn" href="https://www.google.com/search?q=live+jazz+and+cocktail+lounges+detroit" target="_blank" rel="noopener">🎷 Jazz & Cocktails</a>' +
+        '<a class="fi-web-btn" href="https://www.google.com/search?q=things+to+do+in+detroit+this+weekend" target="_blank" rel="noopener">🔍 Detroit Weekend Guide</a>' +
+      '</div>' +
+    '</details>' +
   '</div>';
 }
 
@@ -1395,8 +1517,9 @@ function openSheet(title, inner, foot){
 function change(summary){ pending.push(summary); sSet('localStorage','draft',{ rev: saved.rev, state: state, pending: pending }); dlg.open && dlg.close(); render(); }
 function newId(p){ return p + Date.now().toString(36) + Math.random().toString(36).slice(2,5); }
 
-function editItem(id, date){
-  var it = id ? state.items.find(function(i){ return i.id === id; }) : { id:'', date: date || state.trip.wedding, time:'', tz:'ET', title:'', kind:'other', place:'', who:[], transport:'', key:false, flag:'', d:{} };
+function editItem(id, date, preset){
+  preset = preset || {};
+  var it = id ? state.items.find(function(i){ return i.id === id; }) : { id:'', date: date || state.trip.wedding, time:'', tz:'ET', title: preset.title || '', kind: preset.kind || 'other', place: preset.place || '', who:[], transport:'', key:false, flag:'', d:{} };
   var d = it.d || {};
   var canEditThis = canEditItem(it);
   var authorField = !ui.canEdit ? field('Your name', 'authorName', it.createdByName || sGet('localStorage','guestName',''), 'text', 'placeholder="e.g. Brenda or Matt" required') + '<p class="hint">No password needed! Your event will be saved directly.</p>' : '';
@@ -1662,8 +1785,18 @@ app.addEventListener('click', function(e){
     if (ui.mapSel && !e.target.closest('.pin')) { var mw = document.querySelector('.mapwrap'); if (mw) scrollToEl(mw, false); }
   }
   else if (a === 'edit-toggle') { ui.editing = !ui.editing; render(); }
+  else if (a === 'next-idea') {
+    var dId = b.dataset.day || id;
+    ui.dayIdeaIndex = ui.dayIdeaIndex || {};
+    var cur = (ui.dayIdeaIndex[dId] != null) ? ui.dayIdeaIndex[dId] : 0;
+    ui.dayIdeaIndex[dId] = (cur + 1) % DETROIT_IDEAS.length;
+    render();
+  }
   else if (a === 'edit-item') editItem(id);
-  else if (a === 'add-item') editItem('', id);
+  else if (a === 'add-item') {
+    var preset = (b.dataset.title || b.dataset.place) ? { title: b.dataset.title, place: b.dataset.place, kind: b.dataset.kind } : null;
+    editItem('', id, preset);
+  }
   else if (a === 'edit-day') editDay(id);
   else if (a === 'edit-person') editPerson(id);
   else if (a === 'add-person') editPerson('');
