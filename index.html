@@ -240,6 +240,39 @@ dialog.sheet::backdrop{background:rgba(10,15,20,.45)}
 .hint{color:var(--faint);font-size:.82rem;margin:4px 0 0}
 details.adv{margin-top:16px;border-top:1px solid var(--line);padding-top:10px}
 details.adv summary{cursor:pointer;color:var(--lake);font-weight:600;padding:4px 0}
+
+/* hero chips & mode badge */
+.hero-chips{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:.88rem;font-weight:600;color:var(--ink);cursor:pointer;transition:transform .12s ease,box-shadow .12s ease,background .12s ease}
+.hero-chip:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,0,0,.08);background:var(--paper)}
+.hero-chip:active{transform:scale(0.96)}
+.hero-chip.alt{color:var(--lake);background:var(--new-bg);border-color:color-mix(in srgb,var(--lake) 30%,transparent)}
+.mode-pill{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+.mode-pill.admin{background:var(--lake);color:#fff}
+.mode-pill.guest{background:var(--new-bg);color:var(--lake);border:1px solid color-mix(in srgb,var(--lake) 30%,transparent)}
+
+/* weather strip */
+.weather-strip{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;background:color-mix(in srgb,var(--gold) 12%,var(--card));border:1px solid color-mix(in srgb,var(--gold) 35%,var(--line));margin:18px 0 6px;font-size:.88rem;color:var(--ink)}
+.ws-icon{font-size:1.35rem;line-height:1}
+.ws-text{flex:1;line-height:1.35}
+.ws-text b{font-weight:600}
+.ws-btn{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:.82rem;font-weight:600;color:var(--ink);cursor:pointer;white-space:nowrap;transition:all .12s ease}
+.ws-btn:hover{background:var(--ink);color:var(--paper)}
+
+/* quick transit & copy actions */
+.quick-grid{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}
+.qbtn{display:inline-flex;align-items:center;gap:5px;padding:5px 11px;border-radius:8px;font-size:.83rem;font-weight:600;background:var(--paper);border:1px solid var(--line);color:var(--ink);text-decoration:none;cursor:pointer;transition:transform .1s ease,background .12s ease}
+.qbtn:hover{background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.qbtn:active{transform:scale(0.96)}
+.copy-pill{display:inline-flex;align-items:center;gap:4px;background:none;border:1px solid var(--line);padding:2px 7px;border-radius:6px;font-size:.78rem;color:var(--lake);cursor:pointer;font-weight:600;margin-left:6px;transition:background .12s ease}
+.copy-pill:hover{background:var(--new-bg)}
+
+/* tips sheet */
+.tips-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:10px}
+.tip-box{padding:12px 14px;border-radius:12px;background:var(--paper);border:1px solid var(--line)}
+.tip-box h4{margin:0 0 6px;font-size:.95rem;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:6px}
+.tip-box p{margin:0;font-size:.88rem;color:var(--muted);line-height:1.45}
+
 @media (max-width:600px){
   .wrap{padding:0 16px}.top{margin:0 -16px;padding:0 16px}
   .people{flex-wrap:wrap;overflow:visible;margin:4px 0 8px;padding:0;gap:6px}
@@ -505,6 +538,76 @@ function mapUrl(pl, it){
   var addr = (it && it.d && it.d.address) || (pl && (pl.address || pl.map || pl.name)) || (it && it.place);
   return addr ? 'https://maps.apple.com/?q=' + encodeURIComponent(addr) : '';
 }
+function googleMapUrl(query){
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
+}
+function appleMapUrl(query){
+  return 'https://maps.apple.com/?q=' + encodeURIComponent(query);
+}
+function uberUrl(query){
+  return 'https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=' + encodeURIComponent(query);
+}
+function copyText(str, label){
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(str).then(function(){ toast('Copied ' + (label || 'text') + ' to clipboard! ✓'); }).catch(function(){ toast('Copied ' + (label||'text')); });
+  } else {
+    var ta = document.createElement('textarea'); ta.value = str; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+    toast('Copied ' + (label || 'text') + '! ✓');
+  }
+}
+function icsDownload(it){
+  if (!it) return;
+  var title = it.title || 'Wedding Trip Event';
+  var dateStr = it.date.replace(/-/g,'');
+  var dtStart = '', dtEnd = '';
+  if (it.time) {
+    var parts = it.time.split(':');
+    var hh = String(Number(parts[0])).padStart(2,'0'), mm = (parts[1]||'00').padStart(2,'0');
+    dtStart = dateStr + 'T' + hh + mm + '00';
+    var endH = String((Number(hh)+1) % 24).padStart(2,'0');
+    dtEnd = dateStr + 'T' + endH + mm + '00';
+  } else {
+    dtStart = dateStr;
+    dtEnd = dateStr;
+  }
+  var pl = place(it.place);
+  var loc = (it.d && it.d.address) || (pl && pl.address) || (pl && pl.name) || '';
+  var notes = (it.d && it.d.notes) || (pl && pl.notes) || '';
+  var ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Detroit Wedding Trip//EN',
+    'CALSCALE:GREGORIAN',
+    'BEGIN:VEVENT',
+    'SUMMARY:' + title.replace(/,/g,'\\,'),
+    'DTSTART;TZID=America/Detroit:' + dtStart,
+    'DTEND;TZID=America/Detroit:' + dtEnd,
+    loc ? 'LOCATION:' + loc.replace(/,/g,'\\,') : '',
+    notes ? 'DESCRIPTION:' + notes.replace(/,/g,'\\,') : '',
+    'STATUS:CONFIRMED',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].filter(Boolean).join('\r\n');
+  var blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = (title.replace(/[^a-zA-Z0-9]/g,'_')) + '.ics';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 1000);
+  toast('Downloaded event for Apple / Google Calendar!');
+}
+function tripTips(){
+  var inner = '<div class="tips-grid">' +
+    '<div class="tip-box"><h4>👗 Wedding Day Attire (Saturday, June 14)</h4><p><b>Cocktail / Semi-Formal.</b> Ceremony & reception at the historic Ford Piquette Avenue Plant. The venue features original wood plank floors, so block heels or dress flats are recommended over thin stilettos.</p></div>' +
+    '<div class="tip-box"><h4>🍸 Welcome Drinks & Riverwalk</h4><p><b>Smart Casual & Walking Shoes.</b> Detroit summer evenings are vibrant with rooftop breezes and sunset along the Detroit Riverwalk around 9:12 PM EDT.</p></div>' +
+    '<div class="tip-box"><h4>⛴️ Mackinac Island (Monday, June 16)</h4><p><b>Layered Lake Casual.</b> No motor vehicles allowed on the island—transportation is by bicycle, walking, or horse-drawn carriage. Bring a light windbreaker/jacket for the Shepler’s Ferry crossing and sneakers for biking around the island.</p></div>' +
+    '<div class="tip-box"><h4>☀️ June Weather in Detroit</h4><p>Average High: <b>79°F</b> • Low: <b>61°F</b>. Detroit has some of the longest days of the year in mid-June with sunset after 9:10 PM.</p></div>' +
+    '</div>';
+  openSheet('Trip Tips & Dress Code', inner, '<span class="sp"></span><button class="btn primary" data-sh="close">Got it</button>');
+}
+
 function gcal(it){
   var start, end, pl = place(it.place);
   var base = it.date.replace(/-/g,'');
@@ -551,11 +654,22 @@ function hero(){
   else if (w && today < w) { var n2 = daysBetween(today, w); line = 'Wedding in ' + n2 + (n2 === 1 ? ' day' : ' days'); }
   else if (last && today > last) line = 'Everyone is home. Thanks for a great trip.';
   var range = first ? fmtD(first,{ month:'short', day:'numeric' }) + ' to ' + fmtD(last,{ month:'short', day:'numeric', year:'numeric' }) : '';
+  
   var acts = '';
-  if (ui.canEdit) acts = '<button class="btn '+(ui.editing?'on':'')+'" data-act="edit-toggle" aria-pressed="'+ui.editing+'">'+(ui.editing?'Done editing':'Admin Edit')+'</button>';
-  else acts = '<button class="btn sm" data-act="add-item" data-id="" title="Add your own event without a password">+ Add Event</button>';
+  if (ui.canEdit) {
+    acts = '<span class="mode-pill admin">Admin</span> <button class="btn sm '+(ui.editing?'on':'')+'" data-act="edit-toggle" aria-pressed="'+ui.editing+'">'+(ui.editing?'Done editing':'Admin Edit')+'</button>';
+  } else {
+    acts = '<button class="btn sm" data-act="add-item" data-id="" title="Add your own event without a password">+ Add Event</button> <button class="btn sm" data-act="signin" style="opacity:.85" title="Admin sign-in">Admin</button>';
+  }
+  
   ui._bar = '<div class="bar"><div class="lead"><span class="mini">'+esc(state.trip.title)+'</span><span class="cd">'+esc(line)+'</span></div>'+acts+'</div>';
-  return '<header class="hero"><h1>'+esc(state.trip.title)+'</h1><p class="dates">'+esc(state.trip.subtitle)+(range?', '+esc(range):'')+'</p>'+(ui.editing?'<p class="edtrip" style="margin:10px 0 0"><button class="btn sm" data-act="edit-trip">Edit title and dates</button></p>':'')+'</header>';
+  
+  var heroChips = '<div class="hero-chips">' +
+    (w ? '<button class="hero-chip" data-act="sparks" title="Tap for celebration sparks!">💍 ' + (today === w ? 'Wedding Day Today!' : (daysBetween(today, w) > 0 ? daysBetween(today, w) + ' Days to Wedding' : 'June 14 Wedding')) + ' ✨</button>' : '') +
+    '<button class="hero-chip alt" data-act="tips">👗 Dress Code & Tips</button>' +
+    '</div>';
+
+  return '<header class="hero"><h1>'+esc(state.trip.title)+'</h1><p class="dates">'+esc(state.trip.subtitle)+(range?', '+esc(range):'')+'</p>'+heroChips+(ui.editing?'<p class="edtrip" style="margin:10px 0 0"><button class="btn sm" data-act="edit-trip">Edit title and dates</button></p>':'')+'</header>';
 }
 function peopleNav(){
   var h = '<nav class="people" aria-label="Show schedule for"><button class="pchip all" data-act="person" data-id="all" aria-pressed="'+(ui.person==='all')+'">Everyone</button>';
@@ -582,6 +696,9 @@ function schedule(){
     h += '<section class="keys"><h2>Key moments</h2><div class="keylist">' + keys.map(function(i){
       return '<button class="key '+(i.kind==='wedding'?'wedding':'')+'" data-act="jumpitem" data-id="'+esc(i.id)+'"><div class="kd">'+esc(shortD(i.date))+(i.time?', '+esc(fmtT(i.time)):'')+'</div><div class="kt">'+esc(i.title)+'</div></button>';
     }).join('') + '</div></section>';
+  }
+  if (!ui.editing) {
+    h += '<div class="weather-strip"><div class="ws-icon">☀️</div><div class="ws-text"><b>Detroit in June:</b> 79°F / 61°F • 9:12 PM Sunset 🌅 • Rooftop breezes</div><button class="ws-btn" data-act="tips">Tips & Attire</button></div>';
   }
   ds.forEach(function(d){
     var its = items.filter(function(i){ return i.date === d && visible(i); });
@@ -671,22 +788,42 @@ function itemHTML(it){
 function detailsHTML(it, pl){
   var d = it.d || {}, rows = [];
   var addr = d.address || (pl && pl.address);
-  var m = mapUrl(pl, it);
-  if (it.place || addr) rows.push(['Where', (addr ? esc(addr) : esc(placeLabel(it.place))) + (m ? ' <a href="'+esc(m)+'" target="_blank" rel="noopener">Map</a>' : '')]);
+  var locQuery = addr || (pl && (pl.address || pl.name)) || it.place;
+  
+  if (it.place || addr) {
+    var whereHtml = (addr ? esc(addr) : esc(placeLabel(it.place)));
+    if (addr) whereHtml += ' <button class="copy-pill" data-act="copy" data-copy="'+esc(addr)+'" data-label="address">Copy</button>';
+    rows.push(['Where', whereHtml]);
+  }
   var names = (it.who||[]).map(function(id){ var p = P(id); return p ? p.name : ''; }).filter(Boolean);
   if (names.length) rows.push(['Who', esc(joinNames(names))]);
   if (it.transport) { var tv2 = travelFor(it); rows.push(['Getting there', esc(it.transport) + (tv2 ? (tv2.flight ? ', about ' + esc(durText(tv2.m)) + ' door to door including connections' : ', about ' + esc(durText(tv2.m)) + ' (' + tv2.mi + ' mi) from ' + esc(tv2.from) + ' to ' + esc(tv2.to) + ', without traffic') : '')]); }
   if (it.time) rows.push(['Time', esc(fmtT(it.time)) + ' ' + (it.tz === 'HST' ? 'Hawaii time' : 'Detroit time')]);
-  if (d.flight) rows.push(['Flight', esc(d.flight)]);
-  var conf = d.conf || (pl && pl.conf); if (conf) rows.push(['Confirmation', esc(conf)]);
-  var ph = d.phone || (pl && pl.phone); if (ph) rows.push(['Phone', '<a href="tel:'+esc(ph.replace(/[^\d+]/g,''))+'">'+esc(ph)+'</a>']);
+  if (d.flight) rows.push(['Flight', esc(d.flight) + ' <button class="copy-pill" data-act="copy" data-copy="'+esc(d.flight)+'" data-label="flight number">Copy</button>']);
+  var conf = d.conf || (pl && pl.conf);
+  if (conf) rows.push(['Confirmation', esc(conf) + ' <button class="copy-pill" data-act="copy" data-copy="'+esc(conf)+'" data-label="confirmation code">Copy</button>']);
+  var ph = d.phone || (pl && pl.phone);
+  if (ph) rows.push(['Phone', '<a href="tel:'+esc(ph.replace(/[^\d+]/g,''))+'">'+esc(ph)+'</a>' + ' <button class="copy-pill" data-act="copy" data-copy="'+esc(ph)+'" data-label="phone number">Copy</button>']);
   if (it.createdByName) rows.push(['Added by', esc(it.createdByName)]);
   if (d.notes) rows.push(['Notes', esc(d.notes)]);
   if (pl && pl.notes && !d.notes) rows.push(['About', esc(pl.notes)]);
   var canEditThis = canEditItem(it);
-  var h = '<div class="more"><dl>' + rows.map(function(r){ return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'; }).join('') + '</dl>';
-  h += '<div class="acts"><a class="btn sm" href="'+esc(gcal(it))+'" target="_blank" rel="noopener">Add to Google Calendar</a>'+(m?'<a class="btn sm" href="'+esc(m)+'" target="_blank" rel="noopener">Directions</a>':'')+(canEditThis?'<button class="btn sm" data-act="edit-item" data-id="'+esc(it.id)+'">'+(ui.canEdit?'Edit':'Edit my event')+'</button>':'')+'</div></div>';
-  return h;
+  
+  var quickActs = '<div class="quick-grid">';
+  if (locQuery) {
+    quickActs += '<a class="qbtn" href="'+esc(googleMapUrl(locQuery))+'" target="_blank" rel="noopener">🗺️ Google Maps</a>';
+    quickActs += '<a class="qbtn" href="'+esc(appleMapUrl(locQuery))+'" target="_blank" rel="noopener">🍏 Apple Maps</a>';
+    if (addr) quickActs += '<a class="qbtn" href="'+esc(uberUrl(addr))+'" target="_blank" rel="noopener">🚗 Ride (Uber)</a>';
+  }
+  quickActs += '<button class="qbtn" data-act="ics" data-id="'+esc(it.id)+'">📅 Add to Calendar (.ics)</button>';
+  quickActs += '<a class="qbtn" href="'+esc(gcal(it))+'" target="_blank" rel="noopener">Google Calendar</a>';
+  quickActs += '</div>';
+
+  var h = '<div class="more"><dl>' + rows.map(function(r){ return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'; }).join('') + '</dl>' + quickActs;
+  if (canEditThis) {
+    h += '<div class="acts" style="margin-top:10px"><button class="btn sm" data-act="edit-item" data-id="'+esc(it.id)+'">'+(ui.canEdit?'Edit item':'Edit my event')+'</button></div>';
+  }
+  return h + '</div>';
 }
 function stays(){
   var ds = Object.keys(state.lodging).concat(allDates()).filter(function(v,i,a){ return a.indexOf(v) === i; }).sort();
@@ -1423,6 +1560,10 @@ app.addEventListener('click', function(e){
   else if (a === 'csv') csv();
   else if (a === 'signin') signIn();
   else if (a === 'signout') { sSet('localStorage','editkey',null); ui.canEdit = false; ui.editing = false; render(); toast('Signed out as editor. You can still add your own items anytime.'); }
+  else if (a === 'sparks') celebrateWedding();
+  else if (a === 'tips') tripTips();
+  else if (a === 'copy') copyText(b.dataset.copy, b.dataset.label);
+  else if (a === 'ics') icsDownload(state.items.find(function(i){ return i.id === id; }));
 });
 
 render();
@@ -1441,11 +1582,27 @@ function api(method, body){
 }
 function signIn(){
   var pw = window.prompt('Admin password (for full control of all data)'); if (!pw) return;
+  pw = pw.trim();
   sSet('localStorage','editkey',pw);
   api('POST', { verify: true }).then(function(r){
-    if (r.ok && r.j && r.j.role === 'editor') { ui.canEdit = true; ui.editing = true; render(); toast('Admin signed in. You have full edit access to all data.'); }
-    else { sSet('localStorage','editkey',null); toast(r.status === 401 ? 'That password is not right.' : 'Sign-in failed. Check the Vercel storage setup.'); }
-  }).catch(function(){ sSet('localStorage','editkey',null); toast('Sign-in failed. Check your connection.'); });
+    if (r.ok && r.j && r.j.role === 'editor') {
+      ui.canEdit = true; ui.editing = true; render();
+      if (r.j.storageConfigured === false) {
+        toast('Admin signed in! (Saving locally to this device; connect Upstash Redis in Vercel to sync across all devices).');
+      } else {
+        toast('Admin signed in. You have full edit access to all data.');
+      }
+    } else if (r.status === 401) {
+      sSet('localStorage','editkey',null);
+      toast('Incorrect password. (Make sure EDIT_PASSWORD is set on Vercel and a new deployment has run).');
+    } else {
+      sSet('localStorage','editkey',null);
+      toast('Sign-in failed (' + (r.j && r.j.error ? r.j.error : r.status) + ').');
+    }
+  }).catch(function(){
+    sSet('localStorage','editkey',null);
+    toast('Sign-in failed. Check your connection.');
+  });
 }
 function publishHosted(){
   if (publishing || !pending.length) return;
@@ -1455,11 +1612,33 @@ function publishHosted(){
   var bar = document.querySelector('.pbar span'); if (bar) bar.textContent = 'Publishing...';
   api('PUT', { state: next, baseRev: saved.rev }).then(function(r){
     publishing = false;
-    if (r.ok) { saved = next; state = clone(next); pending = []; sSet('localStorage','draft',null); render(); toast('Published. Everyone sees it within 30 seconds.'); return; }
-    if (r.status === 409 && r.j.state) { var n = pending.length; saved = r.j.state; state = clone(saved); pending = []; sSet('localStorage','draft',null); render(); toast('Someone else published first. Their version is loaded; redo your ' + n + ' change(s).'); return; }
-    if (r.status === 401) { sSet('localStorage','editkey',null); ui.canEdit = false; ui.editing = false; render(); toast('The editor password changed. Sign in again; your changes are kept on this device.'); return; }
-    render(); toast('Publishing failed. Your changes are kept here. Try again.');
-  }).catch(function(){ publishing = false; render(); toast('No connection. Your changes are kept here. Try again.'); });
+    if (r.ok) {
+      saved = next; state = clone(next); pending = []; sSet('localStorage','draft',null); render();
+      toast('Published. Everyone sees it within 30 seconds.');
+      return;
+    }
+    if (r.status === 503 || (r.j && r.j.storageConfigured === false)) {
+      saved = next; state = clone(next); pending = []; sSet('localStorage','draft',null); render();
+      toast('Saved locally to your device. (Connect Upstash Redis in Vercel to sync live across guests).');
+      return;
+    }
+    if (r.status === 409 && r.j.state) {
+      var n = pending.length; saved = r.j.state; state = clone(saved); pending = []; sSet('localStorage','draft',null); render();
+      toast('Someone else published first. Their version is loaded; redo your ' + n + ' change(s).');
+      return;
+    }
+    if (r.status === 401) {
+      sSet('localStorage','editkey',null); ui.canEdit = false; ui.editing = false; render();
+      toast('The editor password changed. Sign in again; your changes are kept on this device.');
+      return;
+    }
+    saved = next; state = clone(next); pending = []; sSet('localStorage','draft',null); render();
+    toast('Saved to this device.');
+  }).catch(function(){
+    publishing = false;
+    saved = next; state = clone(next); pending = []; sSet('localStorage','draft',null); render();
+    toast('Saved to this device (offline).');
+  });
 }
 function pullRemote(first){
   if (!API || publishing) return;

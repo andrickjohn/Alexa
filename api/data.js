@@ -22,8 +22,8 @@ async function redis(cmd) {
   return (await r.json()).result;
 }
 function isEditor(req) {
-  const want = process.env.EDIT_PASSWORD || '';
-  const got = String(req.headers['x-edit-key'] || '');
+  const want = (process.env.EDIT_PASSWORD || '').trim();
+  const got = String(req.headers['x-edit-key'] || '').trim();
   if (!want || !got) return false;
   const a = crypto.createHash('sha256').update(want).digest();
   const b = crypto.createHash('sha256').update(got).digest();
@@ -78,23 +78,28 @@ function validateGuestEdit(curState, nextState, guestId) {
 }
 
 module.exports = async function handler(req, res) {
-  if (!store().url) return send(res, 500, { error: 'storage_not_configured' });
+  const hasStorage = !!(store().url && store().token);
   try {
     if (req.method === 'GET') {
+      if (!hasStorage) {
+        return send(res, 200, { state: null, storageConfigured: false });
+      }
       const v = await redis(['GET', KEY]);
-      return send(res, 200, { state: v ? JSON.parse(v) : null });
+      return send(res, 200, { state: v ? JSON.parse(v) : null, storageConfigured: true });
     }
+
     const editor = isEditor(req);
     const guestId = !editor ? isGuest(req) : null;
 
     if (req.method === 'POST') {
-      if (editor) return send(res, 200, { ok: true, role: 'editor' });
-      if (guestId) return send(res, 200, { ok: true, role: 'guest' });
+      if (editor) return send(res, 200, { ok: true, role: 'editor', storageConfigured: hasStorage });
+      if (guestId) return send(res, 200, { ok: true, role: 'guest', storageConfigured: hasStorage });
       return send(res, 401, { error: 'wrong_password' });
     }
 
     if (req.method === 'PUT') {
       if (!editor && !guestId) return send(res, 401, { error: 'unauthorized' });
+      if (!hasStorage) return send(res, 503, { error: 'storage_not_configured', storageConfigured: false });
 
       const body = await readBody(req);
       const next = body && body.state;
@@ -116,12 +121,12 @@ module.exports = async function handler(req, res) {
       }
 
       await redis(['SET', KEY, text]);
-      return send(res, 200, { ok: true, rev: next.rev });
+      return send(res, 200, { ok: true, rev: next.rev, storageConfigured: true });
     }
 
     res.setHeader('Allow', 'GET, POST, PUT');
     return send(res, 405, { error: 'method_not_allowed' });
   } catch (e) {
-    return send(res, 502, { error: 'upstream_error' });
+    return send(res, 502, { error: 'upstream_error', message: e.message });
   }
 };
