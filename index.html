@@ -155,21 +155,20 @@ a{color:var(--lake)}
 .stay-btn .edit-link{margin-left:6px;font-size:.78rem;color:var(--lake);font-weight:600;opacity:.85}
 
 /* free day ideas card */
-.free-idea{margin-top:12px;padding:14px 16px;border-radius:14px;background:color-mix(in srgb,var(--sage) 10%,var(--card));border:1px dashed color-mix(in srgb,var(--sage) 40%,var(--line));transition:all .18s ease}
-.fi-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;flex-wrap:wrap}
-.fi-header-left{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.fi-counter{font-size:.75rem;color:var(--muted);font-weight:600}
-.fi-title{font-weight:700;font-size:1.03rem;color:var(--ink);margin-bottom:4px;line-height:1.3}
-.fi-desc{margin:0;font-size:.88rem;color:var(--muted);line-height:1.45}
-.fi-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
-.fi-web{margin-top:12px;border-top:1px dashed color-mix(in srgb,var(--sage) 30%,var(--line));padding-top:10px}
-.fi-web summary{font-size:.82rem;color:var(--lake);cursor:pointer;font-weight:600;list-style:none}
-.fi-web summary::-webkit-details-marker{display:none}
-.fi-web-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.fi-web-btn{font-size:.78rem;padding:4px 9px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:all .12s ease}
-.fi-web-btn:hover{background:var(--paper);border-color:var(--lake);color:var(--lake)}
-.tag.suggestion{background:color-mix(in srgb,var(--sage) 20%,transparent);color:var(--sage);font-weight:700;font-size:.74rem;padding:2px 7px;border-radius:6px;text-transform:uppercase;letter-spacing:.03em}
-.tag.cat{background:var(--card);border:1px solid var(--line);color:var(--ink);font-weight:600;font-size:.75rem;padding:2px 8px;border-radius:6px}
+.free-idea{margin-top:10px;padding:10px 14px;border-radius:12px;background:color-mix(in srgb,var(--sage) 8%,var(--card));border:1px dashed color-mix(in srgb,var(--sage) 35%,var(--line));transition:all .18s ease;cursor:pointer}
+.free-idea:hover{background:color-mix(in srgb,var(--sage) 12%,var(--card));border-color:color-mix(in srgb,var(--sage) 60%,var(--line))}
+.free-idea.expanded{padding:14px 16px;border-style:solid;cursor:default}
+.fi-header{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:4px}
+.fi-header-left{display:flex;align-items:center;gap:6px}
+.fi-counter{font-size:.74rem;color:var(--muted);font-weight:600;display:flex;align-items:center;gap:4px}
+.fi-title{font-weight:700;font-size:.98rem;color:var(--ink);line-height:1.25;margin:2px 0 3px}
+.fi-desc{margin:0;font-size:.86rem;color:var(--muted);line-height:1.4}
+.fi-desc.fi-preview{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.fi-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.fi-toggle-btn{all:unset;color:var(--lake);font-size:.76rem;font-weight:600;cursor:pointer;padding:2px 6px;border-radius:6px;background:color-mix(in srgb,var(--lake) 10%,transparent)}
+.fi-toggle-btn:hover{background:color-mix(in srgb,var(--lake) 20%,transparent)}
+.tag.suggestion{background:color-mix(in srgb,var(--sage) 20%,transparent);color:var(--sage);font-weight:700;font-size:.72rem;padding:1px 6px;border-radius:5px;text-transform:uppercase;letter-spacing:.02em}
+.tag.cat{background:var(--card);border:1px solid var(--line);color:var(--ink);font-weight:600;font-size:.74rem;padding:1px 7px;border-radius:5px}
 
 .dnote{margin:8px 0 0;color:var(--muted);font-size:.92rem}
 .free{color:var(--faint);font-style:italic;margin:14px 0 0;font-size:.95rem}
@@ -633,7 +632,7 @@ function icsDownload(it){
   document.body.appendChild(a);
   a.click();
   setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 1000);
-  toast('Downloaded event for Apple / Google Calendar!');
+  toast('Added event to Apple Calendar (.ics)! ✓');
 }
 var WEATHER_MAP = {
   0: { icon:'☀️', label:'Sunny' },
@@ -829,47 +828,41 @@ function dayIdeaHTML(d, di){
   cur = ((cur % total) + total) % total;
   var idea = DETROIT_IDEAS[cur];
   var mapUrl = 'https://maps.apple.com/?q=' + encodeURIComponent(idea.map);
+  var isOpen = !!(ui.openIdea && ui.openIdea[d]);
   
-  return '<div class="free-idea">' +
+  if (!isOpen) {
+    return '<div class="free-idea" data-act="toggle-idea" data-day="' + d + '" title="Tap to expand full idea & details">' +
+      '<div class="fi-header">' +
+        '<div class="fi-header-left">' +
+          '<span class="tag suggestion">💡 Free Day Idea</span>' +
+          '<span class="tag cat">' + esc(idea.cat) + '</span>' +
+        '</div>' +
+        '<div class="fi-counter">Idea ' + (cur + 1) + ' of ' + total + ' <span style="font-size:.7rem">▾</span></div>' +
+      '</div>' +
+      '<div class="fi-title">' + esc(idea.title) + '</div>' +
+      '<p class="fi-desc fi-preview">' + esc(idea.desc) + '</p>' +
+    '</div>';
+  }
+
+  return '<div class="free-idea expanded">' +
     '<div class="fi-header">' +
       '<div class="fi-header-left">' +
         '<span class="tag suggestion">💡 Free Day Idea</span>' +
         '<span class="tag cat">' + esc(idea.cat) + '</span>' +
       '</div>' +
-      '<div class="fi-counter">Idea ' + (cur + 1) + ' of ' + total + '</div>' +
+      '<div class="fi-counter">' +
+        'Idea ' + (cur + 1) + ' of ' + total + ' ' +
+        '<button class="fi-toggle-btn" data-act="toggle-idea" data-day="' + d + '">▲ Collapse</button>' +
+      '</div>' +
     '</div>' +
     '<div class="fi-title">' + esc(idea.title) + '</div>' +
     '<p class="fi-desc">' + esc(idea.desc) + '</p>' +
     '<div class="fi-acts">' +
       '<button class="btn sm primary" data-act="next-idea" data-day="' + d + '" title="Click to view another suggested Detroit idea">🔄 Shuffle / Next Idea</button>' +
-      '<a class="btn sm" href="' + esc(mapUrl) + '" target="_blank" rel="noopener">🗺️ View Location</a>' +
+      '<a class="btn sm" href="' + esc(mapUrl) + '" target="_blank" rel="noopener">🗺️ Apple Maps</a>' +
       '<button class="btn sm" data-act="add-item" data-id="' + d + '" data-title="' + esc(idea.title) + '" data-place="' + esc(idea.title) + '" data-kind="' + esc(idea.kind || 'visit') + '">+ Add to this day</button>' +
     '</div>' +
-    '<details class="fi-web">' +
-      '<summary>🌐 Search web for more ideas (5-star dining, comedy, events)...</summary>' +
-      '<div class="fi-web-links">' +
-        '<a class="fi-web-btn" href="https://www.google.com/search?q=best+5+star+fine+dining+restaurants+detroit+michigan" target="_blank" rel="noopener">🍷 5-Star Restaurants</a>' +
-        '<a class="fi-web-btn" href="https://www.google.com/search?q=comedy+clubs+and+standup+shows+detroit+metro" target="_blank" rel="noopener">🎭 Comedy Clubs</a>' +
-        '<a class="fi-web-btn" href="https://www.google.com/search?q=detroit+institute+of+arts+exhibits+and+museums" target="_blank" rel="noopener">🏛️ DIA & Museums</a>' +
-        '<a class="fi-web-btn" href="https://www.google.com/search?q=cider+mills+donuts+clarkston+rochester+detroit" target="_blank" rel="noopener">🍁 Autumn Cider Mills</a>' +
-        '<a class="fi-web-btn" href="https://www.google.com/search?q=live+jazz+and+cocktail+lounges+detroit" target="_blank" rel="noopener">🎷 Jazz & Cocktails</a>' +
-        '<a class="fi-web-btn" href="https://www.google.com/search?q=things+to+do+in+detroit+this+weekend" target="_blank" rel="noopener">🔍 Detroit Weekend Guide</a>' +
-      '</div>' +
-    '</details>' +
   '</div>';
-}
-
-function gcal(it){
-  var start, end, pl = place(it.place);
-  var base = it.date.replace(/-/g,'');
-  if (it.time) {
-    var t = it.time.replace(':','') + '00';
-    var a = it.time.split(':').map(Number), eh = a[0] + 1, ed = it.date;
-    if (eh >= 24) { eh -= 24; ed = iso(new Date(parseD(it.date).getTime() + 864e5)); }
-    start = base + 'T' + t; end = ed.replace(/-/g,'') + 'T' + String(eh).padStart(2,'0') + String(a[1]).padStart(2,'0') + '00';
-  } else { start = base; end = iso(new Date(parseD(it.date).getTime() + 864e5)).replace(/-/g,''); }
-  var q = 'action=TEMPLATE&text=' + encodeURIComponent(it.title) + '&dates=' + start + '/' + end + (it.time ? '&ctz=' + TZNAME[it.tz||'ET'] : '') + '&location=' + encodeURIComponent((it.d && it.d.address) || (pl ? (pl.address || pl.name) : (it.place||''))) + '&details=' + encodeURIComponent((it.d && it.d.notes) || '');
-  return 'https://calendar.google.com/calendar/render?' + q;
 }
 function recent(ts){ return ts && (Date.now() - new Date(ts).getTime()) < 3*864e5; }
 function ago(ts){
@@ -1094,12 +1087,10 @@ function detailsHTML(it, pl){
   
   var quickActs = '<div class="quick-grid">';
   if (locQuery) {
-    quickActs += '<a class="qbtn" href="'+esc(googleMapUrl(locQuery))+'" target="_blank" rel="noopener">🗺️ Google Maps</a>';
-    quickActs += '<a class="qbtn" href="'+esc(appleMapUrl(locQuery))+'" target="_blank" rel="noopener">🍏 Apple Maps</a>';
+    quickActs += '<a class="qbtn" href="'+esc(appleMapUrl(locQuery))+'" target="_blank" rel="noopener">🗺️ Apple Maps</a>';
     if (addr) quickActs += '<a class="qbtn" href="'+esc(uberUrl(addr))+'" target="_blank" rel="noopener">🚗 Ride (Uber)</a>';
   }
-  quickActs += '<button class="qbtn" data-act="ics" data-id="'+esc(it.id)+'">📅 Add to Calendar (.ics)</button>';
-  quickActs += '<a class="qbtn" href="'+esc(gcal(it))+'" target="_blank" rel="noopener">Google Calendar</a>';
+  quickActs += '<button class="qbtn" data-act="ics" data-id="'+esc(it.id)+'">📅 Add to Apple Calendar</button>';
   quickActs += '</div>';
 
   var h = '<div class="more"><dl>' + rows.map(function(r){ return '<dt>'+r[0]+'</dt><dd>'+r[1]+'</dd>'; }).join('') + '</dl>' + quickActs;
@@ -1834,6 +1825,12 @@ app.addEventListener('click', function(e){
   }
   else if (a === 'edit-toggle') { ui.editing = !ui.editing; render(); }
   else if (a === 'toggle-past-days') { ui.showPastDays = !ui.showPastDays; render(); }
+  else if (a === 'toggle-idea') {
+    var dId = b.dataset.day || id;
+    ui.openIdea = ui.openIdea || {};
+    ui.openIdea[dId] = !ui.openIdea[dId];
+    render();
+  }
   else if (a === 'next-idea') {
     var dId = b.dataset.day || id;
     ui.dayIdeaIndex = ui.dayIdeaIndex || {};
