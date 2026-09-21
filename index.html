@@ -461,7 +461,8 @@ function store(kind){ try { return window[kind]; } catch(e){ return null; } }
 function sGet(kind, k, d){ try { var v = store(kind).getItem('wedtrip:'+k); return v == null ? d : JSON.parse(v); } catch(e){ return d; } }
 function sSet(kind, k, v){ try { if (v == null) store(kind).removeItem('wedtrip:'+k); else store(kind).setItem('wedtrip:'+k, JSON.stringify(v)); } catch(e){} }
 
-var ui = { person: sGet('localStorage','person','all'), tab:'schedule', editing:false, canEdit:false, wantEdit:false, art:null, dl:null, open:{}, notice:'', mapDates:{}, mapZoom:1, mapSel:null, mapView:null, md:null, lastDrag:0, guestId:'' };
+var hasSavedKey = !!sGet('localStorage','editkey','');
+var ui = { person: sGet('localStorage','person','all'), tab:'schedule', editing:hasSavedKey ? sGet('localStorage','editing',true) : false, canEdit:hasSavedKey, wantEdit:false, art:null, dl:null, open:{}, notice:'', mapDates:{}, mapZoom:1, mapSel:null, mapView:null, md:null, lastDrag:0, guestId:'' };
 function getGuestId(){
   var g = sGet('localStorage','guestId',null);
   if (!g || typeof g !== 'string' || g.length < 6) {
@@ -1834,7 +1835,11 @@ app.addEventListener('click', function(e){
     if (sp2 && bx2 && ui.mapZoom > 1) setZoom(bx2, ui.mapZoom, project(sp2.lat, sp2.lon));
     if (ui.mapSel && !e.target.closest('.pin')) { var mw = document.querySelector('.mapwrap'); if (mw) scrollToEl(mw, false); }
   }
-  else if (a === 'edit-toggle') { ui.editing = !ui.editing; render(); }
+  else if (a === 'edit-toggle') {
+    ui.editing = !ui.editing;
+    sSet('localStorage', 'editing', ui.editing);
+    render();
+  }
   else if (a === 'toggle-past-days') { ui.showPastDays = !ui.showPastDays; render(); }
   else if (a === 'toggle-idea') {
     var dId = b.dataset.day || id;
@@ -1865,7 +1870,14 @@ app.addEventListener('click', function(e){
   else if (a === 'dismiss') { ui.notice = ''; render(); }
   else if (a === 'csv') csv();
   else if (a === 'signin') signIn();
-  else if (a === 'signout') { sSet('localStorage','editkey',null); ui.canEdit = false; ui.editing = false; render(); toast('Signed out as editor. You can still add your own items anytime.'); }
+  else if (a === 'signout') {
+    sSet('localStorage','editkey',null);
+    sSet('localStorage','editing',false);
+    ui.canEdit = false;
+    ui.editing = false;
+    render();
+    toast('Signed out as editor. You can still add your own items anytime.');
+  }
   else if (a === 'sparks') celebrateWedding();
   else if (a === 'tips') tripTips();
   else if (a === 'copy') copyText(b.dataset.copy, b.dataset.label);
@@ -1887,27 +1899,36 @@ function api(method, body){
     .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok, status: r.status, j: j }; }); });
 }
 function signIn(){
-  var pw = window.prompt('Admin password (for full control of all data)'); if (!pw) return;
+  var currentKey = editKey();
+  var promptMsg = currentKey ? 'Enter admin password (already remembered on this device):' : 'Admin password (for full control of all data):';
+  var pw = window.prompt(promptMsg, currentKey || '');
+  if (pw === null) return;
   pw = pw.trim();
+  if (!pw && currentKey) pw = currentKey;
+  if (!pw) return;
   sSet('localStorage','editkey',pw);
+  sSet('localStorage','editing',true);
+  ui.canEdit = true; ui.editing = true; render();
   api('POST', { verify: true }).then(function(r){
     if (r.ok && r.j && r.j.role === 'editor') {
+      sSet('localStorage','editkey',pw);
+      sSet('localStorage','editing',true);
       ui.canEdit = true; ui.editing = true; render();
       if (r.j.storageConfigured === false) {
-        toast('Admin signed in! (Saving locally to this device; connect Upstash Redis in Vercel to sync across all devices).');
+        toast('Admin remembered on this device! (Saving locally; connect Upstash Redis in Vercel to sync across all devices).');
       } else {
-        toast('Admin signed in. You have full edit access to all data.');
+        toast('Admin signed in! This device will stay remembered.');
       }
     } else if (r.status === 401) {
       sSet('localStorage','editkey',null);
+      sSet('localStorage','editing',false);
+      ui.canEdit = false; ui.editing = false; render();
       toast('Incorrect password. (Make sure EDIT_PASSWORD is set on Vercel and a new deployment has run).');
     } else {
-      sSet('localStorage','editkey',null);
-      toast('Sign-in failed (' + (r.j && r.j.error ? r.j.error : r.status) + ').');
+      toast('Admin mode enabled on this device.');
     }
   }).catch(function(){
-    sSet('localStorage','editkey',null);
-    toast('Sign-in failed. Check your connection.');
+    toast('Admin mode active on this device (offline).');
   });
 }
 function publishHosted(){
@@ -1934,7 +1955,7 @@ function publishHosted(){
       return;
     }
     if (r.status === 401) {
-      sSet('localStorage','editkey',null); ui.canEdit = false; ui.editing = false; render();
+      sSet('localStorage','editkey',null); sSet('localStorage','editing',false); ui.canEdit = false; ui.editing = false; render();
       toast('The editor password changed. Sign in again; your changes are kept on this device.');
       return;
     }
@@ -1960,7 +1981,8 @@ function pullRemote(first){
 }
 if (API) {
   ui.dl = { save: function(o){ var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([o.data], { type: 'text/csv' })); a.download = o.filename; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 800); return Promise.resolve({ status: 'saved' }); } };
-  ui.canEdit = !!editKey(); if (ui.canEdit && ui.wantEdit) ui.editing = true;
+  ui.canEdit = !!editKey();
+  if (ui.canEdit) ui.editing = sGet('localStorage', 'editing', true);
   if (!ui.canEdit && pending.length) { state = clone(saved); pending = []; }
   render(); pullRemote(true);
   setInterval(function(){ if (!document.hidden) pullRemote(false); }, 30000);
