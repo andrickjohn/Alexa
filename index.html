@@ -580,8 +580,18 @@ function googleMapUrl(query){
 function appleMapUrl(query){
   return 'https://maps.apple.com/?q=' + encodeURIComponent(query);
 }
-function uberUrl(query){
-  return 'https://m.uber.com/ul/?action=setPickup&pickup=my_location&dropoff[formatted_address]=' + encodeURIComponent(query);
+function uberUrl(dest, pl){
+  var query = dest || (pl && (pl.address || pl.name)) || '';
+  if (!query) return '';
+  var params = ['action=setPickup', 'pickup=my_location', 'dropoff[formatted_address]=' + encodeURIComponent(query)];
+  if (pl && pl.name) {
+    params.push('dropoff[nickname]=' + encodeURIComponent(pl.name));
+  }
+  if (pl && pl.lat != null && pl.lon != null) {
+    params.push('dropoff[latitude]=' + encodeURIComponent(pl.lat));
+    params.push('dropoff[longitude]=' + encodeURIComponent(pl.lon));
+  }
+  return 'https://m.uber.com/ul/?' + params.join('&');
 }
 function copyText(str, label){
   if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -1088,7 +1098,8 @@ function detailsHTML(it, pl){
   var quickActs = '<div class="quick-grid">';
   if (locQuery) {
     quickActs += '<a class="qbtn" href="'+esc(appleMapUrl(locQuery))+'" target="_blank" rel="noopener">🗺️ Apple Maps</a>';
-    if (addr) quickActs += '<a class="qbtn" href="'+esc(uberUrl(addr))+'" target="_blank" rel="noopener">🚗 Ride (Uber)</a>';
+    var uUrl = uberUrl(addr || locQuery, pl);
+    if (uUrl) quickActs += '<a class="qbtn" href="'+esc(uUrl)+'" target="_blank" rel="noopener">🚗 Ride (Uber)</a>';
   }
   quickActs += '<button class="qbtn" data-act="ics" data-id="'+esc(it.id)+'">📅 Add to Apple Calendar</button>';
   quickActs += '</div>';
