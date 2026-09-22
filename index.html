@@ -1090,10 +1090,16 @@ function travelFor(it){
   if (L0 && L0[pid]) seq.push({ v: L0[pid] });
   state.items.filter(function(i){ return i.date === it.date && i.place && (!(i.who||[]).length || i.who.includes(pid)); }).sort(sortItems).forEach(function(i){ seq.push({ v: i.place, item: i }); });
   if (L1 && L1[pid]) seq.push({ v: L1[pid] });
-  var idx = seq.findIndex(function(x){ return x.item === it; }); if (idx < 0) return null;
-  var a = seq[idx - 1], b = seq[idx], A = pinned(a.v), B = pinned(b.v);
-  if (!(a && a.v !== b.v && A && B) && /\bto\b/i.test(it.transport || '')) { a = seq[idx]; b = seq.slice(idx + 1).find(function(x){ return x.v !== it.place; }); A = pinned(a.v); B = b && pinned(b.v); }
-  if (!a || !b || a.v === b.v || !A || !B) return null;
+  var idx = seq.findIndex(function(x){ return x && x.item === it; }); if (idx < 0) return null;
+  var a = seq[idx - 1], b = seq[idx];
+  var A = (a && a.v) ? pinned(a.v) : null, B = (b && b.v) ? pinned(b.v) : null;
+  if (!(a && b && a.v && b.v && a.v !== b.v && A && B) && /\bto\b/i.test(it.transport || '')) {
+    a = seq[idx];
+    b = seq.slice(idx + 1).find(function(x){ return x && x.v !== it.place; });
+    A = (a && a.v) ? pinned(a.v) : null;
+    B = (b && b.v) ? pinned(b.v) : null;
+  }
+  if (!a || !b || !a.v || !b.v || a.v === b.v || !A || !B) return null;
   var d = drive(A, B); return { m: d.m, mi: d.mi, est: d.est, from: A.name, to: B.name };
 }
 function stayLine(d){
