@@ -1,5 +1,10 @@
 {
   "name": "detroit-wedding-trip",
   "private": true,
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@upstash/redis": "^1.38.4"
+  }
 }

@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Detroit Wedding Trip</title>
-<meta name="description" content="Shared itinerary for the Detroit wedding trip — flights, hotels, events and a map with drive times.">
+<title>Alexa Wedding!</title>
+<meta name="description" content="Shared itinerary for Alexa Wedding trip — flights, hotels, events and a map with drive times.">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Detroit Wedding">
-<meta name="theme-color" content="#121921">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Alexa Wedding!">
+<meta name="theme-color" content="#F4F6F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0F151B" media="(prefers-color-scheme: dark)">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=3">
 <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon-precomposed.png?v=3">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png?v=3">
@@ -35,7 +36,7 @@
   --warn-bg:#2E2416;--warn-ink:#EBC58C;--new-bg:#1C2E3B;color-scheme:dark;}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;overflow-anchor:none}
-body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 var(--sans);-webkit-font-smoothing:antialiased;cursor:pointer}
 body::before{content:"";position:fixed;top:0;left:0;right:0;height:3.5px;background:linear-gradient(90deg,var(--lake),var(--maple),var(--gold),var(--sage));z-index:100}
 button{font:inherit;color:inherit}
 a{color:var(--lake)}
@@ -63,14 +64,21 @@ a{color:var(--lake)}
 }
 
 /* people */
-.people{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:6px -20px 14px;padding:0 20px}
+.people{display:flex;gap:8px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:6px -20px 14px;padding:0 20px;position:relative;z-index:20}
 .people::-webkit-scrollbar{display:none}
-.pchip{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 14px 4px 4px;cursor:pointer;font-weight:500;font-size:.95rem;transition:transform .12s ease,box-shadow .12s ease,background .15s ease}
-.pchip.all{padding:4px 14px}
+.pchip{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 14px 6px 6px;min-height:42px;cursor:pointer;font-weight:500;font-size:.95rem;touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.08);user-select:none;-webkit-user-select:none;transition:transform .12s ease,box-shadow .12s ease,background .15s ease;position:relative;z-index:21}
+.pchip.all{padding:6px 14px}
 .pchip:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.pchip:active{transform:scale(0.96)}
+.pchip:active{transform:scale(0.92);background:var(--line)}
 .pchip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+[data-act] > *{pointer-events:none}
 .av{width:26px;height:26px;border-radius:50%;display:inline-grid;place-items:center;font-size:.75rem;font-weight:700;color:#fff;background:var(--pc,var(--faint));flex-shrink:0}
+.av-btn{background:none;border:0;padding:0;margin:0;cursor:pointer;display:inline-flex;border-radius:50%;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:transform .12s ease}
+.av-btn:hover{transform:scale(1.15)}
+.av-btn:active{transform:scale(0.92)}
+.person-lnk{background:none;border:0;padding:0;margin:0;color:var(--lake);font:inherit;font-weight:600;cursor:pointer;text-decoration:underline;text-underline-offset:2px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.person-lnk:hover{color:var(--ink)}
+.person-lnk-row{background:none;border:0;padding:0;margin:0;display:inline-flex;align-items:center;gap:8px;font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .pc-lake{--pc:var(--lake)}.pc-maple{--pc:var(--maple)}.pc-gold{--pc:var(--gold)}.pc-sage{--pc:var(--sage)}.pc-plum{--pc:var(--plum)}.pc-gray{--pc:var(--faint)}
 :root[data-theme="dark"] .av,.darkav .av{color:#0F151B}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .av{color:#0F151B}}
@@ -82,7 +90,7 @@ a{color:var(--lake)}
 .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
 
 /* sticky top */
-.top{position:sticky;top:0;z-index:10;background:var(--paper);margin:0 -20px;padding:0 20px;border-bottom:1px solid var(--line);transition:box-shadow .2s ease}
+.top{position:sticky;top:0;z-index:30;background:var(--paper);margin:0 -20px;padding:0 20px;border-bottom:1px solid var(--line);transition:box-shadow .2s ease}
 .bar{display:flex;align-items:center;gap:12px;min-height:50px;padding:6px 0 2px}
 .lead{display:grid;flex:1;min-width:0}
 .lead > *{grid-area:1/1;align-self:center;transition:opacity .18s ease,transform .18s ease;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -309,11 +317,11 @@ details.adv summary{cursor:pointer;color:var(--lake);font-weight:600;padding:4px
 .copy-pill{display:inline-flex;align-items:center;gap:4px;background:none;border:1px solid var(--line);padding:2px 7px;border-radius:6px;font-size:.78rem;color:var(--lake);cursor:pointer;font-weight:600;margin-left:6px;transition:background .12s ease}
 .copy-pill:hover{background:var(--new-bg)}
 
-@media (max-width:600px){
+@media (max-width:768px){
   .wrap{padding:0 16px}.top{margin:0 -16px;padding:0 16px}
-  .people{flex-wrap:wrap;overflow:visible;margin:4px 0 8px;padding:0;gap:6px}
-  .pchip{font-size:.88rem;padding:3px 11px 3px 3px;gap:6px}.pchip.all{padding:3px 11px}
-  .pchip .av{width:22px;height:22px;font-size:.66rem}
+  .people{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:4px 0 8px;padding:0 4px;gap:8px;position:relative;z-index:20}
+  .pchip{font-size:.9rem;padding:4px 12px 4px 4px;min-height:38px;gap:6px;position:relative;z-index:21}.pchip.all{padding:4px 12px}
+  .pchip .av{width:24px;height:24px;font-size:.7rem}
   .tabs{gap:0;justify-content:space-between}.tab{font-size:.92rem;padding:9px 0}
   .tl{display:none}.ts{display:inline}
   .rgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:0;overflow:visible}
@@ -425,9 +433,21 @@ details.adv summary{cursor:pointer;color:var(--lake);font-weight:600;padding:4px
 @media print{.rail,.tabs,.people,.hero-actions,.pbar,.addday,.dayedit,.foot .btn{display:none!important}.more{break-inside:avoid}}
 </style>
 </head>
-<body>
-<div id="app"></div>
-<script type="application/json" id="state">{"rev": 9, "updatedAt": "2026-09-21T03:26:00.000Z", "trip": {"title": "Detroit Wedding Trip", "subtitle": "Maui to Detroit and back", "wedding": "2026-10-16"}, "people": [{"id": "john", "name": "John", "traveler": true, "color": "lake", "phone": "", "notes": ""}, {"id": "brenda", "name": "Brenda", "traveler": true, "color": "maple", "phone": "", "notes": ""}, {"id": "matt", "name": "Matt", "traveler": true, "color": "sage", "phone": "", "notes": ""}, {"id": "katie", "name": "Katie", "traveler": true, "color": "gold", "phone": "", "notes": ""}, {"id": "nicholai", "name": "Nicholai", "traveler": true, "color": "plum", "phone": "", "notes": ""}, {"id": "adam", "name": "Adam", "traveler": false, "color": "gray", "phone": "", "notes": "Hosting at Adam's House"}, {"id": "rocky", "name": "Rocky", "traveler": false, "color": "gray", "phone": "", "notes": "Matt stays at Rocky's Oct 10 to 12"}, {"id": "heidi-dave", "name": "Heidi & Dave", "traveler": false, "color": "gray", "phone": "", "notes": "Clarkston"}, {"id": "cassandra", "name": "Cassandra", "traveler": false, "color": "gray", "phone": "", "notes": "Fenton"}], "places": [{"id": "ogg", "name": "Kahului Airport (OGG)", "address": "", "phone": "", "conf": "", "notes": "", "map": "Kahului Airport OGG Maui", "offMap": true, "icon": "airport"}, {"id": "dtw", "name": "Detroit Metro Airport (DTW)", "address": "", "phone": "", "conf": "", "notes": "", "map": "Detroit Metropolitan Wayne County Airport", "lat": 42.2057, "lon": -83.353, "icon": "airport", "short": "DTW Airport"}, {"id": "adam", "name": "Adam's House", "address": "5947 BLACKBERRY LN CLARKSTON, MI 48348-5177", "phone": "", "conf": "", "notes": "", "map": "", "icon": "house", "lat": 42.72673, "lon": -83.33121}, {"id": "rocky", "name": "Rocky's House", "address": "4000 Baldwin Road, Auburn Hills, MI 48326", "phone": "", "conf": "", "notes": "", "map": "", "icon": "house", "lat": 42.70253, "lon": -83.29954}, {"id": "atheneum", "name": "Atheneum Suite Hotel", "address": "1000 Brush St, Detroit, MI 48226", "phone": "", "conf": "", "notes": "Check-in Wed Oct 14", "map": "Atheneum Suite Hotel Detroit", "lat": 42.3341, "lon": -83.0427, "icon": "hotel", "short": "Atheneum"}, {"id": "whitney", "name": "The David Whitney", "address": "1 Park Ave, Detroit, MI 48226", "phone": "", "conf": "", "notes": "From Fri Oct 16", "map": "Aloft Detroit at The David Whitney", "lat": 42.3357, "lon": -83.0503, "icon": "hotel", "short": "David Whitney"}, {"id": "ccd", "name": "Country Club of Detroit", "address": "220 Country Club Dr, Grosse Pointe Farms, MI 48236", "phone": "", "conf": "", "notes": "Rehearsal, ceremony and reception", "map": "Country Club of Detroit Grosse Pointe Farms MI", "lat": 42.4174, "lon": -82.8987, "icon": "club", "short": "Country Club"}, {"id": "mw", "name": "Men's Wearhouse, Grosse Pointe", "address": "19435 Mack Ave, Grosse Pointe Woods, MI 48236", "phone": "", "conf": "", "notes": "Tux fitting and return", "map": "Men's Wearhouse Grosse Pointe MI", "lat": 42.423, "lon": -82.9103, "icon": "shop", "short": "Men's Wearhouse"}, {"id": "roeper", "name": "Roeper School", "address": "41190 Woodward Ave, Bloomfield Hills, MI 48304", "phone": "", "conf": "", "notes": "", "map": "Roeper School Bloomfield Hills MI", "lat": 42.5933, "lon": -83.2522, "icon": "sports", "short": "Roeper"}, {"id": "ocs", "name": "Oakland Christian School", "address": "3075 Shimmons Rd, Auburn Hills, MI 48326", "phone": "", "conf": "", "notes": "", "map": "Oakland Christian School Auburn Hills MI", "lat": 42.6905, "lon": -83.2341, "icon": "sports", "short": "Oakland Christian"}, {"id": "icb", "name": "Inter-City Baptist School", "address": "4700 Allen Rd, Allen Park, MI 48101", "phone": "", "conf": "", "notes": "", "map": "Inter-City Baptist School Allen Park MI", "lat": 42.2671, "lon": -83.1989, "icon": "sports", "short": "Inter-City Baptist"}, {"id": "clarkston", "name": "Clarkston", "address": "", "phone": "", "conf": "", "notes": "", "map": "Clarkston, MI", "lat": 42.7359, "lon": -83.4188, "icon": "town"}, {"id": "fenton", "name": "Fenton", "address": "", "phone": "", "conf": "", "notes": "", "map": "Fenton, MI", "lat": 42.7978, "lon": -83.705, "icon": "town"}], "items": [{"id": "i01", "date": "2026-10-06", "time": "", "tz": "HST", "title": "Start packing", "kind": "task", "place": "", "who": ["john", "brenda", "matt"], "transport": "", "key": false, "flag": "", "d": {}}, {"id": "i02", "date": "2026-10-07", "time": "18:00", "tz": "HST", "title": "Fly out of Maui", "kind": "flight", "place": "ogg", "who": ["john", "brenda", "matt"], "transport": "Flight", "key": true, "flag": "", "d": {"notes": "Overnight flight, lands DTW Thu 10:45 AM"}}, {"id": "i03", "date": "2026-10-08", "time": "10:45", "tz": "ET", "title": "Land in Detroit", "kind": "flight", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "Flight", "key": false, "flag": "", "d": {}}, {"id": "i04", "date": "2026-10-08", "time": "11:00", "tz": "ET", "title": "Pick up rental car", "kind": "car", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "", "key": false, "flag": "", "d": {}}, {"id": "i05", "date": "2026-10-08", "time": "12:00", "tz": "ET", "title": "Settle in at Adam's", "kind": "visit", "place": "adam", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i06", "date": "2026-10-08", "time": "16:00", "tz": "ET", "title": "Eliott's football game", "kind": "game", "place": "clarkston", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i07", "date": "2026-10-09", "time": "12:00", "tz": "ET", "title": "Visit Cassandra", "kind": "visit", "place": "fenton", "who": ["brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i08", "date": "2026-10-09", "time": "16:30", "tz": "ET", "title": "Brooks' soccer game", "kind": "game", "place": "roeper", "who": ["john", "brenda", "matt"], "transport": "Adam's car", "key": false, "flag": "", "d": {}}, {"id": "i09", "date": "2026-10-09", "time": "18:30", "tz": "ET", "title": "Visit Heidi & Dave", "kind": "visit", "place": "clarkston", "who": ["john", "brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}, "updatedAt": "2026-09-19T19:50:12.459Z"}, {"id": "i10", "date": "2026-10-12", "time": "16:30", "tz": "ET", "title": "Brooks' soccer game", "kind": "game", "place": "ocs", "who": ["john", "brenda", "matt"], "transport": "Adam's car", "key": false, "flag": "", "d": {}}, {"id": "i11", "date": "2026-10-13", "time": "16:30", "tz": "ET", "title": "Brooks' soccer game", "kind": "game", "place": "icb", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i12", "date": "2026-10-13", "time": "18:00", "tz": "HST", "title": "Katie & Nicholai fly out of Maui", "kind": "flight", "place": "ogg", "who": ["katie", "nicholai"], "transport": "Flight", "key": true, "flag": "", "d": {"notes": "Overnight flight, lands DTW Wed 10:45 AM"}}, {"id": "i13", "date": "2026-10-14", "time": "10:45", "tz": "ET", "title": "Katie & Nicholai land in Detroit", "kind": "flight", "place": "dtw", "who": ["katie", "nicholai"], "transport": "Uber to hotel", "key": false, "flag": "Hotel check-in is at 6 PM, about 7 hours after landing. Plan the afternoon or ask the Atheneum about early check-in.", "d": {}}, {"id": "i14", "date": "2026-10-14", "time": "15:00", "tz": "ET", "title": "Tux fitting", "kind": "errand", "place": "mw", "who": ["john", "brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i15", "date": "2026-10-14", "time": "18:00", "tz": "ET", "title": "Check in at the Atheneum", "kind": "stay", "place": "atheneum", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i16", "date": "2026-10-15", "time": "16:30", "tz": "ET", "title": "Eliott's football game", "kind": "game", "place": "clarkston", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": false, "flag": "Overlaps the 5:00 rehearsal in Grosse Pointe, about an hour's drive away. John and Brenda can't make both.", "d": {}}, {"id": "i17", "date": "2026-10-15", "time": "17:00", "tz": "ET", "title": "Wedding rehearsal", "kind": "wedding", "place": "ccd", "who": ["john", "brenda"], "transport": "Rental Car", "key": true, "flag": "Conflicts with Eliott's 4:30 game in Clarkston.", "d": {}}, {"id": "i18", "date": "2026-10-15", "time": "18:00", "tz": "ET", "title": "Rehearsal dinner", "kind": "meal", "place": "", "who": ["john", "brenda"], "transport": "Rental Car", "key": true, "flag": "Location still TBD.", "d": {}}, {"id": "i19", "date": "2026-10-16", "time": "08:30", "tz": "ET", "title": "Ruby's soccer game", "kind": "game", "place": "", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "Location still TBD.", "d": {}}, {"id": "i20", "date": "2026-10-16", "time": "16:00", "tz": "ET", "title": "Alexa's Wedding!", "kind": "wedding", "place": "ccd", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": true, "flag": "", "d": {}, "updatedAt": "2026-09-19T17:04:14.007Z"}, {"id": "i21", "date": "2026-10-16", "time": "17:00", "tz": "ET", "title": "Reception", "kind": "wedding", "place": "ccd", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": true, "flag": "", "d": {}}, {"id": "i22", "date": "2026-10-16", "time": "23:00", "tz": "ET", "title": "After-party bowling", "kind": "other", "place": "", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": true, "flag": "", "d": {}}, {"id": "i23", "date": "2026-10-17", "time": "", "tz": "ET", "title": "Return the tux", "kind": "errand", "place": "mw", "who": ["john", "brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i24", "date": "2026-10-18", "time": "08:00", "tz": "ET", "title": "Katie & Nicholai fly home to Maui", "kind": "flight", "place": "dtw", "who": ["katie", "nicholai"], "transport": "Uber to DTW", "key": false, "flag": "", "d": {}}, {"id": "i25", "date": "2026-10-19", "time": "06:00", "tz": "ET", "title": "Drop off rental car", "kind": "car", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "Returning the car at 6:00 for a 7:00 flight leaves no time for check-in and security. Aim for 5:00 or earlier.", "d": {}}, {"id": "i26", "date": "2026-10-19", "time": "07:00", "tz": "ET", "title": "Fly home to Maui", "kind": "flight", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "Flight", "key": true, "flag": "", "d": {}}], "lodging": {"2026-10-07": {"john": "On the flight", "brenda": "On the flight", "matt": "On the flight"}, "2026-10-08": {"john": "adam", "brenda": "adam", "matt": "adam"}, "2026-10-09": {"john": "adam", "brenda": "adam", "matt": "adam"}, "2026-10-10": {"john": "adam", "brenda": "adam", "matt": "rocky"}, "2026-10-11": {"john": "adam", "brenda": "adam", "matt": "rocky"}, "2026-10-12": {"john": "adam", "brenda": "adam", "matt": "rocky"}, "2026-10-13": {"john": "adam", "brenda": "adam", "matt": "adam", "katie": "On the flight", "nicholai": "On the flight"}, "2026-10-14": {"john": "atheneum", "brenda": "atheneum", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-15": {"john": "atheneum", "brenda": "atheneum", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-16": {"john": "whitney", "brenda": "whitney", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-17": {"john": "whitney", "brenda": "whitney", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-18": {"john": "adam", "brenda": "adam"}}, "days": {"2026-10-16": {"note": "Wedding day", "flag": "John and Brenda move from the Atheneum to the David Whitney today, but there's no checkout or check-in time on the schedule yet."}, "2026-10-18": {"note": "", "flag": "Only one overnight was listed for tonight. Confirm where John, Brenda and Matt sleep."}}, "log": [{"at": "2026-09-19T20:35:21.000Z", "text": "Map labels on every place; pinned Adam's and Rocky's with drive times"}, {"at": "2026-09-19T20:28:51.670Z", "text": "Updated Rocky's House"}, {"at": "2026-09-19T20:27:02.961Z", "text": "Updated Adam's House"}, {"at": "2026-09-19T20:17:37.000Z", "text": "Map upgraded: place icons, drive routes with times, and drag, scroll and pinch zoom"}, {"at": "2026-09-19T20:03:30.000Z", "text": "Added the map, pinned 10 places with addresses, and renamed Turo car to Rental Car"}, {"at": "2026-09-19T19:50:17.392Z", "text": "Changed Visit Heidi & Dave (Fri, Oct 9)"}, {"at": "2026-09-19T17:04:43.973Z", "text": "Changed Alexa's Wedding! (Fri, Oct 16)"}, {"at": "2026-09-18T20:00:00.000Z", "text": "Itinerary created from the original sheet"}], "drives": {"atheneum|dtw": {"m": 33, "mi": 23.1}, "dtw|whitney": {"m": 32, "mi": 22.0}, "ccd|dtw": {"m": 48, "mi": 31.4}, "dtw|mw": {"m": 43, "mi": 30.5}, "dtw|roeper": {"m": 56, "mi": 33.3}, "dtw|ocs": {"m": 63, "mi": 50.1}, "dtw|icb": {"m": 20, "mi": 11.7}, "clarkston|dtw": {"m": 66, "mi": 45.3}, "dtw|fenton": {"m": 75, "mi": 64.0}, "atheneum|whitney": {"m": 2, "mi": 0.6}, "atheneum|ccd": {"m": 25, "mi": 13.3}, "atheneum|mw": {"m": 20, "mi": 12.3}, "atheneum|roeper": {"m": 34, "mi": 26.6}, "atheneum|ocs": {"m": 39, "mi": 31.9}, "atheneum|icb": {"m": 19, "mi": 11.7}, "atheneum|clarkston": {"m": 48, "mi": 41.5}, "atheneum|fenton": {"m": 69, "mi": 58.3}, "ccd|whitney": {"m": 25, "mi": 13.3}, "mw|whitney": {"m": 20, "mi": 12.3}, "roeper|whitney": {"m": 34, "mi": 26.6}, "ocs|whitney": {"m": 39, "mi": 31.9}, "icb|whitney": {"m": 17, "mi": 10.8}, "clarkston|whitney": {"m": 48, "mi": 41.5}, "fenton|whitney": {"m": 70, "mi": 58.3}, "ccd|mw": {"m": 7, "mi": 2.0}, "ccd|roeper": {"m": 48, "mi": 32.6}, "ccd|ocs": {"m": 54, "mi": 38.5}, "ccd|icb": {"m": 36, "mi": 21.7}, "ccd|clarkston": {"m": 63, "mi": 48.1}, "ccd|fenton": {"m": 84, "mi": 64.8}, "mw|roeper": {"m": 42, "mi": 30.5}, "mw|ocs": {"m": 47, "mi": 36.4}, "icb|mw": {"m": 31, "mi": 20.8}, "clarkston|mw": {"m": 56, "mi": 46.0}, "fenton|mw": {"m": 78, "mi": 62.8}, "ocs|roeper": {"m": 15, "mi": 9.7}, "icb|roeper": {"m": 43, "mi": 24.6}, "clarkston|roeper": {"m": 24, "mi": 19.3}, "fenton|roeper": {"m": 46, "mi": 36.0}, "icb|ocs": {"m": 51, "mi": 40.4}, "clarkston|ocs": {"m": 17, "mi": 12.0}, "fenton|ocs": {"m": 38, "mi": 28.8}, "clarkston|icb": {"m": 60, "mi": 50.0}, "fenton|icb": {"m": 78, "mi": 64.4}, "clarkston|fenton": {"m": 26, "mi": 18.4}, "adam|rocky": {"m": 10, "mi": 3.7}, "adam|dtw": {"m": 70, "mi": 55.3}, "adam|atheneum": {"m": 46, "mi": 37.1}, "adam|whitney": {"m": 46, "mi": 37.1}, "adam|ccd": {"m": 60, "mi": 43.7}, "adam|mw": {"m": 54, "mi": 41.6}, "adam|roeper": {"m": 22, "mi": 14.9}, "adam|ocs": {"m": 15, "mi": 7.6}, "adam|icb": {"m": 58, "mi": 45.6}, "adam|clarkston": {"m": 13, "mi": 6.3}, "adam|fenton": {"m": 36, "mi": 24.1}, "dtw|rocky": {"m": 65, "mi": 52.2}, "atheneum|rocky": {"m": 41, "mi": 34.0}, "rocky|whitney": {"m": 42, "mi": 33.9}, "ccd|rocky": {"m": 56, "mi": 40.5}, "mw|rocky": {"m": 50, "mi": 38.4}, "rocky|roeper": {"m": 18, "mi": 11.7}, "ocs|rocky": {"m": 10, "mi": 4.4}, "icb|rocky": {"m": 54, "mi": 42.5}, "clarkston|rocky": {"m": 13, "mi": 8.3}, "fenton|rocky": {"m": 34, "mi": 25.1}}}</script>
+<body style="background:var(--paper,#F4F6F4)">
+<div id="app">
+  <div class="wrap" style="padding-top:36px">
+    <header class="hero">
+      <div class="hero-brand">
+        <img class="hero-emblem" src="/apple-touch-icon.png?v=3" alt="Alexa Wedding Emblem" />
+        <div class="hero-title-group">
+          <h1 style="font:400 2.3rem var(--serif);margin:0">Alexa Wedding!</h1>
+          <p class="dates" style="margin:6px 0 0;color:var(--muted)">Maui to Detroit and back</p>
+        </div>
+      </div>
+    </header>
+  </div>
+</div>
+<script type="application/json" id="state">{"rev": 9, "updatedAt": "2026-09-21T03:26:00.000Z", "trip": {"title": "Alexa Wedding!", "subtitle": "Maui to Detroit and back", "wedding": "2026-10-16"}, "people": [{"id": "john", "name": "John", "traveler": true, "color": "lake", "phone": "", "notes": ""}, {"id": "brenda", "name": "Brenda", "traveler": true, "color": "maple", "phone": "", "notes": ""}, {"id": "matt", "name": "Matt", "traveler": true, "color": "sage", "phone": "", "notes": ""}, {"id": "katie", "name": "Katie", "traveler": true, "color": "gold", "phone": "", "notes": ""}, {"id": "nicholai", "name": "Nicholai", "traveler": true, "color": "plum", "phone": "", "notes": ""}, {"id": "adam", "name": "Adam", "traveler": false, "color": "gray", "phone": "", "notes": "Hosting at Adam's House"}, {"id": "rocky", "name": "Rocky", "traveler": false, "color": "gray", "phone": "", "notes": "Matt stays at Rocky's Oct 10 to 12"}, {"id": "heidi-dave", "name": "Heidi & Dave", "traveler": false, "color": "gray", "phone": "", "notes": "Clarkston"}, {"id": "cassandra", "name": "Cassandra", "traveler": false, "color": "gray", "phone": "", "notes": "Fenton"}], "places": [{"id": "ogg", "name": "Kahului Airport (OGG)", "address": "", "phone": "", "conf": "", "notes": "", "map": "Kahului Airport OGG Maui", "offMap": true, "icon": "airport"}, {"id": "dtw", "name": "Detroit Metro Airport (DTW)", "address": "", "phone": "", "conf": "", "notes": "", "map": "Detroit Metropolitan Wayne County Airport", "lat": 42.2057, "lon": -83.353, "icon": "airport", "short": "DTW Airport"}, {"id": "adam", "name": "Adam's House", "address": "5947 BLACKBERRY LN CLARKSTON, MI 48348-5177", "phone": "", "conf": "", "notes": "", "map": "", "icon": "house", "lat": 42.72673, "lon": -83.33121}, {"id": "rocky", "name": "Rocky's House", "address": "4000 Baldwin Road, Auburn Hills, MI 48326", "phone": "", "conf": "", "notes": "", "map": "", "icon": "house", "lat": 42.70253, "lon": -83.29954}, {"id": "atheneum", "name": "Atheneum Suite Hotel", "address": "1000 Brush St, Detroit, MI 48226", "phone": "", "conf": "", "notes": "Check-in Wed Oct 14", "map": "Atheneum Suite Hotel Detroit", "lat": 42.3341, "lon": -83.0427, "icon": "hotel", "short": "Atheneum"}, {"id": "whitney", "name": "The David Whitney", "address": "1 Park Ave, Detroit, MI 48226", "phone": "", "conf": "", "notes": "From Fri Oct 16", "map": "Aloft Detroit at The David Whitney", "lat": 42.3357, "lon": -83.0503, "icon": "hotel", "short": "David Whitney"}, {"id": "ccd", "name": "Country Club of Detroit", "address": "220 Country Club Dr, Grosse Pointe Farms, MI 48236", "phone": "", "conf": "", "notes": "Rehearsal, ceremony and reception", "map": "Country Club of Detroit Grosse Pointe Farms MI", "lat": 42.4174, "lon": -82.8987, "icon": "club", "short": "Country Club"}, {"id": "mw", "name": "Men's Wearhouse, Grosse Pointe", "address": "19435 Mack Ave, Grosse Pointe Woods, MI 48236", "phone": "", "conf": "", "notes": "Tux fitting and return", "map": "Men's Wearhouse Grosse Pointe MI", "lat": 42.423, "lon": -82.9103, "icon": "shop", "short": "Men's Wearhouse"}, {"id": "roeper", "name": "Roeper School", "address": "41190 Woodward Ave, Bloomfield Hills, MI 48304", "phone": "", "conf": "", "notes": "", "map": "Roeper School Bloomfield Hills MI", "lat": 42.5933, "lon": -83.2522, "icon": "sports", "short": "Roeper"}, {"id": "ocs", "name": "Oakland Christian School", "address": "3075 Shimmons Rd, Auburn Hills, MI 48326", "phone": "", "conf": "", "notes": "", "map": "Oakland Christian School Auburn Hills MI", "lat": 42.6905, "lon": -83.2341, "icon": "sports", "short": "Oakland Christian"}, {"id": "icb", "name": "Inter-City Baptist School", "address": "4700 Allen Rd, Allen Park, MI 48101", "phone": "", "conf": "", "notes": "", "map": "Inter-City Baptist School Allen Park MI", "lat": 42.2671, "lon": -83.1989, "icon": "sports", "short": "Inter-City Baptist"}, {"id": "clarkston", "name": "Clarkston", "address": "", "phone": "", "conf": "", "notes": "", "map": "Clarkston, MI", "lat": 42.7359, "lon": -83.4188, "icon": "town"}, {"id": "fenton", "name": "Fenton", "address": "", "phone": "", "conf": "", "notes": "", "map": "Fenton, MI", "lat": 42.7978, "lon": -83.705, "icon": "town"}], "items": [{"id": "i01", "date": "2026-10-06", "time": "", "tz": "HST", "title": "Start packing", "kind": "task", "place": "", "who": ["john", "brenda", "matt"], "transport": "", "key": false, "flag": "", "d": {}}, {"id": "i02", "date": "2026-10-07", "time": "18:00", "tz": "HST", "title": "Fly out of Maui", "kind": "flight", "place": "ogg", "who": ["john", "brenda", "matt"], "transport": "Flight", "key": true, "flag": "", "d": {"notes": "Overnight flight, lands DTW Thu 10:45 AM"}}, {"id": "i03", "date": "2026-10-08", "time": "10:45", "tz": "ET", "title": "Land in Detroit", "kind": "flight", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "Flight", "key": false, "flag": "", "d": {}}, {"id": "i04", "date": "2026-10-08", "time": "11:00", "tz": "ET", "title": "Pick up rental car", "kind": "car", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "", "key": false, "flag": "", "d": {}}, {"id": "i05", "date": "2026-10-08", "time": "12:00", "tz": "ET", "title": "Settle in at Adam's", "kind": "visit", "place": "adam", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i06", "date": "2026-10-08", "time": "16:00", "tz": "ET", "title": "Eliott's football game", "kind": "game", "place": "clarkston", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i07", "date": "2026-10-09", "time": "12:00", "tz": "ET", "title": "Visit Cassandra", "kind": "visit", "place": "fenton", "who": ["brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i08", "date": "2026-10-09", "time": "16:30", "tz": "ET", "title": "Brooks' soccer game", "kind": "game", "place": "roeper", "who": ["john", "brenda", "matt"], "transport": "Adam's car", "key": false, "flag": "", "d": {}}, {"id": "i09", "date": "2026-10-09", "time": "18:30", "tz": "ET", "title": "Visit Heidi & Dave", "kind": "visit", "place": "clarkston", "who": ["john", "brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}, "updatedAt": "2026-09-19T19:50:12.459Z"}, {"id": "i10", "date": "2026-10-12", "time": "16:30", "tz": "ET", "title": "Brooks' soccer game", "kind": "game", "place": "ocs", "who": ["john", "brenda", "matt"], "transport": "Adam's car", "key": false, "flag": "", "d": {}}, {"id": "i11", "date": "2026-10-13", "time": "16:30", "tz": "ET", "title": "Brooks' soccer game", "kind": "game", "place": "icb", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i12", "date": "2026-10-13", "time": "18:00", "tz": "HST", "title": "Katie & Nicholai fly out of Maui", "kind": "flight", "place": "ogg", "who": ["katie", "nicholai"], "transport": "Flight", "key": true, "flag": "", "d": {"notes": "Overnight flight, lands DTW Wed 10:45 AM"}}, {"id": "i13", "date": "2026-10-14", "time": "10:45", "tz": "ET", "title": "Katie & Nicholai land in Detroit", "kind": "flight", "place": "dtw", "who": ["katie", "nicholai"], "transport": "Uber to hotel", "key": false, "flag": "Hotel check-in is at 6 PM, about 7 hours after landing. Plan the afternoon or ask the Atheneum about early check-in.", "d": {}}, {"id": "i14", "date": "2026-10-14", "time": "15:00", "tz": "ET", "title": "Tux fitting", "kind": "errand", "place": "mw", "who": ["john", "brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i15", "date": "2026-10-14", "time": "18:00", "tz": "ET", "title": "Check in at the Atheneum", "kind": "stay", "place": "atheneum", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i16", "date": "2026-10-15", "time": "16:30", "tz": "ET", "title": "Eliott's football game", "kind": "game", "place": "clarkston", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": false, "flag": "Overlaps the 5:00 rehearsal in Grosse Pointe, about an hour's drive away. John and Brenda can't make both.", "d": {}}, {"id": "i17", "date": "2026-10-15", "time": "17:00", "tz": "ET", "title": "Wedding rehearsal", "kind": "wedding", "place": "ccd", "who": ["john", "brenda"], "transport": "Rental Car", "key": true, "flag": "Conflicts with Eliott's 4:30 game in Clarkston.", "d": {}}, {"id": "i18", "date": "2026-10-15", "time": "18:00", "tz": "ET", "title": "Rehearsal dinner", "kind": "meal", "place": "", "who": ["john", "brenda"], "transport": "Rental Car", "key": true, "flag": "Location still TBD.", "d": {}}, {"id": "i19", "date": "2026-10-16", "time": "08:30", "tz": "ET", "title": "Ruby's soccer game", "kind": "game", "place": "", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "Location still TBD.", "d": {}}, {"id": "i20", "date": "2026-10-16", "time": "16:00", "tz": "ET", "title": "Alexa's Wedding!", "kind": "wedding", "place": "ccd", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": true, "flag": "", "d": {}, "updatedAt": "2026-09-19T17:04:14.007Z"}, {"id": "i21", "date": "2026-10-16", "time": "17:00", "tz": "ET", "title": "Reception", "kind": "wedding", "place": "ccd", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": true, "flag": "", "d": {}}, {"id": "i22", "date": "2026-10-16", "time": "23:00", "tz": "ET", "title": "After-party bowling", "kind": "other", "place": "", "who": ["john", "brenda", "matt", "katie", "nicholai"], "transport": "Rental Car", "key": true, "flag": "", "d": {}}, {"id": "i23", "date": "2026-10-17", "time": "", "tz": "ET", "title": "Return the tux", "kind": "errand", "place": "mw", "who": ["john", "brenda"], "transport": "Rental Car", "key": false, "flag": "", "d": {}}, {"id": "i24", "date": "2026-10-18", "time": "08:00", "tz": "ET", "title": "Katie & Nicholai fly home to Maui", "kind": "flight", "place": "dtw", "who": ["katie", "nicholai"], "transport": "Uber to DTW", "key": false, "flag": "", "d": {}}, {"id": "i25", "date": "2026-10-19", "time": "06:00", "tz": "ET", "title": "Drop off rental car", "kind": "car", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "Rental Car", "key": false, "flag": "Returning the car at 6:00 for a 7:00 flight leaves no time for check-in and security. Aim for 5:00 or earlier.", "d": {}}, {"id": "i26", "date": "2026-10-19", "time": "07:00", "tz": "ET", "title": "Fly home to Maui", "kind": "flight", "place": "dtw", "who": ["john", "brenda", "matt"], "transport": "Flight", "key": true, "flag": "", "d": {}}], "lodging": {"2026-10-07": {"john": "On the flight", "brenda": "On the flight", "matt": "On the flight"}, "2026-10-08": {"john": "adam", "brenda": "adam", "matt": "adam"}, "2026-10-09": {"john": "adam", "brenda": "adam", "matt": "adam"}, "2026-10-10": {"john": "adam", "brenda": "adam", "matt": "rocky"}, "2026-10-11": {"john": "adam", "brenda": "adam", "matt": "rocky"}, "2026-10-12": {"john": "adam", "brenda": "adam", "matt": "rocky"}, "2026-10-13": {"john": "adam", "brenda": "adam", "matt": "adam", "katie": "On the flight", "nicholai": "On the flight"}, "2026-10-14": {"john": "atheneum", "brenda": "atheneum", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-15": {"john": "atheneum", "brenda": "atheneum", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-16": {"john": "whitney", "brenda": "whitney", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-17": {"john": "whitney", "brenda": "whitney", "matt": "adam", "katie": "atheneum", "nicholai": "atheneum"}, "2026-10-18": {"john": "adam", "brenda": "adam"}}, "days": {"2026-10-16": {"note": "Wedding day", "flag": "John and Brenda move from the Atheneum to the David Whitney today, but there's no checkout or check-in time on the schedule yet."}, "2026-10-18": {"note": "", "flag": "Only one overnight was listed for tonight. Confirm where John, Brenda and Matt sleep."}}, "log": [{"at": "2026-09-19T20:35:21.000Z", "text": "Map labels on every place; pinned Adam's and Rocky's with drive times"}, {"at": "2026-09-19T20:28:51.670Z", "text": "Updated Rocky's House"}, {"at": "2026-09-19T20:27:02.961Z", "text": "Updated Adam's House"}, {"at": "2026-09-19T20:17:37.000Z", "text": "Map upgraded: place icons, drive routes with times, and drag, scroll and pinch zoom"}, {"at": "2026-09-19T20:03:30.000Z", "text": "Added the map, pinned 10 places with addresses, and renamed Turo car to Rental Car"}, {"at": "2026-09-19T19:50:17.392Z", "text": "Changed Visit Heidi & Dave (Fri, Oct 9)"}, {"at": "2026-09-19T17:04:43.973Z", "text": "Changed Alexa's Wedding! (Fri, Oct 16)"}, {"at": "2026-09-18T20:00:00.000Z", "text": "Itinerary created from the original sheet"}], "drives": {"atheneum|dtw": {"m": 33, "mi": 23.1}, "dtw|whitney": {"m": 32, "mi": 22.0}, "ccd|dtw": {"m": 48, "mi": 31.4}, "dtw|mw": {"m": 43, "mi": 30.5}, "dtw|roeper": {"m": 56, "mi": 33.3}, "dtw|ocs": {"m": 63, "mi": 50.1}, "dtw|icb": {"m": 20, "mi": 11.7}, "clarkston|dtw": {"m": 66, "mi": 45.3}, "dtw|fenton": {"m": 75, "mi": 64.0}, "atheneum|whitney": {"m": 2, "mi": 0.6}, "atheneum|ccd": {"m": 25, "mi": 13.3}, "atheneum|mw": {"m": 20, "mi": 12.3}, "atheneum|roeper": {"m": 34, "mi": 26.6}, "atheneum|ocs": {"m": 39, "mi": 31.9}, "atheneum|icb": {"m": 19, "mi": 11.7}, "atheneum|clarkston": {"m": 48, "mi": 41.5}, "atheneum|fenton": {"m": 69, "mi": 58.3}, "ccd|whitney": {"m": 25, "mi": 13.3}, "mw|whitney": {"m": 20, "mi": 12.3}, "roeper|whitney": {"m": 34, "mi": 26.6}, "ocs|whitney": {"m": 39, "mi": 31.9}, "icb|whitney": {"m": 17, "mi": 10.8}, "clarkston|whitney": {"m": 48, "mi": 41.5}, "fenton|whitney": {"m": 70, "mi": 58.3}, "ccd|mw": {"m": 7, "mi": 2.0}, "ccd|roeper": {"m": 48, "mi": 32.6}, "ccd|ocs": {"m": 54, "mi": 38.5}, "ccd|icb": {"m": 36, "mi": 21.7}, "ccd|clarkston": {"m": 63, "mi": 48.1}, "ccd|fenton": {"m": 84, "mi": 64.8}, "mw|roeper": {"m": 42, "mi": 30.5}, "mw|ocs": {"m": 47, "mi": 36.4}, "icb|mw": {"m": 31, "mi": 20.8}, "clarkston|mw": {"m": 56, "mi": 46.0}, "fenton|mw": {"m": 78, "mi": 62.8}, "ocs|roeper": {"m": 15, "mi": 9.7}, "icb|roeper": {"m": 43, "mi": 24.6}, "clarkston|roeper": {"m": 24, "mi": 19.3}, "fenton|roeper": {"m": 46, "mi": 36.0}, "icb|ocs": {"m": 51, "mi": 40.4}, "clarkston|ocs": {"m": 17, "mi": 12.0}, "fenton|ocs": {"m": 38, "mi": 28.8}, "clarkston|icb": {"m": 60, "mi": 50.0}, "fenton|icb": {"m": 78, "mi": 64.4}, "clarkston|fenton": {"m": 26, "mi": 18.4}, "adam|rocky": {"m": 10, "mi": 3.7}, "adam|dtw": {"m": 70, "mi": 55.3}, "adam|atheneum": {"m": 46, "mi": 37.1}, "adam|whitney": {"m": 46, "mi": 37.1}, "adam|ccd": {"m": 60, "mi": 43.7}, "adam|mw": {"m": 54, "mi": 41.6}, "adam|roeper": {"m": 22, "mi": 14.9}, "adam|ocs": {"m": 15, "mi": 7.6}, "adam|icb": {"m": 58, "mi": 45.6}, "adam|clarkston": {"m": 13, "mi": 6.3}, "adam|fenton": {"m": 36, "mi": 24.1}, "dtw|rocky": {"m": 65, "mi": 52.2}, "atheneum|rocky": {"m": 41, "mi": 34.0}, "rocky|whitney": {"m": 42, "mi": 33.9}, "ccd|rocky": {"m": 56, "mi": 40.5}, "mw|rocky": {"m": 50, "mi": 38.4}, "rocky|roeper": {"m": 18, "mi": 11.7}, "ocs|rocky": {"m": 10, "mi": 4.4}, "icb|rocky": {"m": 54, "mi": 42.5}, "clarkston|rocky": {"m": 13, "mi": 8.3}, "fenton|rocky": {"m": 34, "mi": 25.1}}}</script>
 <script>window.TRIP_API = "/api/data";</script>
 <script id="appjs">
 (function(){
@@ -461,6 +481,10 @@ function store(kind){ try { return window[kind]; } catch(e){ return null; } }
 function sGet(kind, k, d){ try { var v = store(kind).getItem('wedtrip:'+k); return v == null ? d : JSON.parse(v); } catch(e){ return d; } }
 function sSet(kind, k, v){ try { if (v == null) store(kind).removeItem('wedtrip:'+k); else store(kind).setItem('wedtrip:'+k, JSON.stringify(v)); } catch(e){} }
 
+function validateState(s){
+  return s && typeof s === 'object' && Array.isArray(s.people) && s.people.length > 0 && Array.isArray(s.items) && Array.isArray(s.places) && s.lodging && typeof s.lodging === 'object' && s.trip && typeof s.trip === 'object';
+}
+
 var hasSavedKey = !!sGet('localStorage','editkey','');
 var ui = { person: sGet('localStorage','person','all'), tab:'schedule', editing:hasSavedKey ? sGet('localStorage','editing',true) : false, canEdit:hasSavedKey, wantEdit:false, art:null, dl:null, open:{}, notice:'', mapDates:{}, mapZoom:1, mapSel:null, mapView:null, md:null, lastDrag:0, guestId:'' };
 function getGuestId(){
@@ -472,14 +496,15 @@ function getGuestId(){
   return g;
 }
 ui.guestId = getGuestId();
+if (!validateState(saved)) { saved = { rev:0, updatedAt:new Date().toISOString(), trip:{title:'Detroit Wedding Trip',subtitle:'Maui to Detroit and back',wedding:'2026-10-16'}, people:[], places:[], items:[], lodging:{}, days:{} }; }
 if (!['all'].concat(state.people.map(function(p){return p.id;})).includes(ui.person)) ui.person = 'all';
 
 // restore local draft
 var draft = sGet('localStorage','draft',null);
 if (draft) {
   if (draft.publishing === saved.rev) { sSet('localStorage','draft',null); }
-  else if (draft.rev === saved.rev) { state = draft.state; pending = draft.pending || []; ui.wantEdit = true; }
-  else { ui.notice = 'A newer version was published before your '+(draft.pending||[]).length+' unpublished change(s) went out, so they were set aside. The schedule below is the latest.'; sSet('localStorage','draft',null); }
+  else if (draft.rev === saved.rev && validateState(draft.state)) { state = draft.state; pending = Array.isArray(draft.pending) ? draft.pending : []; ui.wantEdit = true; }
+  else { ui.notice = 'A newer version was published before your '+((draft.pending&&draft.pending.length)||0)+' unpublished change(s) went out, so they were set aside. The schedule below is the latest.'; sSet('localStorage','draft',null); }
 }
 var view = sGet('sessionStorage','view',null);
 if (view) { ui.tab = view.tab || 'schedule'; ui.wantEdit = ui.wantEdit || !!view.editing; sSet('sessionStorage','view',null); }
@@ -490,16 +515,32 @@ function place(v){ return v ? state.places.find(function(p){ return p.id === v; 
 function placeLabel(v){ var p = place(v); return p ? p.name : (v || ''); }
 function placeColor(v){ var i = state.places.findIndex(function(p){ return p.id === v; }); return i < 0 ? 'gray' : COLORS[i % COLORS.length]; }
 function travelers(){ return state.people.filter(function(p){ return p.traveler; }); }
-function parseD(s){ var a = s.split('-').map(Number); return new Date(Date.UTC(a[0], a[1]-1, a[2])); }
-function iso(d){ return d.toISOString().slice(0,10); }
+function parseD(s){
+  if (!s || typeof s !== 'string') return new Date(Date.UTC(2026, 9, 16));
+  var a = s.split('-').map(Number);
+  if (a.length < 3 || isNaN(a[0])) return new Date(Date.UTC(2026, 9, 16));
+  return new Date(Date.UTC(a[0], a[1]-1, a[2]));
+}
+function iso(d){ return d ? d.toISOString().slice(0,10) : ''; }
 function fmtD(s, o){ return parseD(s).toLocaleDateString('en-US', Object.assign({ timeZone:'UTC' }, o)); }
 function shortD(s){ return fmtD(s,{ weekday:'short', month:'short', day:'numeric' }); }
-function fmtT(t){ if (!t) return ''; var a = t.split(':').map(Number); var h = a[0], m = a[1]; return ((h+11)%12+1) + (m ? ':'+String(m).padStart(2,'0') : '') + (h >= 12 ? ' PM' : ' AM'); }
-function instant(it){ var d = parseD(it.date).getTime(); if (!it.time) return d - (TZ[it.tz]||-4)*3600e3; var a = it.time.split(':').map(Number); return d + (a[0]*60 + a[1])*60e3 - (TZ[it.tz]||-4)*3600e3; }
+function fmtT(t){ if (!t || typeof t !== 'string') return ''; var a = t.split(':').map(Number); var h = a[0], m = a[1]; return ((h+11)%12+1) + (m ? ':'+String(m).padStart(2,'0') : '') + (h >= 12 ? ' PM' : ' AM'); }
+function instant(it){
+  if (!it || !it.date) return 0;
+  var d = parseD(it.date).getTime();
+  if (!it.time || typeof it.time !== 'string') return d - (TZ[it.tz]||-4)*3600e3;
+  var a = it.time.split(':').map(Number);
+  if (a.length < 2 || isNaN(a[0])) return d - (TZ[it.tz]||-4)*3600e3;
+  return d + (a[0]*60 + a[1])*60e3 - (TZ[it.tz]||-4)*3600e3;
+}
 function todayET(){ return iso(new Date(Date.now() - 4*3600e3)); }
 function daysBetween(a, b){ return Math.round((parseD(b) - parseD(a)) / 864e5); }
-function sortItems(a, b){ return a.date === b.date ? ((a.time ? instant(a) : -1) - (b.time ? instant(b) : -1)) : (a.date < b.date ? -1 : 1); }
-function visible(it){ return ui.person === 'all' || !(it.who && it.who.length) || it.who.includes(ui.person); }
+function sortItems(a, b){
+  if (!a || !b) return 0;
+  var da = a.date || '', db = b.date || '';
+  return da === db ? ((a.time ? instant(a) : -1) - (b.time ? instant(b) : -1)) : (da < db ? -1 : 1);
+}
+function visible(it){ if (!it) return false; return ui.person === 'all' || !(it.who && it.who.length) || it.who.includes(ui.person); }
 function timeState(it){
   var today = todayET(), now = Date.now();
   if (it.date < today) return 'past';
@@ -678,7 +719,7 @@ function initWeather(){
         });
         ui.forecast = f;
         sSet('sessionStorage', 'weather_forecast', f);
-        render();
+        safeRender();
       }
     }).catch(function(){});
 }
@@ -906,6 +947,26 @@ function render(){
   if (ui.tab === 'map') mountMap(); else mv = null;
   onScroll();
 }
+
+function safeRender(){
+  try {
+    render();
+  } catch(e) {
+    console.error('Render failure caught:', e);
+    sSet('localStorage','draft',null);
+    try {
+      state = clone(saved);
+      render();
+      toast('Schedule restored.');
+    } catch(e2) {
+      console.error('Secondary render failure:', e2);
+      var appEl = document.getElementById('app');
+      if (appEl) {
+        appEl.innerHTML = '<div class="wrap" style="padding:40px 20px;text-align:center"><h1>Alexa Wedding!</h1><p style="color:var(--muted)">An error occurred while rendering: '+esc(e2 && e2.message)+'</p><button class="btn primary" onclick="localStorage.clear();sessionStorage.clear();location.reload()">Reset App Data</button></div>';
+      }
+    }
+  }
+}
 function hero(){
   var ds = allDates(), first = ds[0], last = ds[ds.length-1], today = todayET(), line = '';
   var w = state.trip.wedding;
@@ -913,7 +974,7 @@ function hero(){
     var mine = state.items.filter(function(i){ return i.kind === 'flight' && visible(i); }).sort(sortItems)[0];
     var parts = [];
     if (w) { var n = daysBetween(today, w); parts.push(n === 1 ? 'Wedding tomorrow' : 'Wedding in ' + n + ' days'); }
-    if (mine && ui.person !== 'all') { var f = daysBetween(today, mine.date); parts.push(P(ui.person).name + (f === 0 ? ' flies today' : ' flies in ' + f + (f === 1 ? ' day' : ' days'))); }
+    if (mine && ui.person !== 'all') { var pObj = P(ui.person); var f = daysBetween(today, mine.date); parts.push((pObj ? pObj.name : 'Someone') + (f === 0 ? ' flies today' : ' flies in ' + f + (f === 1 ? ' day' : ' days'))); }
     line = parts.join('. ');
   } else if (w && today === w) line = 'Today is the wedding! 🎉';
   else if (w && today < w) { var n2 = daysBetween(today, w); line = 'Wedding in ' + n2 + (n2 === 1 ? ' day' : ' days'); }
@@ -988,7 +1049,7 @@ function schedule(){
     if (its.length) {
       h += '<ol class="items">' + its.map(itemHTML).join('') + '</ol>';
     } else {
-      h += '<p class="free">Nothing scheduled'+(ui.person!=='all'?' for '+esc(P(ui.person).name):'')+'.</p>';
+      h += '<p class="free">Nothing scheduled'+(ui.person!=='all'?' for '+esc(P(ui.person)?P(ui.person).name:'this person'):'')+'.</p>';
       if (ui.person === 'all') {
         h += dayIdeaHTML(d, di);
       }
@@ -1056,7 +1117,7 @@ function itemHTML(it){
   if (it.place) meta.push(esc(placeLabel(it.place)));
   var tv = it.transport ? travelFor(it) : null;
   if (it.transport) meta.push('<span class="tr">' + svg(it.kind === 'flight' ? 'flight' : 'car',14) + esc(it.transport) + (tv ? ' <span class="tt">(' + (tv.est ? '~' : '') + esc(durText(tv.m)) + ')</span>' : '') + '</span>');
-  var who = (it.who||[]).map(function(id){ return av(P(id)); }).join('');
+  var who = (it.who||[]).map(function(id){ var p = P(id); return p ? '<button class="av-btn" data-act="person" data-id="'+esc(p.id)+'" title="Show schedule for '+esc(p.name)+'" aria-label="Show schedule for '+esc(p.name)+'">'+av(p)+'</button>' : ''; }).join('');
   var st = timeState(it);
   var isPast = st === 'past', isNow = st === 'now';
   var isMine = it.createdBy && it.createdBy === ui.guestId;
@@ -1082,8 +1143,8 @@ function detailsHTML(it, pl){
     if (addr) whereHtml += ' <button class="copy-pill" data-act="copy" data-copy="'+esc(addr)+'" data-label="address">Copy</button>';
     rows.push(['Where', whereHtml]);
   }
-  var names = (it.who||[]).map(function(id){ var p = P(id); return p ? p.name : ''; }).filter(Boolean);
-  if (names.length) rows.push(['Who', esc(joinNames(names))]);
+  var names = (it.who||[]).map(function(id){ var p = P(id); return p ? '<button class="person-lnk" data-act="person" data-id="'+esc(p.id)+'">'+esc(p.name)+'</button>' : ''; }).filter(Boolean);
+  if (names.length) rows.push(['Who', names.join(', ')]);
   if (it.transport) { var tv2 = travelFor(it); rows.push(['Getting there', esc(it.transport) + (tv2 ? (tv2.flight ? ', about ' + esc(durText(tv2.m)) + ' door to door including connections' : ', about ' + esc(durText(tv2.m)) + ' (' + tv2.mi + ' mi) from ' + esc(tv2.from) + ' to ' + esc(tv2.to) + ', without traffic') : '')]); }
   if (it.time) rows.push(['Time', esc(fmtT(it.time)) + ' ' + (it.tz === 'HST' ? 'Hawaii time' : 'Detroit time')]);
   if (d.flight) rows.push(['Flight', esc(d.flight) + ' <button class="copy-pill" data-act="copy" data-copy="'+esc(d.flight)+'" data-label="flight number">Copy</button>']);
@@ -1129,9 +1190,9 @@ function stays(){
   return h;
 }
 function contacts(){
-  var h = '<section class="sec"><h2>People</h2><p class="lead">Phone numbers are tappable on iPhone.</p><div class="rows">';
+  var h = '<section class="sec"><h2>People</h2><p class="lead">Phone numbers are tappable on iPhone. Tap any person to view their schedule.</p><div class="rows">';
   state.people.forEach(function(p){
-    h += '<div class="row"><div class="n" style="display:flex;gap:10px;align-items:center">'+av(p)+esc(p.name)+(p.traveler?'':' <span class="s">(not traveling)</span>')+'</div><div class="r">'+(ui.editing?'<button class="btn sm" data-act="edit-person" data-id="'+esc(p.id)+'">Edit</button>':(p.phone?'<a class="btn sm" href="tel:'+esc(p.phone.replace(/[^\d+]/g,''))+'">Call</a>':''))+'</div>';
+    h += '<div class="row"><div class="n"><button class="person-lnk-row" data-act="person" data-id="'+esc(p.id)+'" title="Show schedule for '+esc(p.name)+'">'+av(p)+'<b>'+esc(p.name)+'</b></button>'+(p.traveler?'':' <span class="s">(not traveling)</span>')+'</div><div class="r">'+(ui.editing?'<button class="btn sm" data-act="edit-person" data-id="'+esc(p.id)+'">Edit</button>':(p.phone?'<a class="btn sm" href="tel:'+esc(p.phone.replace(/[^\d+]/g,''))+'">Call</a>':''))+'</div>';
     h += '<div class="s">'+(p.phone?esc(p.phone):'<span class="none">No phone yet</span>')+'</div>'+(p.notes?'<div class="s">'+esc(p.notes)+'</div>':'')+'</div>';
   });
   h += '</div>' + (ui.editing?'<p><button class="btn" data-act="add-person">Add a person</button></p>':'') + '</section>';
@@ -1281,7 +1342,7 @@ function groupLines(g){
   var its = g.entries.filter(function(e){ return e.item; }).map(function(e){ return e.item; });
   var nights = {}, byRange = {}, order = [];
   g.entries.forEach(function(e){ if (e.night) (nights[e.pid] = nights[e.pid] || []).push(e.night); });
-  Object.keys(nights).forEach(function(pid){ var r = rangeText(nights[pid]); if (!byRange[r]) { byRange[r] = []; order.push(r); } byRange[r].push(P(pid).name); });
+  Object.keys(nights).forEach(function(pid){ var r = rangeText(nights[pid]); if (!byRange[r]) { byRange[r] = []; order.push(r); } byRange[r].push(P(pid) ? P(pid).name : 'Guest'); });
   return { items: its, nights: order.map(function(r){ return joinNames(byRange[r]) + ', ' + r; }) };
 }
 function whoNames(ids){ return joinNames((ids||[]).map(function(id){ var p = P(id); return p ? p.name : ''; }).filter(Boolean)); }
@@ -1289,7 +1350,7 @@ function leaveBy(t, m){ if (!t) return ''; var a = t.split(':').map(Number), min
 
 function mapTab(){
   var md = mapData(); ui.md = md;
-  var who = ui.person === 'all' ? 'everyone' : P(ui.person).name;
+  var pObj = P(ui.person); var who = ui.person === 'all' ? 'everyone' : (pObj ? pObj.name : 'someone');
   var when = md.dsel.length ? md.dsel.slice().sort().map(function(d){ return fmtD(d,{month:'short',day:'numeric'}); }).join(', ') : 'all dates';
   var h = '<section class="sec" style="margin-top:0"><div class="mapsum"><span><b>'+md.pins.length+'</b> '+(md.pins.length===1?'place':'places')+' and <b>'+md.legs.length+'</b> '+(md.legs.length===1?'drive':'drives')+' for '+esc(who)+', '+esc(when)+'</span>'+(md.dsel.length || ui.person !== 'all' ? '<button class="btn sm" data-act="mapclear">Show everything</button>' : '')+'</div>';
   h += '<div class="mv" id="mv" tabindex="0" aria-label="Trip map. Drag to move, scroll or pinch to zoom."><div class="mvlayer"></div><div class="mvover"></div>' +
@@ -1608,7 +1669,7 @@ function saveItem(id){
     sSet('localStorage','guestName', aName);
     it.createdBy = it.createdBy || ui.guestId;
     it.createdByName = aName;
-    dlg.open && dlg.close();
+    if (dlg && typeof dlg.close === 'function') { try { dlg.close(); } catch(e){} }
     publishGuest(state, (nu ? 'Added ' : 'Changed ') + title);
   } else {
     if (!it.createdBy) it.createdBy = 'admin';
@@ -1712,7 +1773,7 @@ function buildDoc(s){
   var js = document.getElementById('appjs').textContent;
   var json = JSON.stringify(s).replace(/</g, '\\u003c');
   var S = 'scr' + 'ipt';
-  return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<title>' + esc(s.trip.title) + '</title>\n<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">\n<meta name="apple-mobile-web-app-title" content="Detroit Wedding">\n<meta name="theme-color" content="#121921">\n<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">\n<link rel="manifest" href="/manifest.json">\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">\n<style id="css">' + css + '</style>\n</head>\n<body>\n<div id="app"></div>\n<' + S + ' type="application/json" id="state">' + json + '</' + S + '>\n<' + S + ' type="text/plain" id="basemap">' + baseSrc + '</' + S + '>\n<' + S + ' id="appjs">' + js + '</' + S + '>\n</body>\n</html>\n';
+  return '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n<title>' + esc(s.trip.title || "Alexa Wedding!") + '</title>\n<meta name="apple-mobile-web-app-capable" content="yes">\n<meta name="apple-mobile-web-app-status-bar-style" content="default">\n<meta name="apple-mobile-web-app-title" content="Alexa Wedding!">\n<meta name="theme-color" content="#F4F6F4" media="(prefers-color-scheme: light)">\n<meta name="theme-color" content="#0F151B" media="(prefers-color-scheme: dark)">\n<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">\n<link rel="manifest" href="/manifest.json">\n<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">\n<style id="css">' + css + '</style>\n</head>\n<body style="background:var(--paper,#F4F6F4)">\n<div id="app"><div class="wrap" style="padding-top:36px"><header class="hero"><div class="hero-brand"><img class="hero-emblem" src="/apple-touch-icon.png?v=3" alt="Alexa Wedding Emblem" /><div class="hero-title-group"><h1 style="font:400 2.3rem var(--serif);margin:0">' + esc((s.trip && s.trip.title) || 'Alexa Wedding!') + '</h1><p class="dates" style="margin:6px 0 0;color:var(--muted)">' + esc((s.trip && s.trip.subtitle) || 'Maui to Detroit and back') + '</p></div></div></header></div></div>\n<' + S + ' type="application/json" id="state">' + json + '</' + S + '>\n<' + S + ' type="text/plain" id="basemap">' + baseSrc + '</' + S + '>\n<' + S + ' id="appjs">' + js + '</' + S + '>\n</body>\n</html>\n';
 }
 var publishing = false;
 function publish(retry){
@@ -1746,21 +1807,22 @@ function publish(retry){
 function publishGuest(next, summary){
   if (!API) {
     saved = clone(next); state = clone(next); pending = [];
-    sSet('localStorage','draft',null); render();
+    sSet('localStorage','draft',null); safeRender();
     toast(summary + ' saved locally.');
     return;
   }
   var nextState = clone(next);
   nextState.rev = (saved ? saved.rev : 0) + 1;
   nextState.updatedAt = new Date().toISOString();
+  toast('Saving event...');
   api('PUT', { state: nextState, baseRev: saved.rev }).then(function(r){
     if (r.ok) {
       saved = nextState; state = clone(nextState); pending = [];
-      sSet('localStorage','draft',null); render();
+      sSet('localStorage','draft',null); safeRender();
       toast(summary + ' saved and shared with everyone!');
       return;
     }
-    if (r.status === 409 && r.j && r.j.state) {
+    if (r.status === 409 && r.j && r.j.state && validateState(r.j.state)) {
       saved = r.j.state;
       var curItems = saved.items || [];
       var myItems = next.items.filter(function(i){ return i.createdBy === ui.guestId; });
@@ -1768,16 +1830,16 @@ function publishGuest(next, summary){
       saved.items = merged;
       state = clone(saved);
       sSet('localStorage','draft',null);
-      render();
+      safeRender();
       toast('Schedule updated with latest changes.');
       return;
     }
     saved = next; state = clone(next); pending = [];
-    sSet('localStorage','draft',null); render();
+    sSet('localStorage','draft',null); safeRender();
     toast(summary + ' saved to this device.');
   }).catch(function(){
     saved = next; state = clone(next); pending = [];
-    sSet('localStorage','draft',null); render();
+    sSet('localStorage','draft',null); safeRender();
     toast(summary + ' saved to this device (offline).');
   });
 }
@@ -1794,12 +1856,19 @@ function csv(){
 }
 
 // ---------- events ----------
-app.addEventListener('click', function(e){
+document.addEventListener('click', function(e){
   if (ui.lastDrag && Date.now() - ui.lastDrag < 350 && e.target.closest('#mv')) return;
   var b = e.target.closest('[data-act]');
-  if (!b) { if (ui.mapSel && e.target.closest('#mv') && !e.target.closest('.mvsheet')) { ui.mapSel = null; render(); } return; }
+  if (!b) { if (ui.mapSel && e.target.closest('#mv') && !e.target.closest('.mvsheet')) { ui.mapSel = null; safeRender(); } return; }
   var a = b.dataset.act, id = b.dataset.id;
-  if (a === 'person') { ui.person = id; ui.mapView = null; ui.mapSel = null; sSet('localStorage','person',id); render(); }
+  if (a === 'person') {
+    ui.person = (ui.person === id && id !== 'all') ? 'all' : id;
+    ui.mapView = null;
+    ui.mapSel = null;
+    sSet('localStorage','person',ui.person);
+    if (ui.tab !== 'schedule' && ui.tab !== 'map' && ui.tab !== 'stays') ui.tab = 'schedule';
+    safeRender();
+  }
   else if (a === 'tab') { ui.tab = id; render(); window.scrollTo(0, 0); lastCompact = false; onScroll(); }
   else if (a === 'toggle') { ui.open[id] = !ui.open[id]; render(); }
   else if (a === 'jump') {
@@ -1895,8 +1964,11 @@ function api(method, body){
   var k = editKey();
   if (k) headers['x-edit-key'] = k;
   if (ui.guestId) headers['x-guest-id'] = ui.guestId;
-  return fetch(API + (method === 'GET' ? '?t=' + Date.now() : ''), { method: method, cache: 'no-store', headers: headers, body: body ? JSON.stringify(body) : undefined })
-    .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok, status: r.status, j: j }; }); });
+  var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  var timer = controller ? setTimeout(function(){ controller.abort(); }, 9000) : null;
+  return fetch(API + (method === 'GET' ? '?t=' + Date.now() : ''), { method: method, cache: 'no-store', headers: headers, body: body ? JSON.stringify(body) : undefined, signal: controller ? controller.signal : undefined })
+    .then(function(r){ if (timer) clearTimeout(timer); return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok, status: r.status, j: j }; }); })
+    .catch(function(err){ if (timer) clearTimeout(timer); throw err; });
 }
 function signIn(){
   var currentKey = editKey();
@@ -1970,23 +2042,35 @@ function publishHosted(){
 function pullRemote(first){
   if (!API || publishing) return;
   api('GET').then(function(r){
-    var rs = r.ok && r.j && r.j.state; if (!rs || typeof rs.rev !== 'number') return;
+    var rs = r.ok && r.j && r.j.state; if (!rs || typeof rs.rev !== 'number' || !validateState(rs)) return;
     if (rs.rev <= saved.rev && !(first && rs.rev === saved.rev && rs.updatedAt !== saved.updatedAt)) return;
     if (pending.length) {
       if (first && draft && draft.rev !== rs.rev) { ui.notice = 'A newer version was published before your ' + pending.length + ' unpublished change(s) went out, so they were set aside. The schedule below is the latest.'; pending = []; sSet('localStorage','draft',null); }
       else return;
     }
-    saved = rs; state = clone(rs); render(); if (!first) toast('Itinerary updated');
+    saved = rs; state = clone(rs); safeRender(); if (!first) toast('Itinerary updated');
   }).catch(function(){});
 }
+
+function handleGlobalErr(msg){
+  var appEl = document.getElementById('app');
+  sSet('localStorage','draft',null);
+  try { state = clone(saved); render(); } catch(err){
+    if (appEl) appEl.innerHTML = '<div class="wrap" style="padding:40px 20px;text-align:center"><h1>Alexa Wedding!</h1><p style="color:var(--muted)">An error occurred while loading. Tap below to reset.</p><button class="btn primary" onclick="localStorage.clear();sessionStorage.clear();location.reload()">Reset App Data</button></div>';
+  }
+}
+window.addEventListener('error', function(e){ console.error('Unhandled app error:', e && e.message); handleGlobalErr(e && e.message); });
+window.addEventListener('unhandledrejection', function(e){ console.error('Unhandled rejection:', e && e.reason); handleGlobalErr(e && e.reason); });
+
 if (API) {
   ui.dl = { save: function(o){ var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([o.data], { type: 'text/csv' })); a.download = o.filename; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 800); return Promise.resolve({ status: 'saved' }); } };
   ui.canEdit = !!editKey();
   if (ui.canEdit) ui.editing = sGet('localStorage', 'editing', true);
   if (!ui.canEdit && pending.length) { state = clone(saved); pending = []; }
-  render(); pullRemote(true);
+  safeRender(); pullRemote(true);
   setInterval(function(){ if (!document.hidden) pullRemote(false); }, 30000);
   document.addEventListener('visibilitychange', function(){ if (!document.hidden) pullRemote(false); });
+  window.addEventListener('pageshow', function(){ if (!document.hidden) pullRemote(false); });
 } else
 if (window.claude && typeof window.claude.use === 'function') {
   Promise.all([claude.use('artifact'), claude.use('user'), claude.use('downloads')]).then(function(r){
@@ -1996,10 +2080,10 @@ if (window.claude && typeof window.claude.use === 'function') {
       ui.canEdit = !!(ui.art && ce);
       if (ui.canEdit && ui.wantEdit) ui.editing = true;
       if (!ui.canEdit) { ui.editing = false; if (pending.length) { state = JSON.parse(JSON.stringify(saved)); pending = []; } }
-      render();
+      safeRender();
     });
-  }).catch(function(){});
-} else { ui.editing = false; if (pending.length) { state = JSON.parse(JSON.stringify(saved)); pending = []; } render(); }
+  }).catch(function(){ safeRender(); });
+} else { ui.editing = false; if (pending.length) { state = JSON.parse(JSON.stringify(saved)); pending = []; } safeRender(); }
 })();
 </script>
 </body>

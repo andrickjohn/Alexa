@@ -1,11 +1,11 @@
 {
-  "name": "Detroit Wedding Trip",
-  "short_name": "Detroit Wedding",
-  "description": "Detroit Wedding Trip itinerary, schedules, lodging, drives, and contacts.",
+  "name": "Alexa Wedding!",
+  "short_name": "Alexa Wedding!",
+  "description": "Alexa Wedding trip itinerary, schedules, lodging, drives, and contacts.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#121921",
-  "theme_color": "#121921",
+  "background_color": "#F4F6F4",
+  "theme_color": "#2A5A7A",
   "icons": [
     {
       "src": "/icon-192.png",
